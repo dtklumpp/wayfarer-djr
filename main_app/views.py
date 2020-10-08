@@ -6,12 +6,24 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
-from .models import Profile
+from .models import Profile, Post 
 
 # Create your views here.
 
 def splash(request):
     return render(request, 'splash.html')
+
+def profile(request, user_name):
+    # user = request.user
+    user = User.objects.get(username=user_name)
+    profile = user.profile
+    context = {'profile': profile}
+    return render(request, 'registration/profile.html', context)
+
+def post(request, post_id):
+    post = Post.objects.get(id=post_id)
+    context = {'post': post}
+    return render(request, 'posts/detail.html', context)
 
 def home(request):
     return HttpResponse('<h1>Hello there fellow traveler!</h1>')

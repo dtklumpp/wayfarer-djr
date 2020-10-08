@@ -85,6 +85,7 @@
         </div>
         {% if user.is_authenticated %}
             <a class="item" href="{% url 'logout' %}">LOGOUT</a>
+            <a class="item" href="/users/{{ user.username }}"><span style="text-transform:uppercase">{{ user.username }}</span></a>
         {% endif %}
     </div>
 </div>
