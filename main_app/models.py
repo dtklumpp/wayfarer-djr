@@ -16,13 +16,11 @@ class City(models.Model):
         return self.name
 
 class Profile(models.Model):
+    name = models.CharField(max_length=50, default='default_name')
     image = models.CharField(max_length=500, default="https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg")
     join_date = models.DateField(default=django.utils.timezone.now)
-    # datetime.date.today
-    # django.utils.timezone.now
-    
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    current_city = models.ForeignKey(City, on_delete=models.CASCADE)
+    current_city = models.ForeignKey(City, on_delete=models.CASCADE, default=1)
     # TODO look into later how to not delete associated profiles
 
     def __str__(self):

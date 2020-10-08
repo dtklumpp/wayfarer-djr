@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<div class="ui grid">
+    <div class="four wide column">
+        <div class="ui card">
+            <div class="image">
+                <img src="{{ profile.image }}">
+            </div>
+            <div class="content">
+                <a class="header" style="text-transform:uppercase">{{ profile.user.username }}'s Profile</a>
+                <div class="meta">
+                <span class="date" style="text-transform:uppercase">Joined {{ profile.join_date}}</span>
+                </div>
+                <div class="description" style="text-transform:uppercase">
+                {{ profile.user.username }} is a wayfarer from {{ profile.current_city}}.
+                </div>
+            </div>
+            {% if profile.user.username == request.user.username %}
+            <div class="extra content">
+                <a href="{% url 'edit_profile' profile.user_id %}">EDIT PROFILE</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>  
+    <div class="eight wide column">
+        {% for post in profile.post_set.all %}
+        <a href="/posts/{{ post.id }}">
+            <div class="ui link card">
+                <div class="content">
+                    <div class="header">{{ post.title }}</div>
+                    <div class="meta">
+                        <span class="category">{{ post.city.name }}</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}
+
+
