@@ -1,13 +1,17 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import User_Form
+from .forms import User_Form, Profile_Form
 from django.contrib import auth
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from .models import Profile
 
 # Create your views here.
+
+def splash(request):
+    return render(request, 'splash.html')
 
 def home(request):
     return HttpResponse('<h1>Hello there fellow traveler!</h1>')
@@ -45,12 +49,18 @@ def signup(request):
                         email=email_form, 
                         password=password)
                     user.save()
-                    send_mail(
-                        'Welcome Wayfarer!', 
-                        'You are registered! Feel free to add your travel experiences and tips to our community of travellers!',
-                        'wwayfarer25@gmail.com',
-                        f"{user.email}"
-                        )
+                    profile_form = Profile_Form()
+                    new_profile = profile_form.save(commit = False)
+                    new_profile.user_id = user.id
+                    new_profile.save()
+                    login(request, user)
+                    # send_mail(
+                    #     'Welcome Wayfarer!', 
+                    #     'You are registered! Feel free to add your travel experiences and tips to our community of travellers!',
+                    #     'wwayfarer25@gmail.com',
+                    #     [email_form],
+                    #     fail_silently = False
+                    #     )
                     # TODO redirect to correct destination
                     return redirect('/about/')
         else:

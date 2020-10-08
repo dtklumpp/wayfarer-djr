@@ -22,7 +22,7 @@ class Profile(models.Model):
     # django.utils.timezone.now
     
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    current_city = models.ForeignKey(City, on_delete=models.CASCADE)
+    current_city = models.ForeignKey(City, on_delete=models.CASCADE, default=1)
     # TODO look into later how to not delete associated profiles
 
     def __str__(self):
