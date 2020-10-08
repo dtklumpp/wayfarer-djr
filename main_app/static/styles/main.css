@@ -9,9 +9,9 @@ body {
 #rainbow {
     width: 40%;
 }
-#red {
+/* #red {
     background-color: red;
-}
+} */
 #blue {
     background-color: blue;
 }
@@ -20,4 +20,8 @@ body {
 }
 .bordery {
     border: solid 1px black;
+}
+
+.jeff {
+    background-color: chartreuse;
 }
