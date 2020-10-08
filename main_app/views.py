@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import User_Form, Profile_Form
+from .forms import User_Form, Profile_Form, Profile_Edit_Form
 from django.contrib import auth
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -13,28 +13,40 @@ from .models import Profile, Post
 def splash(request):
     return render(request, 'splash.html')
 
+
+def edit_profile(request, user_id):
+    profile = Profile.objects.get(user_id=user_id)
+    profile_edit_form = Profile_Edit_Form(instance=profile)
+    context = {'profile_edit_form': profile_edit_form}
+    return render(request, 'registration/edit.html', context)
+
+
 def profile(request, user_name):
-    # user = request.user
     user = User.objects.get(username=user_name)
     profile = user.profile
     context = {'profile': profile}
     return render(request, 'registration/profile.html', context)
+
 
 def post(request, post_id):
     post = Post.objects.get(id=post_id)
     context = {'post': post}
     return render(request, 'posts/detail.html', context)
 
+
 def home(request):
     return HttpResponse('<h1>Hello there fellow traveler!</h1>')
+
 
 def about(request):
     user_form = User_Form()
     context = {'form': user_form}
     return render(request, 'about.html', context)
 
+
 def semantic(request):
     return render(request, 'semantic.html')
+
 
 def signup(request):
     # if post
@@ -64,6 +76,7 @@ def signup(request):
                     profile_form = Profile_Form()
                     new_profile = profile_form.save(commit = False)
                     new_profile.user_id = user.id
+                    new_profile.name = user.username
                     new_profile.save()
                     login(request, user)
                     # send_mail(
