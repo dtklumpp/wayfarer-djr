@@ -1,14 +1,24 @@
 {% extends 'base.html' %}
+{% load semanticui %}
+
 {% block content %}
 
+<!-- {% render_form form %} -->
 
 <div class="ui middle aligned center aligned grid">
     <div class="six wide column">
         <h2 class="ui header">Log-in</h2>
         <form class="ui large form" action="{% url 'login' %}" method="POST">
-                <div class="ui segment">
-                {% csrf_token %}
-                <div class="field">{{ form.as_p }}</div>
+            <div class="ui segment">
+            {% csrf_token %}
+                <div class="field">
+                    <label>Username</label>
+                    <input type="text" name="username" placeholder="Username">
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="Password">
+                </div>
                 <button class="ui button" type="submit">Submit</button>
             </div>
         </form>
