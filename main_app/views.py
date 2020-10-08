@@ -33,11 +33,11 @@ def signup(request):
         # check if username exists in db
             if User.objects.filter(username=username_form).exists():
                 context = {'error': 'Username is already taken.'}
-                return render(request, 'register.html', context)
+                return render(request, 'about.html', context)
             else:
                 if User.objects.filter(email=email_form).exists():
                     context = {'error':'That email already exists.'}
-                    return render(request, 'register.html', context)
+                    return render(request, 'about.html', context)
                 else: 
                 # if everything is ok create account
                     user = User.objects.create_user(
@@ -49,13 +49,13 @@ def signup(request):
                         'Welcome Wayfarer!', 
                         'You are registered! Feel free to add your travel experiences and tips to our community of travellers!',
                         'wwayfarer25@gmail.com',
-                        f"{email}"
+                        f"{user.email}"
                         )
                     # TODO redirect to correct destination
                     return redirect('/about/')
         else:
             context = {'error':'Passwords do not match'}
-            return render(request, 'register.html', context)
+            return render(request, 'about.html', context)
     else:
         # if not post send message, try again 
         context = {'error':'Your account was not created. Please try again.'}
