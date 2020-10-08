@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block custom_js %}
+    <script defer src="{% static 'scripts/main.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <h3>semantic test page</h3>
+
+<div class="dtk">
+
+    <select name="skills" multiple="" class="ui fluid dropdown">
+        <option value="">Skills</option>
+        <option value="angular">Angular</option>
+        <option value="css">CSS</option>
+        <option value="ember">Ember</option>
+        <option value="html">HTML</option>
+        <option value="javascript">Javascript</option>
+        <option value="meteor">Meteor</option>
+        <option value="node">NodeJS</option>
+    </select>
+
+    <br>
+    <br>
+
+    <div class="ui three buttons">
+        <button class="ui active button">One</button>
+        <button class="ui button">Two</button>
+        <button class="ui button">Three</button>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="ui grid bordery">
+        <div class="four wide column bordery">one</div>
+        <div class="column bordery">two</div>
+    </div>
+
+</div>
+
+<br>
+<br>
+
+<div class="ui three column grid" id="rainbow">
+    <div class="four wide column" id="red">4 wide</div>
+    <div class="eight wide column" id="blue">8 wide</div>
+    <div class="four wide column" id="green">4 wide</div>
+</div>
+
+ 
+
+
+{% endblock %}

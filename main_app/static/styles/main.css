@@ -1,0 +1,23 @@
+body {
+    background-color: #f1f1f1;
+}
+
+/* SEMANTIC UI EXPERIMENTAL SECTION */
+.dtk {
+    width: 20%;
+}
+#rainbow {
+    width: 40%;
+}
+#red {
+    background-color: red;
+}
+#blue {
+    background-color: blue;
+}
+#green {
+    background-color: green;
+}
+.bordery {
+    border: solid 1px black;
+}
