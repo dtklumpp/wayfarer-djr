@@ -14,7 +14,36 @@
     <title>Wayfarer</title>
 </head>
 <body>
-    <h1>base page template here</h1>
+
+<div class="ui fixed menu inverted" style="background-color:var(--primary)">
+    <a href="" class="item">BRAND/LOGO</a>
+    <a href="" class="item">WAYFARER</a>
+    <div class="right menu">
+        <a class="item" id="login" type="button">LOG-IN</a>
+        <a href="" class="item">SIGN-UP</a>
+            <script>
+                $(function(){
+                    $("#login").click(function(){
+                    $(".login").modal('show');
+                    });
+                    $(".login").modal({
+                        closable: true
+                    });
+                });
+            </script>
+        <div class="ui modal login">
+            <h2 class="ui header">Log-in</h2>
+            <form class="ui large form" action="{% url 'login' %}" method="POST">
+                    <div class="ui segment">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="ui button" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
     {% block content %}
     {% endblock %}
 </body>

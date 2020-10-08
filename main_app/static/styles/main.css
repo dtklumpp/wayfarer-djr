@@ -1,9 +1,17 @@
-body {
-    background-color: #f1f1f1;
+:root {
+    --primary:#860F44;
+    --secondary:#BB3939;
+    --tertiary:#EA5F2D;
+    --quaternary:#EEC89F
 }
 
+
+/* body {
+    background-color: #f1f1f1;
+} */
+
 /* SEMANTIC UI EXPERIMENTAL SECTION */
-.dtk {
+/* .dtk {
     width: 20%;
 }
 #rainbow {
@@ -17,7 +25,4 @@ body {
 }
 #green {
     background-color: green;
-}
-.bordery {
-    border: solid 1px black;
-}
+} */
