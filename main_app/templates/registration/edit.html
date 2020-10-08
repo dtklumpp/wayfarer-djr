@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<h1>Wayfarer</h1>
+
+<form class="ui large form" action="{% url 'edit_profile' %}" method="POST">
+    <div class="ui segment">
+    {% csrf_token %}
+        <div class="field">
+            <label>Username</label>
+            <input type="text" name="name" placeholder="Username">
+        </div>
+        <div class="field">
+            <label>Current City</label>
+            <input type="text" name="current_city" placeholder="Current City">
+        </div>
+        <div class="field">
+            <img src="{{ profile.image }}" alt="profile image">
+            <input type="text" name="image" placeholder="Profile Pic">
+        </div>
+        <button class="ui button" type="submit">Edit</button>
+    </div>
+</form>
+
+{% endblock %}
+

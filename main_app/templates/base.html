@@ -21,10 +21,18 @@
     <a href="" class="item">WAYFARER</a>
     <div class="right menu">
         <a class="item" id="login" type="button">LOG-IN</a>
-        <a href="" class="item">SIGN-UP</a>
+        <a class="item" id="signup" type="button">SIGN-UP</a>
             <script>
                 $(function(){
                     $("#login").click(function(){
+                    $(".login").modal('show');
+                    });
+                    $(".login").modal({
+                        closable: true
+                    });
+                });
+                $(function(){
+                    $("#signup").click(function(){
                     $(".login").modal('show');
                     });
                     $(".login").modal({
@@ -77,10 +85,12 @@
         </div>
         {% if user.is_authenticated %}
             <a class="item" href="{% url 'logout' %}">LOGOUT</a>
+            <a class="item" href="/users/{{ user.username }}"><span style="text-transform:uppercase">{{ user.username }}</span></a>
         {% endif %}
     </div>
 </div>
-
+<br>
+<br>
     {% block content %}
     {% endblock %}
 </body>
