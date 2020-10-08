@@ -8,4 +8,6 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
-    
+
+def semantic(request):
+    return render(request, 'semantic.html')
