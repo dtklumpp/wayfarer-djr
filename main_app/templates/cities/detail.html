@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="edge-margin">
+    <h2>{{city.name}}</h2>
+
+    <img src="{{ city.photo }}" style="max-width: 250px;" alt="profile image">
+
+    <br>
+    <br>
+    <br>
+
+    <a href="/posts/create/{{city.id}}">
+        <button class="ui button">
+        New Post
+        </button>
+    </a>
+
+    <br>
+
+    <h3>post list</h3>
+
+    {% comment %} TODO copied from profile page -- make this a modal / partial {% endcomment %}
+    {% for post in posts %}
+        <a href="/posts/{{ post.id }}">
+            <div class="ui link card">
+                <div class="content">
+                    <div class="header">{{ post.title }}</div>
+                    <div class="meta">
+                        <span class="category">{{ post.city.name }}</span>
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a href="/posts/edit/{{post.id}}">
+                        <button class="ui button">
+                        Edit
+                        </button>
+                    </a>
+                    <a href="/posts/delete/{{post.id}}/{{city.id}}">
+                        <button class="ui button">
+                        Delete
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </a>
+        <br>
+    {% endfor %}
+
+</div>
+
+
+
+
+{% endblock %}
