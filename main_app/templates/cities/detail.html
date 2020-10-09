@@ -11,11 +11,39 @@
     <br>
     <br>
 
-    <a href="/posts/create/{{city.id}}">
-        <button class="ui button">
+    <button class="ui button" id="create-post">
         New Post
-        </button>
-    </a>
+    </button>
+
+        <script>
+            $(function(){
+                $("#create-post").click(function(){
+                    $(".create-post-class").modal('show');
+                    });
+                    $(".create-post-class").modal({
+                        closable: true
+                    });
+            });
+        </script>
+
+        <div class="ui modal create-post-class">
+            <h2 class="ui modal-header">Make a New Post!!</h2>
+            <div class="ui modal-body">
+                
+                <div class="edge-margin">
+
+                    <form action="/posts/create/{{city.id}}" method="POST">
+                        {% csrf_token %}
+                        {{ post_form.as_p }}
+                        <input type="submit" value="Post It">
+                    </form>
+
+                </div>
+                
+            </div>
+        </div>
+
+
 
     <br>
 
@@ -37,11 +65,33 @@
                         Edit
                         </button>
                     </a>
-                    <a href="/posts/delete/{{post.id}}/{{city.id}}">
-                        <button class="ui button">
-                        Delete
-                        </button>
-                    </a>
+
+                    <button class="ui button" id="delete-post-{{post.id}}">
+                    Delete
+                    </button>
+
+                        <script>
+                            $(function(){
+                                $("#delete-post-{{post.id}}").click(function(){
+                                    $(".delete{{post.id}}").modal('show');
+                                    });
+                                    $(".delete{{post.id}}").modal({
+                                        closable: true
+                                    });
+                            });
+                        </script>
+
+                        <div class="ui modal delete{{post.id}}">
+                            <h2 class="ui modal-header">Sure you want to delete post title {{post.title}}??</h2>
+                            <div class="ui modal-body">
+                                <a href="/posts/delete/{{post.id}}/{{city.id}}">
+                                    <button class="ui button">
+                                    Yes Delete It
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+
                 </div>
             </div>
         </a>
@@ -54,3 +104,26 @@
 
 
 {% endblock %}
+
+<script>
+    $(function(){
+        $("#delete-post-{{post.id}}").click(function(){
+            $(".delete{{post.id}}").modal('show');
+            });
+            $(".delete{{post.id}}").modal({
+                closable: true
+            });
+    });
+</script>
+
+<div class="ui modal delete{{post.id}}">
+    <h2 class="ui modal-header">Sure you want to delete post title {{post.title}}??</h2>
+    <div class="ui modal-body">
+        <a href="/posts/delete/{{post.id}}/{{city.id}}">
+            <button class="ui button">
+            Delete
+            </button>
+        </a>
+    </div>
+</div>
+
