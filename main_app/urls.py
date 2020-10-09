@@ -11,5 +11,5 @@ urlpatterns = [
     path('semantic/', views.semantic, name='semantic'),
     path('carousel/', views.carousel_test, name='carousel'),
     path('users/<str:user_name>', views.profile, name='profile'),
-    
+    path('users/default/<int:user_name>', views.profile, name='profile-login'),
 ]
