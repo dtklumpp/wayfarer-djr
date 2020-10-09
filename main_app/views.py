@@ -70,9 +70,10 @@ def carousel_test(request):
 def city(request, city_id):
     city = City.objects.get(id=city_id)
     posts = city.post_set.order_by('posted_date')
+    post_form = Post_Form()
     print('POSTS HERE')
     print(posts)
-    context = {"city": city, "posts": posts}
+    context = {"city": city, "posts": posts, "post_form": post_form}
     return render(request, 'cities/detail.html', context)
 
 def create_post(request, city_id):
