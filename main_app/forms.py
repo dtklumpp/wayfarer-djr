@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, Post
 
 class User_Form(ModelForm):
     class Meta:
@@ -15,9 +15,10 @@ class Profile_Form(ModelForm):
 class Profile_Edit_Form(ModelForm):
     class Meta:
         model = Profile
-        fields = ('name','current_city', 'image')
+        fields = ('name','current_city','image')
 
-class Image_Form(ModelForm):
+class Post_Form(ModelForm):
     class Meta:
-        model = Profile
-        fields = ['image']
+        model = Post
+        fields = ('title', 'content', 'image')
+
