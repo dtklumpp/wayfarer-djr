@@ -45,7 +45,9 @@ def about(request):
 
 
 def semantic(request):
-    return render(request, 'semantic.html')
+    return render(request, 'semantic-ui/semantic.html')
+def carousel_test(request):
+    return render(request, 'semantic-ui/carousel.html')
 
 
 def signup(request):
