@@ -15,4 +15,9 @@ class Profile_Form(ModelForm):
 class Profile_Edit_Form(ModelForm):
     class Meta:
         model = Profile
-        fields = ('name','current_city','image')
+        fields = ('name','current_city', 'image')
+
+class Image_Form(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['image']

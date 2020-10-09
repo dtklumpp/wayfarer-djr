@@ -1,4 +1,6 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
@@ -12,4 +14,5 @@ urlpatterns = [
     path('carousel/', views.carousel_test, name='carousel'),
     path('users/<str:user_name>', views.profile, name='profile'),
     path('myprofile/', views.myprofile, name='myprofile'),
-]
+    
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
