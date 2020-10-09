@@ -17,21 +17,40 @@
             </div>
         </div>
     </div>
+    <div class="ui celled grid">
+        <div class="row">
+            <div class="three wide column">
+            <img>
+            </div>
+            <div class="thirteen wide column">
+            <p></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="three wide column">
+            <img>
+            </div>
+            <div class="ten wide column">
+            <p></p>
+            </div>
+            <div class="three wide column">
+            <img>
+            </div>
+        </div>
+        </div>
 
     <div class="thirteen wide column"> 
-        {% for post in posts %}
         <div class="ui segment">
-            <h1 class="title">{{city.name}}</h1>
+            <h1 class="title">TITLE</h1>
             <div class="ui segment">
                 <img class="ui image" src="{{ post.image }}">
             </div>
             <div class="card" style="background-color:white; padding:4px;">
                 <p>
-                    {{ post.content }}
+                    CONTENT
                 </p>
             </div>
         </div>
-        {% endfor %}
     </div>
 </div>
 
