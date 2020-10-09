@@ -12,4 +12,8 @@ urlpatterns = [
     path('carousel/', views.carousel_test, name='carousel'),
     path('users/<str:user_name>', views.profile, name='profile'),
     path('users/default/<int:user_name>', views.profile, name='profile-login'),
+    path('cities/<int:city_id>', views.city, name='city'),
+    path('posts/create', views.create_post, name='create_post'),
+    path('posts/edit/<int:post_id>', views.edit_post, name='edit_post'),
+    path('posts/delete/<int:post_id>', views.delete_post, name='delete_post'),
 ]

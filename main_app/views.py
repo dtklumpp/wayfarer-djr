@@ -61,6 +61,23 @@ def semantic(request):
 def carousel_test(request):
     return render(request, 'semantic-ui/carousel.html')
 
+def city(request, city_id):
+    city = City.objects.get(id=city_id)
+    posts = city.post_set.all()
+    print('POSTS HERE')
+    print(posts)
+    context = {"city": city, "posts": posts}
+    return render(request, 'cities/detail.html', context)
+
+def create_post(request):
+    pass
+
+
+def edit_post(request, post_id):
+    pass
+def delete_post(request, post_id):
+    pass
+
 
 def signup(request):
     # if post
@@ -109,3 +126,4 @@ def signup(request):
         # if not post send message, try again 
         context = {'error':'Your account was not created. Please try again.'}
         return redirect(request, '/')
+
