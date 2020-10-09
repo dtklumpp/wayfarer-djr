@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block custom_js %}
+    <link rel="stylesheet" href="{% static 'styles/carousel.css' %}">
+
+    <script defer src="{% static 'scripts/test.js' %}"></script>
+    {% comment %} <link rel="stylesheet/less" type="text/css" href="styles.less" />
+    <script src="less.js" type="text/javascript"></script> {% endcomment %}
+
+{% endblock %}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="ui container">
+  <div class="ui text container slides">
+    <i class="big left angle icon"></i>
+    <i class="big right angle icon"></i>
+    <div class="slide active">
+      <h1>Slide one</h1>
+      <p>Plain text.</p>
+    </div>
+    <div class="inverted shadow blurred image slide">
+      <h1>Slide two</h1>
+      <p>Background image using <code>.inverted</code>, <code>.shadow</code>, and <code>.blurred</code>:</p>
+      <p><code>class="inverted shadow blurred image slide"</code></p>
+    </div>
+    <div class="inverted salmon faded slide">
+      <h1>Slide three</h1>
+      <p>Background color using <code>.inverted</code>, <code>.salmon</code>, and <code>.faded</code>:</p>
+      <p><code>class="inverted faded salmon slide"</code></p>
+    </div>
+  </div>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}
