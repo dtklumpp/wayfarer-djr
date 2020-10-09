@@ -4,22 +4,36 @@
 
 {% block content %}
 
-<div class="col s3" style="margin: 8px;">
-    <div class="ui inverted vertical menu" style="padding: 4px; background-color:var(--primary)">
-        {% for city in cities %}
-            <a class="item" style="margin:4px 0px; border-radius: 4px; background-color:var(--secondary)">{{ city.name }}</a>
+<div class="ui grid" style="margin: 4px;">
+    <div class="three wide column">
+        <div class="ui segment">
+            <div class="ui inverted fluid vertical menu" style="padding: 4px; background-color:var(--primary)">
+                <h5 style="margin:4px; color:white;">CITIES</h5>
+                {% for city in cities %} 
+                    <a class="ui inverted large label" style="margin: 4px; background-color:var(--secondary)">
+                        <img src="{{ city.photo }}">  {{ city.name }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="thirteen wide column"> 
+        {% for post in posts %}
+        <div class="ui segment">
+            <h1 class="title">{{city.name}}</h1>
+            <div class="ui segment">
+                <img class="ui image" src="{{ post.image }}">
+            </div>
+            <div class="card" style="background-color:white; padding:4px;">
+                <p>
+                    {{ post.content }}
+                </p>
+            </div>
+        </div>
         {% endfor %}
     </div>
 </div>
-<div class="col s9" style="margin: 8px;">
-    <div class="ui grid container" style="background-color:var(--tertiary)">
-        <div class="card">
-            a;sdlkj ;lkasdf   ;laksdjf a;lsdjk  ;l asdjf;l kajsdlfk jas;ldfkj   ;lasdfjk 
-        </div>
-    </div>
-</div>
-
-
 
 
 {% endblock %}
