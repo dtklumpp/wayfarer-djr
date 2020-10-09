@@ -3,10 +3,9 @@ from django.contrib.auth.models import User
 import datetime
 import django.utils
 
-# Create your models here.
+# MODELS:
 
-# City / User / Post / Comment
-
+# CITY MODEL
 class City(models.Model):
     name = models.CharField(max_length=50)
     photo = models.CharField(max_length=500)
@@ -15,6 +14,9 @@ class City(models.Model):
     def __str__(self):
         return self.name
 
+
+
+# USER MODEL
 class Profile(models.Model):
     name = models.CharField(max_length=50, default='default_name')
     image = models.CharField(max_length=500, default="https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg")
@@ -27,6 +29,8 @@ class Profile(models.Model):
         return self.user.username
 
 
+
+# POST MODEL
 class Post(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField(max_length=2500)
@@ -40,9 +44,6 @@ class Post(models.Model):
         return self.title
 
 
-
-    # user field already has:
-    # name      ( = models.CharField(max_length=50) )
-    # password
-    # email
+# COMMENT MODEL
+# TODO Create comment model
 

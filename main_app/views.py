@@ -10,6 +10,7 @@ from .models import Profile, Post
 
 # Create your views here.
 
+# Initial View
 def splash(request):
     return render(request, 'splash.html')
 
@@ -44,6 +45,7 @@ def about(request):
     return render(request, 'about.html', context)
 
 
+# DAVID'S Semantic Practice
 def semantic(request):
     return render(request, 'semantic.html')
 
