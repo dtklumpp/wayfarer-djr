@@ -4,26 +4,38 @@
 
 {% block content %}
 
-<h1>Profile Edit</h1>
 
-<form class="ui large form" action="{% url 'edit_profile' %}" method="POST">
-    <div class="ui segment">
-    {% csrf_token %}
-        <div class="field">
-            <label>Username</label>
-            <input type="text" name="name" placeholder="Username">
+
+<div class="ui grid centered" style="margin-top: 40px">
+    <div class="four wide column">
+        <div class="ui card">
+            <form class="ui large form" action="{% url 'edit_profile' profile.user.username %}" method="POST">
+                <div class="ui segment">
+                    <h3>Profile Edit</h3>
+                    {% csrf_token %}
+                    <div class="field">
+                        <label>Username</label>
+                        <input type="text" name="name" value="{{ profile.name }}">
+                    </div>
+                    <div class="ui fluid selection dropdown">
+                        <input type="hidden" name="current_city">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Current City</div>
+                        <div class="menu">
+                          <div class="item" data-value="jenny">
+                            <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg">
+                            Jenny Hess
+                          </div>
+                    <div class="field">
+                        <img src="{{ profile.image }}" style="max-width: 150px;" alt="profile image">
+                        <input type="text" name="image" value="{{ profile.image }}">
+                    </div>
+                    <button class="ui button" type="submit">Edit</button>
+                </div>
+            </form>
         </div>
-        <div class="field">
-            <label>Current City</label>
-            <input type="text" name="current_city" placeholder="Current City">
-        </div>
-        <div class="field">
-            <img src="{{ profile.image }}" alt="profile image">
-            <input type="text" name="image" placeholder="Profile Pic">
-        </div>
-        <button class="ui button" type="submit">Edit</button>
-    </div>
-</form>
+    </div>    
+</div> 
 
 {% endblock %}
 

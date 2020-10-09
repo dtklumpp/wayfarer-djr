@@ -17,8 +17,8 @@
 <body>
 
 <div class="ui fixed menu inverted" style="background-color:var(--primary)">
-    <a href="" class="item">BRAND/LOGO</a>
-    <a href="" class="item">WAYFARER</a>
+    <a href="/" class="item">BRAND/LOGO</a>
+    <a href="/home.html" class="item">WAYFARER</a>
     <div class="right menu">
         {% if user.is_authenticated %}
         <a class="item" href="/users/{{ user.username }}"><span style="text-transform:uppercase">{{ user.username }}</span></a>
