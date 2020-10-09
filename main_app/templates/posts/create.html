@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="edge-margin">
+
+    <form action="/posts/create/{{city_id}}" method="POST">
+        {% csrf_token %}
+        {{ post_form.as_p }}
+        <input type="submit" value="Post It">
+    </form>
+
+</div>
+
+{% endblock %}
