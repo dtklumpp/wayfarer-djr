@@ -10,14 +10,22 @@ from .models import Profile, Post
 
 # Create your views here.
 
+# Initial View
 def splash(request):
     return render(request, 'splash.html')
 
 
-def edit_profile(request, user_id):
-    profile = Profile.objects.get(user_id=user_id)
+def edit_profile(request, user_name):
+    user = User.objects.get(username=user_name)
+    profile = user.profile
+    if request.method == 'POST':
+        profile_edit_form = Profile_Edit_Form(request.POST, instance=profile)
+        if profile_edit_form.is_valid():
+            profile_edit_form.save()
+            return redirect ('profile', profile.user.username)
     profile_edit_form = Profile_Edit_Form(instance=profile)
-    context = {'profile_edit_form': profile_edit_form}
+    cities = City.objects.all()
+    context = {'profile_edit_form': profile_edit_form, 'profile': profile, 'cities': cities}
     return render(request, 'registration/edit.html', context)
 
 
@@ -44,6 +52,7 @@ def about(request):
     return render(request, 'about.html', context)
 
 
+# DAVID'S Semantic Practice
 def semantic(request):
     return render(request, 'semantic-ui/semantic.html')
 def carousel_test(request):

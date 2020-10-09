@@ -17,9 +17,13 @@
 <body>
 
 <div class="ui fixed menu inverted" style="background-color:var(--primary)">
-    <a href="" class="item">BRAND/LOGO</a>
-    <a href="" class="item">WAYFARER</a>
+    <a href="/" class="item">BRAND/LOGO</a>
+    <a href="/home.html" class="item">WAYFARER</a>
     <div class="right menu">
+        {% if user.is_authenticated %}
+        <a class="item" href="/users/{{ user.username }}"><span style="text-transform:uppercase">{{ user.username }}</span></a>
+        <a class="item" href="{% url 'logout' %}">LOGOUT</a>
+        {% else %}
         <a class="item" id="login" type="button">LOG-IN</a>
         <a class="item" id="signup" type="button">SIGN-UP</a>
             <script>
@@ -83,9 +87,6 @@
                 </form>
             </div>
         </div>
-        {% if user.is_authenticated %}
-            <a class="item" href="{% url 'logout' %}">LOGOUT</a>
-            <a class="item" href="/users/{{ user.username }}"><span style="text-transform:uppercase">{{ user.username }}</span></a>
         {% endif %}
     </div>
 </div>
