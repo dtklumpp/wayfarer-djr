@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import User_Form, Profile_Form, Profile_Edit_Form
 from django.contrib import auth
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
-from .models import Profile, Post 
+from .forms import *
+from .models import *
 
 # Create your views here.
 
