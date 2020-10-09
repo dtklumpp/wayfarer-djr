@@ -42,6 +42,8 @@ def profile(request, user_name):
 
 def post(request, post_id):
     post = Post.objects.get(id=post_id)
+    print('POST CITY IS')
+    print(post.city)
     context = {'post': post}
     return render(request, 'posts/detail.html', context)
 
@@ -86,7 +88,15 @@ def create_post(request, city_id):
 
 
 def edit_post(request, post_id):
-    pass
+    post = Post.objects.get(id=post_id)
+    if request.method == "POST":
+        post_form = Post_Form(request.POST, instance=post)
+        if post_form.is_valid():
+            post_form.save()
+            return redirect('post', post_id)
+    post_form = Post_Form(instance=post)
+    context = {"post_form": post_form, "post_id": post_id}
+    return render(request,'posts/edit.html', context)
 
 def delete_post(request, post_id, city_id):
     doomed_post = Post.objects.get(id=post_id)
