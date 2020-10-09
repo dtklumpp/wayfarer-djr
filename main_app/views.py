@@ -66,7 +66,7 @@ def carousel_test(request):
 
 def city(request, city_id):
     city = City.objects.get(id=city_id)
-    posts = city.post_set.all()
+    posts = city.post_set.order_by('posted_date')
     print('POSTS HERE')
     print(posts)
     context = {"city": city, "posts": posts}
