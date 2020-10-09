@@ -19,28 +19,8 @@
                     </div>
                     <br>
 
-                    {% comment %} <div class="ui selection dropdown">
-                        <input type="hidden" name="current_city">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">Current City</div>
-                        <div class="menu">
 
-                            {% for city in cities %}
-
-                                <div class="item" data-value="{{city.id}}">{{city.name}}</div>
-
-                            {% endfor %}
-
-                        </div>
-                    </div>
-
-                    <select class="ui dropdown">
-                    <option value="">Gender</option>
-                    <option value="1">Male</option>
-                    <option value="0">Female</option>
-                    </select> {% endcomment %}
-
-                    <div class="ui fluid selection dropdown">
+                    {% comment %} <div class="ui fluid selection dropdown">
                         <input type="hidden" name="current_city" value="{{profile.current_city.id}}">
                         <i class="dropdown icon"></i>
                         <div class="default text">Current City</div>
@@ -60,7 +40,12 @@
 
                     <script>
                         $('.ui.dropdown').dropdown();
-                    </script>
+                    </script> {% endcomment %}
+
+                    <div class="field">
+                        <label>Current City</label>
+                        <input type="text" name="current_city" value="{{profile.current_city}}">
+                    </div>
 
 
 

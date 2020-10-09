@@ -5,6 +5,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from django.conf import settings
 from .forms import *
 from .models import *
 
@@ -24,8 +25,8 @@ def edit_profile(request, user_name):
             profile_edit_form.save()
             return redirect ('profile', profile.user.username)
     profile_edit_form = Profile_Edit_Form(instance=profile)
-    cities = City.objects.all()
-    context = {'profile_edit_form': profile_edit_form, 'profile': profile, 'cities': cities}
+    # cities = City.objects.all()
+    context = {'profile_edit_form': profile_edit_form, 'profile': profile}
     return render(request, 'registration/edit.html', context)
 
 
@@ -92,15 +93,15 @@ def signup(request):
                     new_profile.user_id = user.id
                     new_profile.name = user.username
                     new_profile.save()
+
                     login(request, user)
-                    # send_mail(
-                    #     'Welcome Wayfarer!', 
-                    #     'You are registered! Feel free to add your travel experiences and tips to our community of travellers!',
-                    #     'wwayfarer25@gmail.com',
-                    #     [email_form],
-                    #     fail_silently = False
-                    #     )
-                    # TODO redirect to correct destination
+
+                    subject = 'Welcome Wayfarer'
+                    message = 'You are registered! Feel free to add your travel experiences and tips to our community of travellers!'
+                    email_from = settings.EMAIL_HOST_USER
+                    recipient_list = [email_form]
+                    send_mail(subject, message, email_from, recipient_list)
+
                     return redirect('/')
         else:
             context = {'error':'Passwords do not match'}
