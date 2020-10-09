@@ -46,7 +46,9 @@ def post(request, post_id):
 
 
 def home(request):
-    return HttpResponse('<h1>Hello there fellow traveler!</h1>')
+    cities = City.objects.all()
+    context = {'cities': cities}
+    return render(request, 'home.html', context)
 
 
 def about(request):

@@ -4,7 +4,20 @@
 
 {% block content %}
 
-<h1>Main Blog Posts Here</h1>
+<div class="col s3" style="margin: 8px;">
+    <div class="ui inverted vertical menu" style="padding: 4px; background-color:var(--primary)">
+        {% for city in cities %}
+            <a class="item" style="margin:4px 0px; border-radius: 4px; background-color:var(--secondary)">{{ city.name }}</a>
+        {% endfor %}
+    </div>
+</div>
+<div class="col s9" style="margin: 8px;">
+    <div class="ui grid container" style="background-color:var(--tertiary)">
+        <div class="card">
+            a;sdlkj ;lkasdf   ;laksdjf a;lsdjk  ;l asdjf;l kajsdlfk jas;ldfkj   ;lasdfjk 
+        </div>
+    </div>
+</div>
 
 
 
