@@ -6,12 +6,12 @@
 }
 
 
-/* body {
-    background-color: #f1f1f1;
-} */
+body {
+    background-color: #EEC89F;
+}
 
 /* SEMANTIC UI EXPERIMENTAL SECTION */
-/* .dtk {
+.dtk {
     width: 20%;
 }
 #rainbow {
@@ -20,6 +20,7 @@
 /* #red {
     background-color: red;
 } */
+
 #blue {
     background-color: blue;
 }
@@ -34,7 +35,10 @@
     background-color: chartreuse;
 }
 
-
+.ui.splash-carousel {
+    width: 100%;
+    /* background-color: chartreuse; */
+}
 
 
 
