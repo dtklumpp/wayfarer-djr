@@ -3,10 +3,20 @@
 
 
 {% block custom_js %}
-    <script defer src="{% static 'scripts/main.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'styles/test.css' %}">
+    <script defer src="{% static 'scripts/test.js' %}"></script>
+    {% comment %} <link rel="stylesheet/less" type="text/css" href="styles.less" />
+    <script src="less.js" type="text/javascript"></script> {% endcomment %}
+
 {% endblock %}
 
 {% block content %}
+
+<br>
+<br>
+<br>
+
+
     <h3>semantic test page</h3>
 
 <div class="dtk">
@@ -45,12 +55,45 @@
 <br>
 
 <div class="ui three column grid" id="rainbow">
-    <div class="four wide column" id="red">4 wide</div>
+    <div class="four wide column jeff" id="red">4 wide</div>
     <div class="eight wide column" id="blue">8 wide</div>
     <div class="four wide column" id="green">4 wide</div>
 </div>
 
- 
+<br>
+<br>
 
+
+<div class="ui card">
+  <div class="ui slide masked reveal image">
+    <img src="https://pbs.twimg.com/profile_images/692038602088280064/xS4CV9Sc_400x400.jpg" class="visible content">
+    <img src="https://cdn.shopify.com/s/files/1/0079/4932/files/WebGraphics_Fig7_Comp2_large.jpg?16318818869553714607" class="hidden content">
+  </div>
+  <div class="content">
+    <a class="header">Team Fu &amp; Hess</a>
+    <div class="meta">
+      <span class="date">Created in Sep 2014</span>
+    </div>
+  </div>
+  <div class="extra content">
+    <a>
+      <i class="users icon"></i>
+      2 Members
+    </a>
+  </div>
+</div> 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 {% endblock %}

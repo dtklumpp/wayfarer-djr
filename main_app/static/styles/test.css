@@ -2,25 +2,24 @@
     --primary:#860F44;
     --secondary:#BB3939;
     --tertiary:#EA5F2D;
-    --quaternary:#EEC89F;
+    --quaternary:#EEC89F
 }
 
 
 body {
-    background-color: #EEC89F;
+    background-color: #f1f1f1;
 }
 
 /* SEMANTIC UI EXPERIMENTAL SECTION */
-/* .dtk {
+.dtk {
     width: 20%;
 }
 #rainbow {
     width: 40%;
-} */
+}
 /* #red {
     background-color: red;
 } */
-
 #blue {
     background-color: blue;
 }
@@ -34,12 +33,5 @@ body {
 .jeff {
     background-color: chartreuse;
 }
-
-.ui.splash-carousel {
-    width: 100%;
-    /* background-color: chartreuse; */
-}
-
-
 
 

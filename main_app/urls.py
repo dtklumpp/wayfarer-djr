@@ -9,5 +9,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('accounts/signup', views.signup, name='signup'),
     path('semantic/', views.semantic, name='semantic'),
-    path('users/<str:user_name>', views.profile, name='profile'), 
+    path('carousel/', views.carousel_test, name='carousel'),
+    path('users/<str:user_name>', views.profile, name='profile'),
+    
 ]
