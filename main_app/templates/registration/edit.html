@@ -17,15 +17,55 @@
                         <label>Username</label>
                         <input type="text" name="name" value="{{ profile.name }}">
                     </div>
-                    <div class="ui fluid selection dropdown">
+                    <br>
+
+                    {% comment %} <div class="ui selection dropdown">
                         <input type="hidden" name="current_city">
                         <i class="dropdown icon"></i>
                         <div class="default text">Current City</div>
                         <div class="menu">
-                          <div class="item" data-value="jenny">
-                            <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg">
-                            Jenny Hess
-                          </div>
+
+                            {% for city in cities %}
+
+                                <div class="item" data-value="{{city.id}}">{{city.name}}</div>
+
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
+                    <select class="ui dropdown">
+                    <option value="">Gender</option>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                    </select> {% endcomment %}
+
+                    <div class="ui fluid selection dropdown">
+                        <input type="hidden" name="current_city" value="{{profile.current_city.id}}">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Current City</div>
+                        <div class="menu">
+
+                            {% for city in cities %}
+
+                                <div class="item" data-value="{{city.id}}">
+                                    <img class="ui mini avatar image" src="{{city.photo}}">
+                                    {{city.name}}
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+                    </div> 
+
+                    <script>
+                        $('.ui.dropdown').dropdown();
+                    </script>
+
+
+
+                    <br>
+
                     <div class="field">
                         <img src="{{ profile.image }}" style="max-width: 150px;" alt="profile image">
                         <input type="text" name="image" value="{{ profile.image }}">
@@ -36,6 +76,9 @@
         </div>
     </div>    
 </div> 
+
+
+
 
 {% endblock %}
 
