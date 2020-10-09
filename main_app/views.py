@@ -31,10 +31,13 @@ def edit_profile(request, user_name):
 
 
 def profile(request, user_name):
-    if user_name == 1:
-        user = request.user
-    else:
-        user = User.objects.get(username=user_name)
+    user = User.objects.get(username=user_name)
+    profile = user.profile
+    context = {'profile': profile}
+    return render(request, 'registration/profile.html', context)
+
+def myprofile(request):
+    user = request.user
     profile = user.profile
     context = {'profile': profile}
     return render(request, 'registration/profile.html', context)
@@ -112,7 +115,7 @@ def signup(request):
             else:
                 if User.objects.filter(email=email_form).exists():
                     context = {'error':'That email already exists.'}
-                    return render(request, 'about.html', context)
+                    return render(request, 'splash.html', context)
                 else: 
                 # if everything is ok create account
                     user = User.objects.create_user(
@@ -137,7 +140,7 @@ def signup(request):
                     return redirect('/')
         else:
             context = {'error':'Passwords do not match'}
-            return render(request, 'about.html', context)
+            return render(request, 'splash.html', context)
     else:
         # if not post send message, try again 
         context = {'error':'Your account was not created. Please try again.'}
