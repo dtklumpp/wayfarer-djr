@@ -37,11 +37,33 @@
                         Edit
                         </button>
                     </a>
-                    <a href="/posts/delete/{{post.id}}/{{city.id}}">
-                        <button class="ui button">
-                        Delete
-                        </button>
-                    </a>
+
+                    <button class="ui button" id="delete-post-{{post.id}}">
+                    Delete
+                    </button>
+
+                        <script>
+                            $(function(){
+                                $("#delete-post-{{post.id}}").click(function(){
+                                    $(".delete{{post.id}}").modal('show');
+                                    });
+                                    $(".delete{{post.id}}").modal({
+                                        closable: true
+                                    });
+                            });
+                        </script>
+
+                        <div class="ui modal delete{{post.id}}">
+                            <h2 class="ui modal-header">Sure you want to delete post title {{post.title}}??</h2>
+                            <div class="ui modal-body">
+                                <a href="/posts/delete/{{post.id}}/{{city.id}}">
+                                    <button class="ui button">
+                                    Yes Delete It
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+
                 </div>
             </div>
         </a>
@@ -54,3 +76,26 @@
 
 
 {% endblock %}
+
+<script>
+    $(function(){
+        $("#delete-post-{{post.id}}").click(function(){
+            $(".delete{{post.id}}").modal('show');
+            });
+            $(".delete{{post.id}}").modal({
+                closable: true
+            });
+    });
+</script>
+
+<div class="ui modal delete{{post.id}}">
+    <h2 class="ui modal-header">Sure you want to delete post title {{post.title}}??</h2>
+    <div class="ui modal-body">
+        <a href="/posts/delete/{{post.id}}/{{city.id}}">
+            <button class="ui button">
+            Delete
+            </button>
+        </a>
+    </div>
+</div>
+
