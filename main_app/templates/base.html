@@ -21,7 +21,7 @@
     <a href="/home" class="item">WAYFARER</a>
     <div class="right menu">
         {% if user.is_authenticated %}
-        <a class="item" href="/users/{{ user.username }}"><span style="text-transform:uppercase">{{ user.username }}</span></a>
+        <a class="item" href="/myprofile/"><span style="text-transform:uppercase">{{ user.username }}</span></a>
         <a class="item" href="{% url 'logout' %}">LOGOUT</a>
         {% else %}
         <a class="item" id="login" type="button">LOG-IN</a>
