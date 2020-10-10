@@ -9,7 +9,7 @@
 <div class="ui grid centered" style="margin-top: 40px">
     <div class="four wide column">
         <div class="ui card">
-            <form class="ui large form" action="{% url 'edit_profile' profile.user.username %}" method="POST">
+            <form class="ui large form" action="{% url 'edit_profile' profile.user.username %}" method="POST" enctype="multipart/form-data">
                 <div class="ui segment">
                     <h3>Profile Edit</h3>
                     {% csrf_token %}
@@ -51,10 +51,16 @@
 
                     <br>
 
-                    <div class="field">
+                    <div class='field'>
+                        <label>Profile Picture</label>
+                        <input id='id_image' type='file' name='image' accept='image/*'>
+                    </div>
+
+
+                    {% comment %} <div class="field">
                         <img src="{{ profile.image }}" style="max-width: 150px;" alt="profile image">
                         <input type="text" name="image" value="{{ profile.image }}">
-                    </div>
+                    </div> {% endcomment %}
                     <button class="ui button" type="submit">Edit</button>
                 </div>
             </form>
