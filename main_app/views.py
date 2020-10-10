@@ -36,6 +36,7 @@ def profile(request, user_name):
     context = {'profile': profile}
     return render(request, 'registration/profile.html', context)
 
+
 def myprofile(request):
     user = request.user
     profile = user.profile
@@ -53,7 +54,8 @@ def post(request, post_id):
 
 def home(request):
     cities = City.objects.all()
-    context = {'cities': cities}
+    posts = Post.objects.all()
+    context = {'cities': cities, 'posts': posts}
     return render(request, 'home.html', context)
 
 

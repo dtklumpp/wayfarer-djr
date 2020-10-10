@@ -7,7 +7,7 @@
 <div class="ui grid" style="margin: 4px;">
     <div class="three wide column">
         <div class="ui segment">
-            <div class="ui inverted fluid vertical menu" style="padding: 4px; background-color:var(--primary)">
+            <div class="ui inverted vertical pointing menu" style="padding: 4px; background-color:var(--primary)">
                 <h5 style="margin:4px; color:white;">CITIES</h5>
                 {% for city in cities %} 
                     <a class="ui inverted large label" style="margin: 4px; background-color:var(--secondary)">
@@ -17,42 +17,41 @@
             </div>
         </div>
     </div>
-    <div class="ui celled grid">
-        <div class="row">
-            <div class="three wide column">
-            <img>
-            </div>
-            <div class="thirteen wide column">
-            <p></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="three wide column">
-            <img>
-            </div>
-            <div class="ten wide column">
-            <p></p>
-            </div>
-            <div class="three wide column">
-            <img>
-            </div>
-        </div>
-        </div>
-
-    <div class="thirteen wide column"> 
+    <div class="thirteen wide column">
         <div class="ui segment">
-            <h1 class="title">TITLE</h1>
-            <div class="ui segment">
-                <img class="ui image" src="{{ post.image }}">
-            </div>
-            <div class="card" style="background-color:white; padding:4px;">
-                <p>
-                    CONTENT
-                </p>
+            <div class="ui celled grid">
+                <div class="row">
+                    <div class="six wide column">
+                        <h3 style="color:black;">{{ post.city.name }}</h3>
+                            <h6 class="title">(ADD COUNTRY}</h6>
+                    </div>
+                    <div class="six wide column">
+                        <p style="text-align: right;">{{ post.image }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six wide column">
+                    <h3 class="title">POSTS</h3>
+                    </div>
+                    <div class="six wide column">
+                        <p style="text-align: right;">NEW POST BUTTON (circle)</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="three wide column">
+                        <p>{{ post.content }}</p>
+                    </div>
+                    <div class="ten wide column">
+                        <h3>{{ post.title }}</h3>
+                        <p>{{ post.content }}</p>
+                    </div>
+                    <div class="three wide column">
+                    <img>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 
 {% endblock %}
