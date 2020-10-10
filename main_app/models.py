@@ -8,6 +8,7 @@ import django.utils
 # CITY MODEL
 class City(models.Model):
     name = models.CharField(max_length=50)
+    country = models.CharField(max_length=50)
     photo = models.CharField(max_length=500)
     # TODO photo = models.ImageField(upload_to='images/')
 
