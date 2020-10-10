@@ -20,7 +20,7 @@ class City(models.Model):
 # USER MODEL
 class Profile(models.Model):
     name = models.CharField(max_length=50, default='default_name')
-    image = models.CharField(max_length=500, default="https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg")
+    image = models.ImageField(upload_to='images/', null=True, verbose_name="", default='static/default.jpg')
     join_date = models.DateField(default=django.utils.timezone.now)
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     current_city = models.CharField(max_length=50, default="Hometown, USA")

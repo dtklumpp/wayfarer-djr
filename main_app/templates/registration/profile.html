@@ -9,7 +9,7 @@
     <div class="four wide column">
         <div class="ui card">
             <div class="image">
-                <img src="{{ profile.image }}">
+                <img src="{{ MEDIA_URL }}{{ profile.image }}">
             </div>
             <div class="content">
                 <a class="header" style="text-transform:uppercase">{{ profile.user.username }}'s Profile</a>

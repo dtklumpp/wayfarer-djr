@@ -19,12 +19,22 @@ def splash(request):
 def edit_profile(request, user_name):
     user = User.objects.get(username=user_name)
     profile = user.profile
+
     if request.method == 'POST':
+        
+
         profile_edit_form = Profile_Edit_Form(request.POST, instance=profile)
         if profile_edit_form.is_valid():
-            profile_edit_form.save()
+            profile = profile_edit_form.save()
+
+            if 'image' in request.FILES:
+                profile.image = request.FILES['image']
+
+            profile.save()
+
             return redirect ('profile', profile.user.username)
     profile_edit_form = Profile_Edit_Form(instance=profile)
+
     # cities = City.objects.all()
     context = {'profile_edit_form': profile_edit_form, 'profile': profile}
     return render(request, 'registration/edit.html', context)
