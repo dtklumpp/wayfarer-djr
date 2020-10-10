@@ -5,47 +5,82 @@
 {% block content %}
 
 <div class="ui grid" style="margin: 4px;">
-    <div class="ui ui three wide column">
-        <div class="ui inverted vertical pointing menu" style="padding: 4px; background-color:var(--primary)">
-            <h5 style="margin:4px; color:white;">CITIES</h5>
-            {% for city in cities %} 
-                <a class="ui inverted large label" style="margin: 4px; background-color:var(--secondary); text-transform:uppercase">
-                    <img src="{{ city.photo }}"> {{ city.name }}
-                </a>
-            {% endfor %}
+    <div class="ui three wide column" style="background-color: var(--primary); margin-top: 14px; border-radius: 4px;">
+        <h3 style="color: white;">CITIES</h3>
+        {% for city in cities %} 
+        <div class="ui link items" style="border-radius: 4px; background-color: var(--secondary)">
+            <div class="link item">
+                <div class="ui tiny image">
+                    <img src="{{ city.photo }}">
+                </div>
+                <div class="middle aligned content">
+                    <div style="text-transform:uppercase; color: white;">{{ city.name }}</div>
+                </div>       
+            </div>
         </div>
+        {% endfor %}
     </div>
     <div class="ui thirteen wide column">
         <div class="ui segment">
-            <div class="ui celled grid">
+            <div class="ui grid" style="padding: 5px;">
                 <div class="row">
+                    <div class="six wide column">
+                        <h2 style="text-transform:uppercase">{{ city.name }}</h2>
+                            <h5 class="title">{{ city.country }}</h5>
+                    </div>
+                    <div class="ten wide column">
+                        <img class="ui image" src="{{ city.photo }}" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six wide column">
+                        <h3 class="ui middle aligned content">POSTS</h3>
+                    </div>
+                    <div class="ten wide column" style="text-align: right;">
+                        <button class="ui circular icon button" style="background-color: var(--tertiary); margin-right: 10px;" id="create-post">
+                            <i class="fas fa-plus-circle"></i>
+                        </button>
+                        <script>
+                            $(function(){
+                                $("#create-post").click(function(){
+                                    $(".create-post-class").modal('show');
+                                    });
+                                    $(".create-post-class").modal({
+                                        closable: true
+                                    });
+                            });
+                        </script>
+                        <div class="ui modal create-post-class" style="padding: 10px;">
+                            <h2 class="ui modal-header">Create a New Post!</h2>
+                            <div class="ui modal-body">
+                                
+                                <div class="edge-margin">
+                
+                                    <form action="/posts/create/{{city.id}}" method="POST">
+                                        {% csrf_token %}
+                                        {{ post_form.as_p }}
+                                        <input type="submit" value="Submit">
+                                    </form>
+                
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
                     {% for post in posts %} 
-                    <div class="six wide column">
-                        <h2 style="text-transform:uppercase">{{ post.city.name }}</h2>
-                            <h5 class="title">{{ post.city.country }}</h5>
-                    </div>
-                    <div class="six wide column">
-                        <img class="ui medium image" src="{{ post.image }}" alt="">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="six wide column">
-                        <h3 class="title">POSTS</h3>
-                    </div>
-                    <div class="six wide column">
-                        <p style="text-align: right;">NEW POST BUTTON (circle)</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="three wide column">
-                        <img class="ui small image" src="{{ post.image }}" alt="">
-                    </div>
-                    <div class="nine wide column">
-                        <h3>{{ post.title }}</h3>
-                        <p>{{ post.content }}</p>
+                    <div class="ui items">
+                            <div class="item">
+                                <div class="ui small image">
+                                    <img src="{{ post.image }}">
+                                </div>
+                                <div class="content">
+                                    <h3>{{ post.title }}</h3>
+                                    <p>{{ post.content }}</p>
+                                </div>
+                            </div>
                     </div>
                     {% endfor %}
-                </div>
             </div>
         </div>
     </div>
