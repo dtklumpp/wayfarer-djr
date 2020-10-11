@@ -8,6 +8,7 @@ import django.utils
 # CITY MODEL
 class City(models.Model):
     name = models.CharField(max_length=50)
+    country = models.CharField(max_length=50)
     photo = models.CharField(max_length=500)
     # TODO photo = models.ImageField(upload_to='images/')
 
@@ -36,7 +37,6 @@ class Post(models.Model):
     content = models.TextField(max_length=2500)
     posted_date = models.DateField(default=django.utils.timezone.now)
     image = models.CharField(max_length=500)
-
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 

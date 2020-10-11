@@ -4,53 +4,47 @@
 
 {% block content %}
 
-{% comment %} <h1>Welcome, Wayfarer!</h1> {% endcomment %}
-
-
-<div class="ui three column grid">
-
-    <div class="two wide column"></div>
-
-    <div class="twelve wide column">
-
+<div class="ui grid" style="visibility: 100px;">
+<!------------ CAROUSEL ------------>
+    <div class="row">
         <div class="ui card splash-carousel">
+<!-- TODO can we make the carousel pull from database city images? -->
+            <!-- {% for city in cities %} 
             <div class="ui slide masked reveal image">
+                <img src="{{ city.photo }}" class="ui image visible content">
+                <img src="{{ city.photo }}" class="ui image hidden content">
+            </div>
+            {% endfor %} -->
+<!-- TODO we also need a control for scrolling left/right-->
+            <div class="ui slide masked reveal image">
+                {for city in cities}
                 <img src="https://www.viaggidiarchitettura.it/wp-content/uploads/2016/06/london-1200x600.jpg" class="visible content">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Sydney_Opera_House_and_Harbour_Bridge_Dusk_%282%29_2019-06-21.jpg/1200px-Sydney_Opera_House_and_Harbour_Bridge_Dusk_%282%29_2019-06-21.jpg" class="hidden content">
             </div>
-            <div class="content">
-                <br>
-                <div class="ui two column centered grid">
-                    <div class="colum">
-                        <h1>Wayfarer Is...</h1>
-                    </div>
-                </div>
-                <br>
+        </div>   
+    </div>     
+<!------------ BOTTOM INFO ------------>  
+    <div class="row">
+        <div class="ui three column centered grid" style="padding: 5px;">
+            <div class="ui header">
+                    <h1>Wayfarer Is...</h1>
             </div>
-            <div class="extra content">
-                <div class="ui three column centered grid">
-                    <div class="four wide colum">
-                        <h2>Lorem</h2>
-                    </div>
-                    <div class="four wide colum">
-                        <h2>Ipsum</h2>
-                    </div>
-                    <div class="four wide colum">
-                        <h2>Dolar</h2>
-                    </div>
+            <div class="ui three column row">
+                <div class="ui column">
+                    <h2 style="text-align: center;">Lorem</h2>
+                    <p>Accumsan tortor posuere ac ut consequat. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Convallis aenean et tortor at risus viverra adipiscing at in. Aliquet bibendum enim facilisis gravida neque convallis a. Libero id faucibus nisl tincidunt eget nullam. Justo donec enim diam vulputate ut pharetra. Placerat vestibulum lectus mauris ultrices eros in cursus. Cras sed felis eget velit aliquet.</p>
+                </div>
+                <div class="ui column">
+                    <h2 style="text-align: center;">Ipsum</h2>
+                    <p>In vitae turpis massa sed elementum. Id velit ut tortor pretium. Amet risus nullam eget felis eget nunc lobortis. Hendrerit gravida rutrum quisque non tellus orci ac auctor augue. Venenatis urna cursus eget nunc scelerisque. Purus gravida quis blandit turpis cursus in hac habitasse platea. Pretium viverra suspendisse potenti nullam ac tortor vitae purus.</p>
+                </div>
+                <div class="ui column">
+                    <h2 style="text-align: center;">Dolar</h2>
+                    <p>Bibendum enim facilisis gravida neque convallis a cras semper auctor. Duis convallis convallis tellus id interdum velit laoreet. Quam vulputate dignissim suspendisse in est ante in. Malesuada fames ac turpis egestas sed tempus urna et. Sit amet consectetur adipiscing elit duis. Tristique senectus et netus et malesuada fames ac turpis egestas. Fusce id velit ut tortor pretium viverra.</p>
                 </div>
             </div>
-        </div> 
-
-        <br>
-
-
-
+        </div>
     </div>
-
-    <div class="two wide column"></div>
-
-
 </div>
 
 

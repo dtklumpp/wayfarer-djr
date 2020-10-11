@@ -16,6 +16,24 @@ def splash(request):
     return render(request, 'splash.html')
 
 
+def home(request):
+    cities = City.objects.all()
+    posts = Post.objects.all()
+    context = {'cities': cities, 'posts': posts}
+    return render(request, 'home.html', context)
+
+
+def city(request, city_id):
+    city = City.objects.get(id=city_id)
+    posts = city.post_set.order_by('posted_date')
+    post_form = Post_Form()
+    print('POSTS HERE')
+    print(posts)
+    cities = City.objects.all()
+    context = {"city": city, "posts": posts, "post_form": post_form, 'cities': cities}
+    return render(request, 'cities/detail.html', context)
+
+
 def edit_profile(request, user_name):
     user = User.objects.get(username=user_name)
     profile = user.profile
@@ -46,6 +64,7 @@ def profile(request, user_name):
     context = {'profile': profile}
     return render(request, 'registration/profile.html', context)
 
+
 def myprofile(request):
     user = request.user
     profile = user.profile
@@ -61,9 +80,6 @@ def post(request, post_id):
     return render(request, 'posts/detail.html', context)
 
 
-def home(request):
-    return HttpResponse('<h1>Hello there fellow traveler!</h1>')
-
 
 def about(request):
     user_form = User_Form()
@@ -77,14 +93,10 @@ def semantic(request):
 def carousel_test(request):
     return render(request, 'semantic-ui/carousel.html')
 
-def city(request, city_id):
-    city = City.objects.get(id=city_id)
-    posts = city.post_set.order_by('posted_date')
-    post_form = Post_Form()
-    print('POSTS HERE')
-    print(posts)
-    context = {"city": city, "posts": posts, "post_form": post_form}
-    return render(request, 'cities/detail.html', context)
+
+
+
+
 
 def create_post(request, city_id):
     if request.method == "POST":
@@ -111,6 +123,9 @@ def edit_post(request, post_id):
     post_form = Post_Form(instance=post)
     context = {"post_form": post_form, "post_id": post_id}
     return render(request,'posts/edit.html', context)
+
+
+
 
 def delete_post(request, post_id, city_id):
     doomed_post = Post.objects.get(id=post_id)
