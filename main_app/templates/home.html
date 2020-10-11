@@ -4,32 +4,37 @@
 
 {% block content %}
 
-<div class="ui grid" style="margin: 4px;">
+<!------------ SIDE NAV ------------>
+<div class="ui grid" style="margin: 10px;">
     <div class="ui three wide column" style="background-color: var(--primary); margin-top: 14px; border-radius: 4px;">
-        <h3 style="color: white;">CITIES</h3>
+        <h3 class="ui title" style="color: white;">CITIES</h3>
         {% for city in cities %} 
         <div class="ui link items" style="border-radius: 4px; background-color: var(--secondary)">
-            <div class="link item">
+                <a class= "link item" href="{% url 'city' city.id %}">
                 <div class="ui tiny image">
                     <img src="{{ city.photo }}">
                 </div>
                 <div class="middle aligned content">
-                    <div style="text-transform:uppercase; color: white;">{{ city.name }}</div>
-                </div>       
-            </div>
-        </div>
+                    <div style="text-transform:uppercase; color: white;">{{ city.name }}
+                    </div>
+                </div>
+            </a>
+        </div>       
         {% endfor %}
     </div>
+
+
+<!------------ MAIN POST AREA ------------>
     <div class="ui thirteen wide column">
         <div class="ui segment">
             <div class="ui grid" style="padding: 5px;">
                 <div class="row">
                     <div class="six wide column">
-                        <h2 style="text-transform:uppercase">{{ city.name }}</h2>
-                            <h5 class="title">{{ city.country }}</h5>
+                        <h2 style="text-transform:uppercase">San Francisco</h2>
+                            <h5 class="title">United States</h5>
                     </div>
-                    <div class="ten wide column">
-                        <img class="ui image" src="{{ city.photo }}" alt="">
+                    <div class="ui ten wide column">
+                        <img class="ui image" src="{{ MEDIA_URL }}/static/san_francisco.jpg" alt="">
                     </div>
                 </div>
                 <div class="row">
@@ -50,22 +55,20 @@
                                     });
                             });
                         </script>
+<!------------ ADD POST BUTTON/MODAL  ------------>
                         <div class="ui modal create-post-class" style="padding: 10px;">
-                            <h2 class="ui modal-header">Create a New Post!</h2>
+                            <h2 class="ui modal-header">Add a New Post!</h2>
                             <div class="ui modal-body">
-                                
-                                <div class="edge-margin">
-                
-                                    <form action="/posts/create/{{city.id}}" method="POST">
-                                        {% csrf_token %}
+                                <form class="ui small form" action="/posts/create/{{city.id}}" method="POST">
+                                    {% csrf_token %}
+                                    <div class="content">
                                         {{ post_form.as_p }}
-                                        <input type="submit" value="Submit">
-                                    </form>
-                
-                                </div>
-                                
+                                    </div>
+                                    <input class="ui button" type="submit" value="Submit" style="margin:10px; background-color:var(--quaternary)">
+                                </form>
                             </div>
                         </div>
+<!----------------------------------------------->
                     </div>
                 </div>
                     {% for post in posts %} 

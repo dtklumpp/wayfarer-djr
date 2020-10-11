@@ -1,129 +1,94 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 {% block content %}
 
-<div class="edge-margin">
-    <h2>{{city.name}}</h2>
-
-    <img src="{{ city.photo }}" style="max-width: 250px;" alt="profile image">
-
-    <br>
-    <br>
-    <br>
-
-    <button class="ui button" id="create-post">
-        New Post
-    </button>
-
-        <script>
-            $(function(){
-                $("#create-post").click(function(){
-                    $(".create-post-class").modal('show');
-                    });
-                    $(".create-post-class").modal({
-                        closable: true
-                    });
-            });
-        </script>
-
-        <div class="ui modal create-post-class">
-            <h2 class="ui modal-header">Make a New Post!!</h2>
-            <div class="ui modal-body">
-                
-                <div class="edge-margin">
-
-                    <form action="/posts/create/{{city.id}}" method="POST">
-                        {% csrf_token %}
-                        {{ post_form.as_p }}
-                        <input type="submit" value="Post It">
-                    </form>
-
+<!------------ SIDE NAV ------------>
+<div class="ui grid" style="margin: 10px;">
+    <div class="ui three wide column" style="background-color: var(--primary); margin-top: 14px; border-radius: 4px;">
+        <h3 class="ui title" style="color: white;">CITIES</h3>
+        {% for city in cities %} 
+        <div class="ui link items" style="border-radius: 4px; background-color: var(--secondary)">
+            
+                <a class= "link item" href="{% url 'city' city.id %}">
+                <div class="ui tiny image">
+                    <img src="{{ city.photo }}">
                 </div>
-                
-            </div>
-        </div>
-
-
-
-    <br>
-
-    <h3>post list</h3>
-
-    {% comment %} TODO copied from profile page -- make this a modal / partial {% endcomment %}
-    {% for post in posts %}
-        <a href="/posts/{{ post.id }}">
-            <div class="ui link card">
-                <div class="content">
-                    <div class="header">{{ post.title }}</div>
-                    <div class="meta">
-                        <span class="category">{{ post.city.name }}</span>
+                <div class="middle aligned content">
+                    <div style="text-transform:uppercase; color: white;">{{ city.name }}
                     </div>
                 </div>
-                <div class="extra content">
-                    <a href="/posts/edit/{{post.id}}">
-                        <button class="ui button">
-                        Edit
+                
+            </a>
+        </div>       
+        {% endfor %}
+    </div>
+
+
+<!------------ MAIN POST AREA ------------>
+    <div class="ui thirteen wide column">
+        <div class="ui segment">
+            <div class="ui grid" style="padding: 5px;">
+                <div class="row">
+                    <div class="six wide column">
+                        <h2 style="text-transform:uppercase">{{ city.name }}</h2>
+                            <h5 class="title">{{ city.country }}</h5>
+                    </div>
+                    <div class="ten wide column">
+                        <img class="ui image" src="{{ city.photo }}" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six wide column">
+                        <h3 class="ui middle aligned content">POSTS</h3>
+                    </div>
+                    <div class="ten wide column" style="text-align: right;">
+                        <button class="ui circular icon button" style="background-color: var(--tertiary); margin-right: 10px;" id="create-post">
+                            <i class="fas fa-plus-circle"></i>
                         </button>
-                    </a>
-
-                    <button class="ui button" id="delete-post-{{post.id}}">
-                    Delete
-                    </button>
-
                         <script>
                             $(function(){
-                                $("#delete-post-{{post.id}}").click(function(){
-                                    $(".delete{{post.id}}").modal('show');
-                                    });
-                                    $(".delete{{post.id}}").modal({
-                                        closable: true
-                                    });
+                                $("#create-post").click(function(){
+                                    $(".create-post-class").modal('show');
+                                });
+                                $(".create-post-class").modal({
+                                    closable: true
+                                });
                             });
                         </script>
-
-                        <div class="ui modal delete{{post.id}}">
-                            <h2 class="ui modal-header">Sure you want to delete post title {{post.title}}??</h2>
+<!------------ ADD POST BUTTON/MODAL  ------------>
+                        <div class="ui modal create-post-class" style="padding: 10px;">
+                            <h2 class="ui modal-header">Add a New Post!</h2>
                             <div class="ui modal-body">
-                                <a href="/posts/delete/{{post.id}}/{{city.id}}">
-                                    <button class="ui button">
-                                    Yes Delete It
-                                    </button>
-                                </a>
+                                <form class="ui large form" action="/posts/create/{{city.id}}" method="POST">
+                                    {% csrf_token %}
+                                    <div class="content">
+                                        {{ post_form.as_p }}
+                                    </div>
+                                    <input class="ui button" type="submit" value="Submit" style="margin:10px; background-color:var(--quaternary)">
+                                </form>
                             </div>
                         </div>
-
+<!----------------------------------------------->
+                    </div>
                 </div>
+                    {% for post in posts %} 
+                    <div class="ui items">
+                            <div class="item">
+                                <div class="ui small image">
+                                    <img src="{{ post.image }}">
+                                </div>
+                                <div class="content">
+                                    <h3>{{ post.title }}</h3>
+                                    <p>{{ post.content }}</p>
+                                </div>
+                            </div>
+                    </div>
+                    {% endfor %}
             </div>
-        </a>
-        <br>
-    {% endfor %}
-
-</div>
-
-
-
-
-{% endblock %}
-
-<script>
-    $(function(){
-        $("#delete-post-{{post.id}}").click(function(){
-            $(".delete{{post.id}}").modal('show');
-            });
-            $(".delete{{post.id}}").modal({
-                closable: true
-            });
-    });
-</script>
-
-<div class="ui modal delete{{post.id}}">
-    <h2 class="ui modal-header">Sure you want to delete post title {{post.title}}??</h2>
-    <div class="ui modal-body">
-        <a href="/posts/delete/{{post.id}}/{{city.id}}">
-            <button class="ui button">
-            Delete
-            </button>
-        </a>
+        </div>
     </div>
 </div>
 
+{% endblock %}

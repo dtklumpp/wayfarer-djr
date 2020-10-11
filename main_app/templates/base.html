@@ -18,9 +18,11 @@
 </head>
 <body>
 
+<!------------ TOP NAVBAR  ----------->
 <div class="ui top fixed menu inverted" style="background-color:var(--primary)">
-    <a href="/" class="item"><img class="ui mini image" src="/static/images/gold compass.png"></a>
-    <a href="/cities/1" class="item">WAYFARER</a>
+    <a href="/" class="item">
+        <img class="ui mini image" src="{{ MEDIA_URL }}static/gold_compass.png"></a>
+    <a href="/home/" class="item">WAYFARER</a>
     <div class="right menu">
         {% if user.is_authenticated %}
         <a class="item" href="/myprofile/"><span style="text-transform:uppercase">{{ user.username }}</span></a>
@@ -46,46 +48,47 @@
                     });
                 });
             </script>
-        <div class="ui modal login">
+
+<!------------ LOGIN/SIGNUP MODAL ------------>
+        <div class="ui modal login" style="padding: 10px;">
             <h2 class="ui modal-header">Log-in</h2>
             <div class="ui modal-body">
-                <form class="ui large form" action="{% url 'login' %}" method="POST">
-                    <div class="ui segment">
+                <form class="ui small form" action="{% url 'login' %}" 
                     {% csrf_token %}
                         <div class="field">
                             <label>Username</label>
-                            <input type="text" name="username" placeholder="Username">
+                            <input type="text" name="username">
                         </div>
                         <div class="field">
                             <label>Password</label>
-                            <input type="password" name="password" placeholder="Password">
+                            <input type="password" name="password">
                         </div>
-                        <button class="ui button" type="submit">Submit</button>
-                    </div>
+                        <button class="ui button" type="submit" style="margin:10px; background-color:var(--quaternary)">Submit</button>
+
                 </form>
                 <div class="ui divider"></div>
-                <form class="ui large form" action="{% url 'signup' %}" method="POST">
+                <form class="ui small form" action="{% url 'signup' %}" method="POST">
                     <h2 class="ui modal-header">Sign-up</h2>
-                    <div class="ui segment">
+
                         {% csrf_token %}
                             <div class="field">
                                 <label>Username</label>
-                                <input type="text" name="username" placeholder="Username" required>
+                                <input type="text" name="username" required>
                             </div>
                             <div class="field">
                                 <label>Email</label>
-                                <input type="text" name="email" placeholder="Email" required>
+                                <input type="text" name="email" required>
                             </div>
                             <div class="field">
                                 <label>Password</label>
-                                <input type="password" name="password" placeholder="Password" required>
+                                <input type="password" name="password" required>
                             </div>
                             <div class="field">
                                 <label>Re-Enter Password</label>
-                                <input type="password" name="password2" placeholder="Password" required>
+                                <input type="password" name="password2" required>
                             </div>
-                            <button class="ui button" type="submit">Submit</button>
-                        </div>
+                            <button class="ui button" type="submit" style="margin:10px; background-color:var(--quaternary)">Submit</button>
+
                 </form>
             </div>
         </div>
