@@ -54,7 +54,7 @@
         <div class="ui modal login" style="padding: 10px;">
             <h2 class="ui modal-header">Log-in</h2>
             <div class="ui modal-body">
-                <form class="ui small form" action="{% url 'login' %}">
+                <form class="ui small form" action="{% url 'login' %}" method="POST">
                     {% csrf_token %}
                         <div class="field">
                             <label>Username</label>

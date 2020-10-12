@@ -19,12 +19,17 @@ def splash(request):
 def home(request):
     cities = City.objects.all()
     posts = Post.objects.all()
-    context = {'cities': cities, 'posts': posts}
-    return render(request, 'home.html', context)
+    post_form = Post_Form()
+    city = City.objects.get(id=1)
 
 
-def city(request, city_id):
-    city = City.objects.get(id=city_id)
+
+    context = {'cities': cities, 'posts': posts, 'city': city, 'post_form': post_form}
+    return render(request, 'cities/detail.html', context)
+
+
+def city(request, city_name):
+    city = City.objects.get(name=city_name)
     posts = city.post_set.order_by('posted_date')
     post_form = Post_Form()
     print('POSTS HERE')
@@ -72,7 +77,9 @@ def myprofile(request):
     return render(request, 'registration/profile.html', context)
 
 
-def create_post(request, city_id):
+def create_post(request, city_name):
+    city = City.objects.get(name=city_name)
+
     if request.method == "POST":
 
 
@@ -83,16 +90,16 @@ def create_post(request, city_id):
 
             new_post = post_form.save(commit=False)
             new_post.profile_id = request.user.id
-            new_post.city_id = city_id
+            new_post.city_id = city.id
             
 
             if 'image' in request.FILES:
                 new_post.image = request.FILES['image']
 
             new_post.save()
-            return redirect('/cities/'+str(city_id))
+            return redirect('/cities/'+str(city.name))
     post_form = Post_Form()
-    context = {"post_form": post_form, "city_id": city_id}
+    context = {"post_form": post_form, "city_id": city.id}
     return render(request, 'posts/create.html', context)
     
 def post(request, post_id):
