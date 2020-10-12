@@ -95,6 +95,9 @@
 </div>
 <br>
 <br>
+    {% if error_message %}
+        <p style="color:red">{{error_message}}</p>
+    {% endif %}
     {% block content %}
     {% endblock %}
 </body>
