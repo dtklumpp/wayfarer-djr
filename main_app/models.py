@@ -10,8 +10,9 @@ class City(models.Model):
     name = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
     photo = models.ImageField(upload_to='images/', null=True, verbose_name="")
-    # TODO photo = models.ImageField(upload_to='images/')
-
+    lat = models.DecimalField(decimal_places=9, max_digits=20)
+    long = models.DecimalField(decimal_places=9, max_digits=20)
+    
     def __str__(self):
         return self.name
 
