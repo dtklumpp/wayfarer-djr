@@ -34,12 +34,70 @@
                     <div class="ui row" style="margin-left: 15px;">
                         <h3 class="" style="text-transform:uppercase">{{ city.name }} - {{ city.country }}</h3>
                     </div>
-                    <div class="ui two column row">
+                    <div class="ui two column row" style="min-height: 50vh;">
                         <div class="eight wide column">
             <!-- MAP -->
-                            <div class="ui placeholder">
-                                <img class="ui image" src="{{ MEDIA_URL }}/static/globe.jpg" alt="">
+
+                            
+                            <div id='map' style="position: absolute;
+                                                    top: 0;
+                                                    bottom: 0;
+                                                    width: 100%;">
                             </div>
+                            <script>
+
+                                mapboxgl.accessToken = 'pk.eyJ1IjoiamRlbGlzbyIsImEiOiJja2c2cG9raW0wMjUzMzRsaHBkcjR6Z3R5In0.b7ytY30b9YXV5oQqsuuPeg';
+
+                                var map = new mapboxgl.Map({
+                                container: 'map',
+                                style: 'mapbox://styles/mapbox/light-v10',
+                                center: [{{city.long}}, {{city.lat}}],
+                                zoom: 10
+                                });
+
+                               var geojson = {
+                                    type: 'FeatureCollection',
+                                    features: [{
+                                        type: 'Feature',
+                                        geometry: {
+                                        type: 'Point',
+                                        coordinates: [{{city.long}}, {{city.lat}}]
+                                        },
+                                        properties: {
+                                        title: 'Mapbox',
+                                        description: 'Washington, D.C.'
+                                        }
+                                    },
+                                    ]};
+
+                               geojson.features.forEach(function(marker) {
+
+                                // create a HTML element for each feature
+                                var el = document.createElement('div');
+                                el.className = 'marker';
+
+                                // make a marker for each feature and add to the map
+                                new mapboxgl.Marker(el)
+                                    .setLngLat(marker.geometry.coordinates)
+                                    .addTo(map);
+                                });
+
+                            </script>
+
+                            <style>
+                                .marker {
+                                    background-image: url('/media/static/mapbox-icon.png');
+                                    background-size: cover;
+                                    width: 50px;
+                                    height: 50px;
+                                    border-radius: 50%;
+                                    cursor: pointer;
+                                }
+                            </style>
+
+
+
+
             <!-- MAP -->
                         </div>
                         <div class="eight wide column">
@@ -97,7 +155,7 @@
                             <img src="{{MEDIA_URL}}{{ post.image }}">
                         </div>
                         <div class="ui middle aligned content" style="margin-left: 15px; text-decoration-color: black;">
-                                <h3>{{ post.title }}</h3>
+                                <h3>{{ post.title }} </h3>
                                 <p>{{ post.content }}</p>
                             </div>
                         </a>

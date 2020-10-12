@@ -55,51 +55,37 @@
 
 {% comment %} Edit Profile Modal {% endcomment %}
 
-<div class="ui modal edit" style="padding: 10px;">
+<div class="ui modal edit" style="padding: 10px; max-width: 500px;">
     <h2 class="ui modal-header">Edit Profile</h2>
     <div class="ui modal-body">
-
-    <form class="ui large form" action="{% url 'edit_profile' profile.user.username %}" method="POST" enctype="multipart/form-data">
-                <div class="ui segment">
-                    <h3>Profile Edit</h3>
-                    {% csrf_token %}
-                    <div class="field">
-                        <label>Username</label>
-                        <input type="text" name="name" value="{{ profile.name }}">
-                    </div>
-                    <br>
-
-                    <div class="field">
-                        <label>Current City</label>
-                        <input type="text" name="current_city" value="{{profile.current_city}}">
-                    </div>
-
-
-
-                    <br>
-
-                    <div class='field'>
-                        <label>Profile Picture</label>
-                        <input id='id_image' type='file' name='image' accept='image/*'>
-                    </div>
-
-                    <button class="ui button" type="submit">Edit</button>
-                </div>
-            </form>
-
-    </div>
+        <form class="ui large form" action="{% url 'edit_profile' profile.user.username %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="field">
+                <label>Username</label>
+                <input type="text" name="name" value="{{ profile.name }}">
+            </div>
+            <div class="field">
+                <label>Current City</label>
+                <input type="text" name="current_city" value="{{profile.current_city}}">
+            </div>
+            <div class='field'>
+                <label>Profile Picture</label>
+                <input id='id_image' type='file' name='image' accept='image/*'>
+            </div>
+            <button class="ui button" type="submit">Edit</button>
+        </form>
+    </div> 
 </div>
 
-
 <script>
-                $(function(){
-                    $("#edit").click(function(){
-                    $(".edit").modal('show');
-                    });
-                    $(".edit").modal({
-                        closable: true
-                    });
-                });
+    $(function(){
+        $("#edit").click(function(){
+        $(".edit").modal('show');
+        });
+        $(".edit").modal({
+            closable: true
+        });
+    });
 </script>
 
 

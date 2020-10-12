@@ -139,6 +139,7 @@ def edit_post(request, post_id):
 
 
 
+
 @login_required
 def delete_post(request, post_id, city_id):
     doomed_post = Post.objects.get(id=post_id)
@@ -148,6 +149,7 @@ def delete_post(request, post_id, city_id):
         return redirect('post', post_id)
     city = City.objects.get(id=city_id)
     return redirect('/cities/'+str(city.name))
+
 
 
 def signup(request):
