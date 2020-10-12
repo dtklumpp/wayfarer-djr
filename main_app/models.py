@@ -34,7 +34,7 @@ class Profile(models.Model):
 
 # POST MODEL
 class Post(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=200)
     content = models.TextField(max_length=2500)
     posted_date = models.DateTimeField(default=datetime.datetime.now, null=True)
     image = models.ImageField(upload_to='images/', null=True, verbose_name="")
