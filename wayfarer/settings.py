@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'wayfarer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'wayfarerdb',
+        'NAME': 'wayfarerdb-v2',
     }
 }
 
