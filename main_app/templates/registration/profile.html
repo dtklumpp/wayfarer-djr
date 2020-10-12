@@ -4,45 +4,49 @@
 
 {% block content %}
 
-
-<div class="ui grid">
-    <div class="four wide column">
-        <div class="ui card">
-            <div class="image">
-                <img src="{{ MEDIA_URL }}{{ profile.image }}">
-            </div>
-            <div class="content">
-                <a class="header" style="text-transform:uppercase">{{ profile.user.username }}'s Profile</a>
-                <div class="meta">
-                <span class="date" style="text-transform:uppercase">Joined {{ profile.join_date}}</span>
+<div class="ui two column centered grid" style="margin: 30px;">
+    <div class="six wide column">
+        <div class="ui segment" style="background-color: var(--primary); max-width: 300px;">
+            <div class="ui card" style="position: relative;">
+                <div class="image">
+                    <img src="{{ MEDIA_URL }}{{ profile.image }}">
                 </div>
-                <div class="description" style="text-transform:uppercase">
-                {{ profile.user.username }} is a wayfarer from {{ profile.current_city}}.
-                </div>
-            </div>
-            {% if profile.user.username == request.user.username %}
-            <div class="extra content">
-                <a href="{% url 'edit_profile' profile.user.username %}">EDIT PROFILE</a>
-            </div>
-            {% endif %}
-        </div>
-    </div>  
-    <div class="eight wide column">
-        {% for post in profile.post_set.all %}
-        <a href="/posts/{{ post.id }}">
-            <div class="ui link card">
                 <div class="content">
-                    <div class="header">{{ post.title }}</div>
+                    <a class="header" style="text-transform:uppercase">{{ profile.user.username }}</a>
                     <div class="meta">
-                        <span class="category">{{ post.city.name }}</span>
+                    <span class="date" style="text-transform:uppercase">Joined {{ profile.join_date}}</span>
+                    </div>
+                    <div class="description" style="text-transform:uppercase">
+                    {{ profile.user.username }} is a wayfarer from {{ profile.current_city}}.
                     </div>
                 </div>
+                {% if profile.user.username == request.user.username %}
+                <div class="extra content">
+                    <a href="{% url 'edit_profile' profile.user.username %}" style="color: var(--tertiary); font-weight: bold;">EDIT PROFILE</a>
+                </div>
+                {% endif %}
             </div>
-        </a>
-        {% endfor %}
+        </div>
     </div>
-
+    <div class="six wide column">
+        <div class="ui segment" style="background-color: var(--primary); max-width: 300px;">
+            <h3 class="ui header" style="color: white;">Your posts:</h3>
+            {% for post in profile.post_set.all %}
+            <a href="/posts/{{ post.id }}">
+                <div class="ui link card">
+                    <div class="content">
+                        <div class="header">{{ post.title }}</div>
+                        <div class="meta">
+                            <span class="category">{{ post.city.name }}</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
 </div>
+
 
 {% endblock %}
 
