@@ -33,7 +33,7 @@
                     <div class="ui row" style="margin-left: 15px;">
                         <h3 class="" style="text-transform:uppercase">{{ city.name }} - {{ city.country }}</h3>
                     </div>
-                    <div class="ui two column row">
+                    <div class="ui two column row" style="min-height: 50vh;">
                         <div class="eight wide column">
 
             <!-- MAP -->
@@ -51,7 +51,7 @@
                                 container: 'map',
                                 style: 'mapbox://styles/mapbox/light-v10',
                                 center: [{{city.long}}, {{city.lat}}],
-                                zoom: 12
+                                zoom: 10
                                 });
 
                                var geojson = {
@@ -67,8 +67,7 @@
                                         description: 'Washington, D.C.'
                                         }
                                     },
-                                    ]
-                                    };
+                                    ]};
 
                                geojson.features.forEach(function(marker) {
 
