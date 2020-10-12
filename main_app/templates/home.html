@@ -59,7 +59,7 @@
                         <div class="ui modal create-post-class" style="padding: 10px;">
                             <h2 class="ui modal-header">Add a New Post!</h2>
                             <div class="ui modal-body">
-                                <form class="ui small form" action="/posts/create/{{city.id}}" method="POST">
+                                <form class="ui large form" action="/posts/create/{{city.id}}" method="POST">
                                     {% csrf_token %}
                                     <div class="content">
                                         {{ post_form.as_p }}

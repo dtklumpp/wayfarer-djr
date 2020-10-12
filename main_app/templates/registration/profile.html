@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div class="ui two column centered grid" style="margin: 50px;">
+<div class="ui two column centered grid" style="margin: 30px;">
     <div class="six wide column">
         <div class="ui segment" style="background-color: var(--primary); max-width: 300px;">
             <div class="ui card" style="position: relative;">
@@ -12,7 +12,7 @@
                     <img src="{{ MEDIA_URL }}{{ profile.image }}">
                 </div>
                 <div class="content">
-                    <a class="header" style="text-transform:uppercase">{{ profile.user.username }}'s Profile</a>
+                    <a class="header" style="text-transform:uppercase">{{ profile.user.username }}</a>
                     <div class="meta">
                     <span class="date" style="text-transform:uppercase">Joined {{ profile.join_date}}</span>
                     </div>
@@ -22,7 +22,7 @@
                 </div>
                 {% if profile.user.username == request.user.username %}
                 <div class="extra content">
-                    <a href="{% url 'edit_profile' profile.user.username %}">EDIT PROFILE</a>
+                    <a href="{% url 'edit_profile' profile.user.username %}" style="color: var(--tertiary); font-weight: bold;">EDIT PROFILE</a>
                 </div>
                 {% endif %}
             </div>
