@@ -38,9 +38,64 @@
 
             <!-- MAP -->
                             
-                            <div class="ui placeholder">
-                                <img class="ui image" src="{{ MEDIA_URL }}/static/globe.jpg" alt="">
+                            <div id='map' style="position: absolute;
+                                                    top: 0;
+                                                    bottom: 0;
+                                                    width: 100%;">
                             </div>
+                            <script>
+
+                                mapboxgl.accessToken = 'pk.eyJ1IjoiamRlbGlzbyIsImEiOiJja2c2cG9raW0wMjUzMzRsaHBkcjR6Z3R5In0.b7ytY30b9YXV5oQqsuuPeg';
+
+                                var map = new mapboxgl.Map({
+                                container: 'map',
+                                style: 'mapbox://styles/mapbox/light-v10',
+                                center: [{{city.long}}, {{city.lat}}],
+                                zoom: 12
+                                });
+
+                               var geojson = {
+                                    type: 'FeatureCollection',
+                                    features: [{
+                                        type: 'Feature',
+                                        geometry: {
+                                        type: 'Point',
+                                        coordinates: [{{city.long}}, {{city.lat}}]
+                                        },
+                                        properties: {
+                                        title: 'Mapbox',
+                                        description: 'Washington, D.C.'
+                                        }
+                                    },
+                                    ]
+                                    };
+
+                               geojson.features.forEach(function(marker) {
+
+                                // create a HTML element for each feature
+                                var el = document.createElement('div');
+                                el.className = 'marker';
+
+                                // make a marker for each feature and add to the map
+                                new mapboxgl.Marker(el)
+                                    .setLngLat(marker.geometry.coordinates)
+                                    .addTo(map);
+                                });
+
+                            </script>
+
+                            <style>
+                                .marker {
+                                    background-image: url('/media/static/mapbox-icon.png');
+                                    background-size: cover;
+                                    width: 50px;
+                                    height: 50px;
+                                    border-radius: 50%;
+                                    cursor: pointer;
+                                }
+                            </style>
+
+
 
             <!-- MAP -->
             
