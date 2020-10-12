@@ -8,6 +8,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .forms import *
 from .models import *
+from django.contrib.auth.decorators	import login_required
 
 # Create your views here.
 
@@ -18,9 +19,9 @@ def splash(request):
 
 def home(request):
     cities = City.objects.all()
-    posts = Post.objects.all()
-    post_form = Post_Form()
     city = cities[0]
+    posts = city.post_set.order_by('-posted_date')
+    post_form = Post_Form()
 
 
 
@@ -30,7 +31,7 @@ def home(request):
 
 def city(request, city_name):
     city = City.objects.get(name=city_name)
-    posts = city.post_set.order_by('posted_date')
+    posts = city.post_set.order_by('-posted_date')
     post_form = Post_Form()
     print('POSTS HERE')
     print(posts)
@@ -39,23 +40,21 @@ def city(request, city_name):
     return render(request, 'cities/detail.html', context)
 
 
+@login_required
 def edit_profile(request, user_name):
     user = User.objects.get(username=user_name)
     profile = user.profile
 
     if request.method == 'POST':
-        
-
         profile_edit_form = Profile_Edit_Form(request.POST, instance=profile)
         if profile_edit_form.is_valid():
-            profile = profile_edit_form.save()
+            if request.user.username == user.username:
+                profile = profile_edit_form.save()
+                if 'image' in request.FILES:
+                    profile.image = request.FILES['image']
+                profile.save()
 
-            if 'image' in request.FILES:
-                profile.image = request.FILES['image']
-
-            profile.save()
-
-            return redirect ('profile', profile.user.username)
+        return redirect ('profile', profile.user.username)
     profile_edit_form = Profile_Edit_Form(instance=profile)
 
     # cities = City.objects.all()
@@ -77,6 +76,7 @@ def myprofile(request):
     return render(request, 'registration/profile.html', context)
 
 
+@login_required
 def create_post(request, city_name):
     city = City.objects.get(name=city_name)
 
@@ -97,7 +97,7 @@ def create_post(request, city_name):
                 new_post.image = request.FILES['image']
 
             new_post.save()
-            return redirect('/cities/'+str(city.name))
+        return redirect('/cities/'+str(city.name))
     post_form = Post_Form()
     context = {"post_form": post_form, "city_id": city.id}
     return render(request, 'posts/create.html', context)
@@ -124,23 +124,32 @@ def carousel_test(request):
     return render(request, 'semantic-ui/carousel.html')
 
 
+@login_required
 def edit_post(request, post_id):
     post = Post.objects.get(id=post_id)
     if request.method == "POST":
         post_form = Post_Form(request.POST, instance=post)
         if post_form.is_valid():
-            post_form.save()
-            return redirect('post', post_id)
+            if request.user.id == post.profile.user_id:
+                post_form.save()
+        return redirect('post', post_id)
     post_form = Post_Form(instance=post)
     context = {"post_form": post_form, "post_id": post_id}
     return render(request,'posts/edit.html', context)
 
 
 
-def delete_post(request, post_id, city_name):
+
+@login_required
+def delete_post(request, post_id, city_id):
     doomed_post = Post.objects.get(id=post_id)
-    doomed_post.delete()
-    return redirect('/cities/'+str(city_name))
+    if request.user.id == doomed_post.profile.user_id:
+        doomed_post.delete()
+    else:
+        return redirect('post', post_id)
+    city = City.objects.get(id=city_id)
+    return redirect('/cities/'+str(city.name))
+
 
 
 def signup(request):
