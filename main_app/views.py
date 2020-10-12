@@ -19,8 +19,13 @@ def splash(request):
 def home(request):
     cities = City.objects.all()
     posts = Post.objects.all()
-    context = {'cities': cities, 'posts': posts}
-    return render(request, 'home.html', context)
+    post_form = Post_Form()
+    city = City.objects.get(id=1)
+
+
+
+    context = {'cities': cities, 'posts': posts, 'city': city, 'post_form': post_form}
+    return render(request, 'cities/detail.html', context)
 
 
 def city(request, city_name):
