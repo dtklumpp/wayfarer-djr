@@ -60,39 +60,26 @@
                         <div class="ui modal create-post-class" style="padding: 10px;">
                             <h2 class="ui modal-header">Add a New Post!</h2>
                             <div class="ui modal-body">
-                                <form action="/posts/create/{{city.id}}" method="POST" enctype="multipart/form-data">
+                                <form class="ui small form" action="/posts/create/{{city.id}}" method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="content">
                                         <div class="field">
                                             <label>Title</label>
-                                            <input type="text" name="title" placeholder="Title">
+                                            <input type="text" name="title">
                                         </div>
-
-                                        </br>
-
                                         <div class="field">
                                             <label>Content</label>
                                             <textarea id="content" name="content" rows="8" column="2000" style="resize: none"></textarea>
-                        
                                         </div>
-
-                                        </br>
-
                                         <div class="field">
                                             <label>Image</label>
                                             <input id='id_image' type='file' name='image' accept='image/*'>          
                                         </div>
                                     </div>
-
-
-
-                                        <input type="submit" value="Post It">
+                                        <input class='ui small inverted button' type="submit" value="Post It" style="background-color: var(--tertiary); margin-top: 10px;">
                                 </form>
                             </div>
                         </div>
-
-
-
                     </div>
                 </div>
                     {% for post in posts %} 
