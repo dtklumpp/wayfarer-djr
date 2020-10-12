@@ -28,11 +28,11 @@
 <!------------ MAIN POST AREA ------------>
     <div class="ui thirteen wide column">
         <div class="ui segment">
-            <div class="ui grid" style="padding: 5px;">
+            <div class="ui grid" style="padding: 10px;">
                 <div class="row">
                     <div class="six wide column">
                         <h2 style="text-transform:uppercase">{{ city.name }}</h2>
-                            <h5 class="title">{{ city.country }}</h5>
+                            <h3 class="title">{{ city.country }}</h3>
                     </div>
                     <div class="ten wide column">
                         <img class="ui image" src="{{ city.photo }}" alt="">
@@ -44,8 +44,7 @@
                     </div>
                     <div class="ten wide column" style="text-align: right;">
                         <button class="ui circular icon button" style="background-color: var(--tertiary); margin-right: 10px;" id="create-post">
-                            <i class="fas fa-plus-circle"></i>
-                        </button>
+                            <i class="fas fa-plus-circle"></i></button>
                         <script>
                             $(function(){
                                 $("#create-post").click(function(){
@@ -83,8 +82,8 @@
                     </div>
                 </div>
                     {% for post in posts %} 
-                    <div class="ui items">
-                            <div class="item">
+                    <div class="ui items" >
+                            <div class="item" style="margin-bottom: 15px;">
                                 <div class="ui small image">
                                     <img src="{{MEDIA_URL}}{{ post.image }}">
                                 </div>
