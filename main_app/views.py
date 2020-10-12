@@ -19,9 +19,9 @@ def splash(request):
 
 def home(request):
     cities = City.objects.all()
-    posts = Post.objects.all()
-    post_form = Post_Form()
     city = cities[0]
+    posts = city.post_set.order_by('-posted_date')
+    post_form = Post_Form()
 
 
 
@@ -31,7 +31,7 @@ def home(request):
 
 def city(request, city_name):
     city = City.objects.get(name=city_name)
-    posts = city.post_set.order_by('posted_date')
+    posts = city.post_set.order_by('-posted_date')
     post_form = Post_Form()
     print('POSTS HERE')
     print(posts)
