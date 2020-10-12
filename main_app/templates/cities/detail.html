@@ -60,23 +60,46 @@
                         <div class="ui modal create-post-class" style="padding: 10px;">
                             <h2 class="ui modal-header">Add a New Post!</h2>
                             <div class="ui modal-body">
-                                <form class="ui large form" action="/posts/create/{{city.id}}" method="POST">
+                                <form action="/posts/create/{{city.id}}" method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="content">
-                                        {{ post_form.as_p }}
+                                        <div class="field">
+                                            <label>Title</label>
+                                            <input type="text" name="title" placeholder="Title">
+                                        </div>
+
+                                        </br>
+
+                                        <div class="field">
+                                            <label>Content</label>
+                                            <textarea id="content" name="content" rows="8" column="2000" style="resize: none"></textarea>
+                        
+                                        </div>
+
+                                        </br>
+
+                                        <div class="field">
+                                            <label>Image</label>
+                                            <input id='id_image' type='file' name='image' accept='image/*'>          
+                                        </div>
                                     </div>
-                                    <input class="ui button" type="submit" value="Submit" style="margin:10px; background-color:var(--quaternary)">
+
+
+
+                                        <input type="submit" value="Post It">
                                 </form>
                             </div>
                         </div>
-<!----------------------------------------------->
+
+
+
                     </div>
                 </div>
                     {% for post in posts %} 
                     <div class="ui items">
                             <div class="item">
                                 <div class="ui small image">
-                                    <img src="{{ post.image }}">
+                                    <img src="{{MEDIA_URL}}{{ post.image }}">
                                 </div>
                                 <div class="content">
                                     <h3>{{ post.title }}</h3>
