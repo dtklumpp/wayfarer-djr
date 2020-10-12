@@ -28,7 +28,7 @@
                             <div class="ui modal create-post-class" style="padding: 10px;">
                                 <h2 class="ui modal-header">Add a New Post!</h2>
                                 <div class="ui modal-body">
-                                    <form class="ui large form" action="/posts/edit/{{city.id}}" method="POST">
+                                    <form class="ui large form" action="/posts/edit/{{city.name}}" method="POST">
                                         {% csrf_token %}
                                         <div class="content">
                                             {{ post_form.as_p }}
@@ -37,7 +37,9 @@
                                     </form>
                                 </div>
                             </div>
-<!----------------------------------------------->
+                            
+<!------------------------ Show posts  ----------------------->
+                        
                         </div>
                 </div>
                 <div class="ui medium image">

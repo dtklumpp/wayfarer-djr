@@ -10,7 +10,7 @@
         <h3 class="ui title" style="color: white;">CITIES</h3>
         {% for city in cities %} 
         <div class="ui link items" style="border-radius: 4px; background-color: var(--secondary)">
-                <a class= "link item" href="{% url 'city' city.id %}">
+                <a class= "link item" href="{% url 'city' city.name %}">
                 <div class="ui tiny image">
                     <img src="{{ city.photo }}">
                 </div>
@@ -59,7 +59,7 @@
                         <div class="ui modal create-post-class" style="padding: 10px;">
                             <h2 class="ui modal-header">Add a New Post!</h2>
                             <div class="ui modal-body">
-                                <form class="ui large form" action="/posts/create/{{city.id}}" method="POST">
+                                <form class="ui large form" action="/posts/create/{{city.name}}" method="POST">
                                     {% csrf_token %}
                                     <div class="content">
                                         {{ post_form.as_p }}

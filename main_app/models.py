@@ -9,7 +9,7 @@ import django.utils
 class City(models.Model):
     name = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
-    photo = models.CharField(max_length=500)
+    photo = models.ImageField(upload_to='images/', null=True, verbose_name="")
     # TODO photo = models.ImageField(upload_to='images/')
 
     def __str__(self):
