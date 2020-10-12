@@ -1,26 +1,29 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
 
-<div class="ui middle aligned center aligned grid">
+<div class="ui centered grid" style="padding: 50px;">
+
     <div class="six wide column">
-        <h2 class="ui header">Log-in</h2>
         <form class="ui large form" action="{% url 'login' %}" method="POST">
             <div class="ui segment">
+                <h2 class="ui header">Log-in</h2>
             {% csrf_token %}
                 <div class="field">
                     <label>Username</label>
-                    <input type="text" name="username" placeholder="Username">
+                    <input type="text" name="username">
                 </div>
                 <div class="field">
                     <label>Password</label>
-                    <input type="password" name="password" placeholder="Password">
+                    <input type="password" name="password">
                 </div>
-                <button class="ui button" type="submit">Submit</button>
+                <button class="ui inverted button" type="submit" style="background-color: var(--tertiary);">Submit</button>
             </div>
         </form>
     </div>
+
 </div>
 
 {% endblock %}

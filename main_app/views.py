@@ -95,6 +95,7 @@ def create_post(request, city_id):
     context = {"post_form": post_form, "city_id": city_id}
     return render(request, 'posts/create.html', context)
     
+    
 def post(request, post_id):
     post = Post.objects.get(id=post_id)
     print('POST CITY IS')
@@ -118,12 +119,6 @@ def carousel_test(request):
 
 
 
-
-
-
-
-
-
 def edit_post(request, post_id):
     post = Post.objects.get(id=post_id)
     if request.method == "POST":
@@ -137,12 +132,10 @@ def edit_post(request, post_id):
 
 
 
-
 def delete_post(request, post_id, city_id):
     doomed_post = Post.objects.get(id=post_id)
     doomed_post.delete()
     return redirect('/cities/'+str(city_id))
-
 
 
 def signup(request):
