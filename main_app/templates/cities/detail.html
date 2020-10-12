@@ -28,11 +28,11 @@
 <!------------ MAIN POST AREA ------------>
     <div class="ui thirteen wide column">
         <div class="ui segment">
-            <div class="ui grid" style="padding: 5px;">
+            <div class="ui grid" style="padding: 10px;">
                 <div class="row">
                     <div class="six wide column">
                         <h2 style="text-transform:uppercase">{{ city.name }}</h2>
-                            <h5 class="title">{{ city.country }}</h5>
+                            <h3 class="title">{{ city.country }}</h3>
                     </div>
                     <div class="ten wide column">
                         <img class="ui image" src="{{ city.photo }}" alt="">
@@ -44,8 +44,7 @@
                     </div>
                     <div class="ten wide column" style="text-align: right;">
                         <button class="ui circular icon button" style="background-color: var(--tertiary); margin-right: 10px;" id="create-post">
-                            <i class="fas fa-plus-circle"></i>
-                        </button>
+                            <i class="fas fa-plus-circle"></i></button>
                         <script>
                             $(function(){
                                 $("#create-post").click(function(){
@@ -60,23 +59,18 @@
                         <div class="ui modal create-post-class" style="padding: 10px;">
                             <h2 class="ui modal-header">Add a New Post!</h2>
                             <div class="ui modal-body">
-                                <form action="/posts/create/{{city.id}}" method="POST" enctype="multipart/form-data">
+
+                                <form class="ui small form" action="/posts/create/{{city.id}}" method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="content">
                                         <div class="field">
                                             <label>Title</label>
-                                            <input type="text" name="title" placeholder="Title">
+                                            <input type="text" name="title">
                                         </div>
-
-                                        </br>
-
                                         <div class="field">
                                             <label>Content</label>
                                             <textarea id="content" name="content" rows="8" column="2000" style="resize: none"></textarea>
-                        
                                         </div>
-
-                                        </br>
 
                                         <div class="field">
                                             <label>Image</label>
@@ -84,20 +78,16 @@
                                         </div>
                                     </div>
 
-
-
-                                        <input type="submit" value="Post It">
+                                        <input class='ui small inverted button' type="submit" value="Post It" style="background-color: var(--tertiary); margin-top: 10px;">
                                 </form>
                             </div>
                         </div>
 
-
-
                     </div>
                 </div>
                     {% for post in posts %} 
-                    <div class="ui items">
-                            <div class="item">
+                    <div class="ui items" >
+                            <div class="item" style="margin-bottom: 15px;">
                                 <div class="ui small image">
                                     <img src="{{MEDIA_URL}}{{ post.image }}">
                                 </div>

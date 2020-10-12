@@ -6,13 +6,13 @@
 
 <div class="ui two column centered grid" style="margin: 30px;">
     <div class="six wide column">
-        <div class="ui segment" style="background-color: var(--primary); max-width: 300px;">
+        <div class="ui segment" style="background-color: var(--secondary); max-width: 300px;">
+            <h3 class="ui header" style="color: white; text-transform:uppercase">{{ profile.user.username }}:</h3>
             <div class="ui card" style="position: relative;">
                 <div class="image">
                     <img src="{{ MEDIA_URL }}{{ profile.image }}">
                 </div>
                 <div class="content">
-                    <a class="header" style="text-transform:uppercase">{{ profile.user.username }}</a>
                     <div class="meta">
                     <span class="date" style="text-transform:uppercase">Joined {{ profile.join_date}}</span>
                     </div>
@@ -29,8 +29,8 @@
         </div>
     </div>
     <div class="six wide column">
-        <div class="ui segment" style="background-color: var(--primary); max-width: 300px;">
-            <h3 class="ui header" style="color: white;">Your posts:</h3>
+        <div class="ui segment" style="background-color: var(--secondary); max-width: 300px;">
+            <h3 class="ui header" style="color: white;">POSTS:</h3>
             {% for post in profile.post_set.all %}
             <a href="/posts/{{ post.id }}">
                 <div class="ui link card">

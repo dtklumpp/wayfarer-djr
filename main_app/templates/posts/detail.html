@@ -5,14 +5,15 @@
 {% block content %}
 
 <div class="ui grid" style="padding: 50px;">
-    <div class="ui raised segment">
-        <div class="ui items">
+    <div class="ui raised segment" style="background-color: var(--secondary); padding: 20px;">
+        <div class="ui items" style="background-color: white; padding: 20px; border-radius: 3px;">
+            
             <div class="ui item">
                 <div class="content">
                     <h2>{{ post.city.name }}</h2>
                     <h2 style="text-transform:uppercase">{{ post.title }}</h2><h4 style="text-transform:uppercase">author: {{ post.profile.user.username }}</h4>
                         <div class="ten wide column">
-                            <button class="ui inverted tiny button" style="background-color: var(--tertiary);">EDIT</button>
+                            <button class="ui inverted tiny button" style="background-color: var(--tertiary);" id="edit-post">EDIT</button>
                             <script>
                                 $(function(){
                                     $("#edit-post").click(function(){
@@ -24,23 +25,23 @@
                                 });
                             </script>
 <!------------ ADD EDIT POST MODAL  ------------>
-                        <div class="ui modal create-post-class" style="padding: 10px;">
-                            <h2 class="ui modal-header">Add a New Post!</h2>
-                            <div class="ui modal-body">
-                                <form class="ui large form" action="/posts/edit/{{city.id}}" method="POST">
-                                    {% csrf_token %}
-                                    <div class="content">
-                                        {{ post_form.as_p }}
-                                    </div>
-                                    <input class="ui button" type="submit" value="Submit" style="margin:10px; background-color:var(--quaternary)">
-                                </form>
+                            <div class="ui modal create-post-class" style="padding: 10px;">
+                                <h2 class="ui modal-header">Add a New Post!</h2>
+                                <div class="ui modal-body">
+                                    <form class="ui large form" action="/posts/edit/{{city.id}}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="content">
+                                            {{ post_form.as_p }}
+                                        </div>
+                                        <input class="ui button" type="submit" value="Submit" style="margin:10px; background-color:var(--quaternary)">
+                                    </form>
+                                </div>
                             </div>
-                        </div>
 <!----------------------------------------------->
                         </div>
                 </div>
                 <div class="ui medium image">
-                    <img src="{{ post.image }}">
+                    <img src="{{MEDIA_URL}}{{ post.image }}">
                 </div>
             </div>
             <div class="row">
@@ -50,7 +51,8 @@
             <div class="content">
                 <p>{{ post.content }}</p>
             </div>
-        </div>
+            
+        </div> 
     </div>
 </div>
 

@@ -117,13 +117,6 @@ def carousel_test(request):
     return render(request, 'semantic-ui/carousel.html')
 
 
-
-
-
-
-
-
-
 def edit_post(request, post_id):
     post = Post.objects.get(id=post_id)
     if request.method == "POST":
@@ -137,12 +130,10 @@ def edit_post(request, post_id):
 
 
 
-
 def delete_post(request, post_id, city_id):
     doomed_post = Post.objects.get(id=post_id)
     doomed_post.delete()
     return redirect('/cities/'+str(city_id))
-
 
 
 def signup(request):
