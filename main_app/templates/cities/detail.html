@@ -9,7 +9,7 @@
     <div class="ui three wide column" style="background-color: var(--primary); margin-top: 14px; border-radius: 4px;">
         <h3 class="ui title" style="color: white;">CITIES</h3>
         {% for city in cities %} 
-        <a href="{% url 'city' city.id %}">
+        <a href="{% url 'city' city.name %}">
         <div class="ui link items" style="border-radius: 4px; background-color: var(--secondary)">
             <div class= "item" style="margin-bottom: 5px;">
                 <div class="ui tiny image">
@@ -60,7 +60,7 @@
                             <h2 class="ui modal-header">Add a New Post!</h2>
                             <div class="ui modal-body">
 
-                                <form class="ui small form" action="/posts/create/{{city.id}}" method="POST" enctype="multipart/form-data">
+                                <form class="ui small form" action="/posts/create/{{city.name}}" method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="content">
                                         <div class="field">
