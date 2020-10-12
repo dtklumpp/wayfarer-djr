@@ -11,16 +11,16 @@
 
 <!------------ SIDE NAV ------------>
 <div class="ui grid" style="margin: 10px;">
-    <div class="ui three wide column" style="background-color: var(--primary); margin-top: 14px; border-radius: 4px;">
-        <h3 class="ui title" style="color: white;">CITIES</h3>
+    <div class="ui inverted vertical menu" style="background-color: var(--primary); margin-top: 14px; padding: 10px;">
+        <h3 class="ui header" style="color: white;">CITIES</h3>
         {% for city in cities %} 
         <a href="{% url 'city' city.name %}">
-        <div class="ui link items" style="border-radius: 4px; background-color: var(--secondary)">
-            <div class= "item" style="margin-bottom: 5px;">
+        <div class="ui link items" style="border-radius: 4px; background-color: var(--secondary);">
+            <div class= "link item" style="margin-bottom: 5px;">
                 <div class="ui tiny image">
                     <img src="{{MEDIA_URL}}{{ city.photo }}">
                 </div>
-                <div class="middle aligned content">
+                <div class="ui content">
                     <div style="text-transform:uppercase; color: white;">{{ city.name }}
                     </div>
                 </div>
@@ -34,15 +34,27 @@
     <div class="ui thirteen wide column">
         <div class="ui segment">
             <div class="ui grid" style="padding: 10px;">
-                <div class="row">
-                    <div class="six wide column">
-                        <h2 style="text-transform:uppercase">{{ city.name }}</h2>
-                            <h3 class="title">{{ city.country }}</h3>
+                
+                    <div class="ui row"style="margin-left: 15px;">
+                        <h3 class="" style="text-transform:uppercase">{{ city.name }} - {{ city.country }}</h3>
                     </div>
-                    <div class="ten wide column">
+                    <div class="ui two column row">
+                        <div class="eight wide column">
+
+            <!-- MAP -->
+                            
+                            <div class="ui placeholder">
+                                <img class="ui image" src="{{ MEDIA_URL }}/static/globe.jpg" alt="">
+                            </div>
+
+            <!-- MAP -->
+            
+                        </div>
+                    
+                    <div class="eight wide column">
                         <img class="ui image" src="{{MEDIA_URL}}{{ city.photo }}" alt="">
                     </div>
-                </div>
+
                 <div class="row">
                     <div class="six wide column">
                         <h3 class="ui middle aligned content">POSTS</h3>
@@ -90,19 +102,21 @@
 
                     </div>
                 </div>
-                    {% for post in posts %} 
-                    <div class="ui items" >
-                            <div class="item" style="margin-bottom: 15px;">
-                                <div class="ui small image">
-                                    <img src="{{MEDIA_URL}}{{ post.image }}">
-                                </div>
-                                <div class="content">
-                                    <h3>{{ post.title }}</h3>
-                                    <p>{{ post.content }}</p>
-                                </div>
+                {% for post in posts %} 
+                <div class="ui items" >
+                    <div class="ui link items" style="margin-bottom: 15px;">
+                        <a class= "link item" href="/posts/{{ post.id }}">
+                        <div class="ui middle aligned small image">
+                            <img src="{{MEDIA_URL}}{{ post.image }}">
+                        </div>
+                        <div class="ui middle aligned content" style="margin-left: 15px; text-decoration-color: black;">
+                                <h3>{{ post.title }}</h3>
+                                <p>{{ post.content }}</p>
                             </div>
+                        </a>
                     </div>
-                    {% endfor %}
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
