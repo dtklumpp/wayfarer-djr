@@ -72,6 +72,29 @@ def myprofile(request):
     return render(request, 'registration/profile.html', context)
 
 
+def create_post(request, city_id):
+    if request.method == "POST":
+
+
+        post_form = Post_Form(request.POST, request.FILES)
+        print(post_form.errors)
+
+        if post_form.is_valid():
+
+            new_post = post_form.save(commit=False)
+            new_post.profile_id = request.user.id
+            new_post.city_id = city_id
+            
+
+            if 'image' in request.FILES:
+                new_post.image = request.FILES['image']
+
+            new_post.save()
+            return redirect('/cities/'+str(city_id))
+    post_form = Post_Form()
+    context = {"post_form": post_form, "city_id": city_id}
+    return render(request, 'posts/create.html', context)
+    
 def post(request, post_id):
     post = Post.objects.get(id=post_id)
     print('POST CITY IS')
@@ -98,18 +121,6 @@ def carousel_test(request):
 
 
 
-def create_post(request, city_id):
-    if request.method == "POST":
-        post_form = Post_Form(request.POST)
-        if post_form.is_valid():
-            new_post = post_form.save(commit=False)
-            new_post.profile_id = request.user.id
-            new_post.city_id = city_id
-            new_post.save()
-            return redirect('/cities/'+str(city_id))
-    post_form = Post_Form()
-    context = {"post_form": post_form, "city_id": city_id}
-    return render(request, 'posts/create.html', context)
 
 
 
