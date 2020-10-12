@@ -97,7 +97,7 @@ def create_post(request, city_name):
                 new_post.image = request.FILES['image']
 
             new_post.save()
-            return redirect('/cities/'+str(city.name))
+        return redirect('/cities/'+str(city.name))
     post_form = Post_Form()
     context = {"post_form": post_form, "city_id": city.id}
     return render(request, 'posts/create.html', context)
