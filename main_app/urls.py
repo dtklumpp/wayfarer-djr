@@ -17,7 +17,7 @@ urlpatterns = [
     path('cities/<str:city_name>', views.city, name='city'),
     path('posts/create/<str:city_name>', views.create_post, name='create_post'),
     path('posts/edit/<int:post_id>', views.edit_post, name='edit_post'),
-    path('posts/delete/<int:post_id>/<int:city_id>', views.delete_post, name='delete_post'),
+    path('posts/delete/<int:post_id>/<str:city_name>', views.delete_post, name='delete_post'),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
