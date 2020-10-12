@@ -9,11 +9,11 @@
     <div class="ui inverted vertical menu" style="background-color: var(--primary); margin-top: 14px; padding: 10px;">
         <h3 class="ui header" style="color: white;">CITIES</h3>
         {% for city in cities %} 
-        <a href="{% url 'city' city.id %}">
+        <a href="{% url 'city' city.name %}">
         <div class="ui link items" style="border-radius: 4px; background-color: var(--secondary);">
             <div class= "link item" style="margin-bottom: 5px;">
                 <div class="ui tiny image">
-                    <img src="{{ city.photo }}">
+                    <img src="{{MEDIA_URL}}{{ city.photo }}">
                 </div>
                 <div class="ui content">
                     <div style="text-transform:uppercase; color: white;">{{ city.name }}
@@ -45,11 +45,11 @@
             <!-- MAP -->
             
                         </div>
-                        <div class="eight wide column">
-                            <img class="ui image" src="{{ city.photo }}" alt="">
-                        </div>
+                    
+                    <div class="eight wide column">
+                        <img class="ui image" src="{{MEDIA_URL}}{{ city.photo }}" alt="">
                     </div>
-              
+
                 <div class="row">
                     <div class="six wide column">
                         <h3 class="ui middle aligned content">POSTS</h3>
@@ -72,7 +72,7 @@
                             <h2 class="ui modal-header">Add a New Post!</h2>
                             <div class="ui modal-body">
 
-                                <form class="ui small form" action="/posts/create/{{city.id}}" method="POST" enctype="multipart/form-data">
+                                <form class="ui small form" action="/posts/create/{{city.name}}" method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="content">
                                         <div class="field">
