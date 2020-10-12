@@ -9,8 +9,8 @@
 
 {% block content %}
 
-<div class="ui two column center grid" style="padding: 50px; max-width: 800px;">
-    <div class="ui raised segment" style="background-color: var(--secondary); padding: 20px;">
+<div class="ui grid" style="padding: 50px;">
+    <div class="ui container" style="background-color: var(--secondary); padding: 20px; border-radius: 3px;">
         <div class="ui items" style="background-color: white; padding: 20px; border-radius: 3px;">
             <div class="ui item">
                 <div class="content">
@@ -18,6 +18,7 @@
                     <h2 style="text-transform:uppercase">{{ post.title }}</h2><h4 style="text-transform:uppercase">author: {{ post.profile.user.username }}</h4>
                         <div class="ten wide column">
                             <button class="ui inverted tiny button" style="background-color: var(--tertiary);" id="edit-post">EDIT</button>
+                            <a class="ui inverted tiny button" href="/posts/delete/{{ post.id }}/{{ post.city.name }}" style="background-color: grey;" id="delete">DELETE</a>
                             <script>
                                 $(function(){
                                     $("#edit-post").click(function(){
@@ -29,15 +30,26 @@
                                 });
                             </script>
 <!------------ ADD EDIT POST MODAL  ------------>
-                            <div class="ui modal create-post-class" style="padding: 10px;">
-                                <h2 class="ui modal-header">Add a New Post!</h2>
+                            <div class="ui modal edit-post-class" style="padding: 10px;">
+                                <h2 class="ui modal-header">EDIT POST</h2>
                                 <div class="ui modal-body">
-                                    <form class="ui large form" action="/posts/edit/{{city.name}}" method="POST">
+                                    <form class="ui small form" action="/posts/edit/{{city.name}}" method="POST" enctype="multipart/form-data">
                                         {% csrf_token %}
                                         <div class="content">
-                                            {{ post_form.as_p }}
+                                            <div class="field">
+                                                <label>Title</label>
+                                                <input type="text" name="title" value="{{ post.title }}">
+                                            </div>
+                                            <div class="field">
+                                                <label>Content</label>
+                                                <textarea id="content" name="content" rows="8" column="2000" style="resize: none" value="{{ post.content }}">{{ post.content }}</textarea>
+                                            </div>
+                                            <div class="field">
+                                                <label>Image</label>
+                                                <input id='id_image' type='file' name='image' accept='image/*'>          
+                                            </div>
                                         </div>
-                                        <input class="ui button" type="submit" value="Submit" style="margin:10px; background-color:var(--quaternary)">
+                                            <input class='ui small inverted button' type="submit" value="UPDATE" style="background-color: var(--tertiary); margin-top: 10px;">
                                     </form>
                                 </div>
                             </div>
@@ -52,12 +64,11 @@
             </div>
             <div class="row">
                 <div class="six wide column">
+                    <div class="content">
+                        <p>{{ post.content }}</p>
+                    </div>
                 </div>
             </div>
-            <div class="content">
-                <p>{{ post.content }}</p>
-            </div>
-            
         </div> 
     </div>
 </div>
