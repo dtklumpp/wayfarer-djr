@@ -137,10 +137,10 @@ def edit_post(request, post_id):
 
 
 
-def delete_post(request, post_id, city_id):
+def delete_post(request, post_id, city_name):
     doomed_post = Post.objects.get(id=post_id)
     doomed_post.delete()
-    return redirect('/cities/'+str(city_id))
+    return redirect('/cities/'+str(city_name))
 
 
 def signup(request):

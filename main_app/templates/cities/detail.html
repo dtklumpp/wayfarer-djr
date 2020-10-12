@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}
+    <title>City Detail -- Wayfarer</title>
+{% endblock %}
+
 
 {% block content %}
-
 <!------------ SIDE NAV ------------>
 <div class="ui grid" style="margin: 10px;">
     <div class="ui inverted vertical menu" style="background-color: var(--primary); margin-top: 14px; padding: 10px;">
@@ -24,19 +27,17 @@
         </a>
         {% endfor %}
     </div>
-
 <!------------ MAIN POST AREA ------------>
     <div class="ui thirteen wide column">
         <div class="ui segment">
             <div class="ui grid" style="padding: 10px;">
-                
                     <div class="ui row" style="margin-left: 15px;">
                         <h3 class="" style="text-transform:uppercase">{{ city.name }} - {{ city.country }}</h3>
                     </div>
                     <div class="ui two column row" style="min-height: 50vh;">
                         <div class="eight wide column">
-
             <!-- MAP -->
+
                             
                             <div id='map' style="position: absolute;
                                                     top: 0;
@@ -96,13 +97,12 @@
 
 
 
+
             <!-- MAP -->
-            
                         </div>
                         <div class="eight wide column">
                             <img class="ui image" src="{{MEDIA_URL}}{{ city.photo }}" alt="">
                         </div>
-                        
                     </div>
                 <div class="row">
                     <div class="six wide column">
@@ -125,7 +125,6 @@
                         <div class="ui modal create-post-class" style="padding: 10px;">
                             <h2 class="ui modal-header">Add a New Post!</h2>
                             <div class="ui modal-body">
-
                                 <form class="ui small form" action="/posts/create/{{city.name}}" method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="content">
@@ -137,18 +136,15 @@
                                             <label>Content</label>
                                             <textarea id="content" name="content" rows="8" column="2000" style="resize: none"></textarea>
                                         </div>
-
                                         <div class="field">
                                             <label>Image</label>
                                             <input id='id_image' type='file' name='image' accept='image/*'>          
                                         </div>
                                     </div>
-
                                         <input class='ui small inverted button' type="submit" value="Post It" style="background-color: var(--tertiary); margin-top: 10px;">
                                 </form>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 {% for post in posts %} 
@@ -159,7 +155,7 @@
                             <img src="{{MEDIA_URL}}{{ post.image }}">
                         </div>
                         <div class="ui middle aligned content" style="margin-left: 15px; text-decoration-color: black;">
-                                <h3>{{ post.title }}</h3>
+                                <h3>{{ post.title }} </h3>
                                 <p>{{ post.content }}</p>
                             </div>
                         </a>
@@ -170,5 +166,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}
