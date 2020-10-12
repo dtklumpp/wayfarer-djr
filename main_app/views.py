@@ -20,7 +20,7 @@ def home(request):
     cities = City.objects.all()
     posts = Post.objects.all()
     post_form = Post_Form()
-    city = City.objects.get(id=1)
+    city = cities[0]
 
 
 
