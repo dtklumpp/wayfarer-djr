@@ -141,12 +141,13 @@ def edit_post(request, post_id):
 
 @login_required
 def delete_post(request, post_id, city_id):
-    if request.user.id == post.profile.user_id:
-        doomed_post = Post.objects.get(id=post_id)
+    doomed_post = Post.objects.get(id=post_id)
+    if request.user.id == doomed_post.profile.user_id:
         doomed_post.delete()
     else:
         return redirect('post', post_id)
-    return redirect('/cities/'+str(city_id))
+    city = City.objects.get(id=city_id)
+    return redirect('/cities/'+str(city.name))
 
 
 def signup(request):
