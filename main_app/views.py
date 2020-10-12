@@ -95,7 +95,6 @@ def create_post(request, city_id):
     context = {"post_form": post_form, "city_id": city_id}
     return render(request, 'posts/create.html', context)
     
-    
 def post(request, post_id):
     post = Post.objects.get(id=post_id)
     print('POST CITY IS')
@@ -116,7 +115,6 @@ def semantic(request):
     return render(request, 'semantic-ui/semantic.html')
 def carousel_test(request):
     return render(request, 'semantic-ui/carousel.html')
-
 
 
 def edit_post(request, post_id):
