@@ -160,6 +160,7 @@
                         </div>
                     </div>
                 </div>
+
                 {% for post in posts %} 
                 
                 <div class="ui middle aligned items" style="min-width: 100%;">
@@ -171,11 +172,13 @@
                         <div class="ui content" style="margin-left: 15px;">
                                 <h3>{{ post.title }} </h3>
                                 <p>{{ post.content }}</p>
+                                <h5>Posted: {{ post.posted_date | timesince}}</h5>
                             </div>
                         </a>
                     </div>
                 </div>
                 {% endfor %}
+
             </div>
         </div>
     </div>
