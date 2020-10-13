@@ -157,7 +157,7 @@
                                 {% csrf_token %}
                                 <div class="content">
                                     <div class="field">
-                                        <label></label>
+                                        <label>{{comment.posted_date}}</label>
                                         <textarea id="body" name="body" rows="8" column="2000" style="resize: none" value="{{ comment.body }}">{{ comment.body }}</textarea>
                                     </div>
                                 </div>
