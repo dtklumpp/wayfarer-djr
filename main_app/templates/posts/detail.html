@@ -188,7 +188,26 @@
                                 </div>
                                     <input class='ui small inverted button' type="submit" value="RETCON" style="background-color: var(--tertiary); margin-top: 10px;">
                             </form>
-                            <a class="ui inverted tiny button" href="/comments/delete/{{ comment.id }}" style="background-color: grey;" id="delete">DELETE</a>
+                            <a class="ui inverted tiny button" style="background-color: grey;" id="delete-{{comment.id}}">DELETE</a>
+
+                            <script>
+                                $(function(){
+                                    $("#delete-{{comment.id}}").click(function(){
+                                        $(".delete-comment-class-{{comment.id}}").modal('show');
+                                    });
+                                    $(".delete-comment-class-{{comment.id}}").modal({
+                                        closable: true
+                                    });
+                                });
+                            </script>
+                            <div class="ui mini modal delete-comment-class-{{comment.id}}" style="padding: 10px; width=20%;">
+                                <h2 class="ui modal-header">Delete?!</h2>
+                                <div class="ui modal-body">
+                                    <a class="ui inverted tiny button" href="/comments/delete/{{ comment.id }}" style="background-color: grey;" id="delete">DELETE</a>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
 
