@@ -78,6 +78,12 @@
                     </div>
                 </div>
             </div>
+
+
+
+
+<!------------------------ COMMENTS CODE BELOW HERE ----------------------->
+
             <hr>
 
             <h3>Comments</h3>
@@ -128,16 +134,20 @@
                     </div>
                     <br>
 
-                    <script>
-                        $(function(){
-                            $("#edit-comment-{{comment.id}}").click(function(){
-                                $(".edit-comment-class-{{comment.id}}").modal('show');
+                    {% if user.id == comment.profile.user_id %}
+                        <script>
+                            $(function(){
+                                $("#edit-comment-{{comment.id}}").click(function(){
+                                    $(".edit-comment-class-{{comment.id}}").modal('show');
+                                });
+                                $(".edit-comment-class-{{comment.id}}").modal({
+                                    closable: true
+                                });
                             });
-                            $(".edit-comment-class-{{comment.id}}").modal({
-                                closable: true
-                            });
-                        });
-                    </script>
+                        </script>
+                    {% endif %}
+
+
                     <div class="ui modal edit-comment-class-{{comment.id}}" style="padding: 10px;">
                         <h2 class="ui modal-header">EDIT POST</h2>
                         <div class="ui modal-body">
