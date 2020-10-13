@@ -29,6 +29,9 @@
                     Comments: {{ profile.comment_set.count}}
                     </div>
 
+                    <div class="comments" style="text-transform:uppercase">Cities: {{city_string}}</div>
+
+
                 </div>
                 {% if profile.user.username == request.user.username %}
                 <div class="extra content">
