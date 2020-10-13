@@ -24,6 +24,10 @@
                     <div class="description" style="text-transform:uppercase">
                     {{ profile.user.username }} is a wayfarer from {{ profile.current_city}}.
                     </div>
+                    <div class="comments" style="text-transform:uppercase">
+                    Comments: {{ profile.comment_set.count}}
+                    </div>
+
                 </div>
                 {% if profile.user.username == request.user.username %}
                 <div class="extra content">
