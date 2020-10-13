@@ -100,9 +100,10 @@ def create_post(request, city_name):
     
 def post(request, post_id):
     post = Post.objects.get(id=post_id)
+    comments = post.comment_set.order_by('-posted_date')
     print('POST CITY IS')
     print(post.city)
-    context = {'post': post}
+    context = {'post': post, 'comments': comments}
     return render(request, 'posts/detail.html', context)
 
 
