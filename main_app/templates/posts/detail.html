@@ -25,7 +25,32 @@
 
                             {% if user.is_authenticated %}
                             <button class="ui inverted tiny button" style="background-color: var(--tertiary);" id="edit-post">EDIT</button>
-                            <a class="ui inverted tiny button" href="/posts/delete/{{ post.id }}/{{ post.city.name }}" style="background-color: grey;" id="delete">DELETE</a>
+
+                            <a class="ui inverted tiny button" style="background-color: grey;" id="delete">DELETE</a>
+
+<!------------ ADD DELETE POST MODAL  ------------>
+
+                            <script>
+                                $(function(){
+                                    $("#delete").click(function(){
+                                        $(".delete-post-class").modal('show');
+                                    });
+                                    $(".delete-post-class").modal({
+                                        closable: true
+                                    });
+                                });
+                            </script>
+                            <div class="ui mini modal delete-post-class" style="padding: 10px; width=20%;">
+                                <h2 class="ui modal-header">Delete?!</h2>
+                                <div class="ui modal-body">
+                                    <a class="ui inverted tiny button" href="/posts/delete/{{ post.id }}/{{ post.city.id }}" style="background-color: grey;" id="delete">YES, DELETE</a>
+                                </div>
+                            </div>
+
+
+
+
+
                             {% endif %}
 
 <!------------ ADD EDIT POST MODAL  ------------>
