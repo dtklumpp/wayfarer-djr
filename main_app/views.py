@@ -69,6 +69,8 @@ def profile(request, user_name):
         else:
             city_string += post.city.name + ", "
             posted_cities.append(post.city.name)
+    else:
+        city_string = city_string[0:len(city_string)-2]
     print('CITY STRING:')
     print(city_string)
     print(posted_cities)
