@@ -62,7 +62,6 @@ body {
     background-color: var(--quaternary);
 }   
 
-<<<<<<< HEAD
 #map {
     position: absolute; 
     top: 0; 
@@ -71,8 +70,6 @@ body {
     border-radius: 5px;
 }
 
-=======
 a {
     color: #ea5f2d;
 }
->>>>>>> dev
