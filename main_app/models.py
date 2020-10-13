@@ -48,3 +48,13 @@ class Post(models.Model):
 # COMMENT MODEL
 # TODO Create comment model
 
+class Comment(models.Model):
+    body = models.TextField(max_length=500)
+    posted_date = models.DateTimeField(default=datetime.datetime.now)
+
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "I-AM-COMMENT-NUMBER-"+str(self.id)
+

@@ -31,12 +31,21 @@
 
     <!------------ MAIN CONTENT AREA ------------>
 
+<<<<<<< HEAD
         <div class="ui thirteen wide column">
             <div class="ui segment">
                 <div class="ui grid" style="padding: 10px;">
                         <div class="ui row" style="margin-left: 15px;">
                             <h3 class="" style="text-transform:uppercase">{{ city.name }} - {{ city.country }}</h3>
                         </div>
+=======
+                                var map = new mapboxgl.Map({
+                                container: 'map',
+                                style: 'mapbox://styles/jdeliso/ckg72lpin19qt19o2a8gy1kou',
+                                center: [{{city.long}}, {{city.lat}}],
+                                zoom: 10
+                                });
+>>>>>>> dev
 
                         <div class="ui two column row">
 
@@ -110,6 +119,7 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                     
     <!-------------------- POSTS --------------------->
                     <div class="ui divider"></div>
@@ -151,6 +161,49 @@
                                                 <label>Image</label>
                                                 <input id='id_image' type='file' name='image' accept='image/*'>          
                                             </div>
+=======
+                    </div>
+                  
+<!-------------------- POSTS --------------------->
+                <div class="ui divider"></div>
+                <div class="ui two column row">
+                    <div class="ui column">
+                        <h3>POSTS</h3>
+                    </div>
+                    <div class="ui column" style="text-align: right;">
+                        {% if user.is_authenticated %}
+                        <button class="ui circular icon button" style="background-color: var(--tertiary); margin-right: 10px;" id="create-post">
+                            <i class="large fas fa-plus-circle"></i></button>
+                        {% endif %}
+<!------------ ADD POST BUTTON/MODAL  ------------>
+                        <script>
+                            $(function(){
+                                $("#create-post").click(function(){
+                                    $(".create-post-class").modal('show');
+                                });
+                                $(".create-post-class").modal({
+                                    closable: true
+                                });
+                            });
+                        </script>
+                        <div class="ui modal create-post-class" style="padding: 10px;">
+                            <h2 class="ui modal-header">Create a New Post!</h2>
+                            <div class="ui modal-body">
+                                <form class="ui small form" action="/posts/create/{{city.name}}" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="content">
+                                        <div class="field">
+                                            <label>Title</label>
+                                            <input type="text" name="title">
+                                        </div>
+                                        <div class="field">
+                                            <label>Content</label>
+                                            <textarea id="content" name="content" rows="8" column="2000" style="resize: none"></textarea>
+                                        </div>
+                                        <div class="field">
+                                            <label>Image</label>
+                                            <input id='id_image' type='file' name='image' accept='image/*'>          
+>>>>>>> dev
                                         </div>
                                             <input class='ui small inverted button' type="submit" value="Post It" style="background-color: var(--tertiary); margin-top: 10px;">
                                     </form>
@@ -158,6 +211,7 @@
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
                     {% for post in posts %} 
                     
                     <div class="ui middle aligned items" style="min-width: 100%;">
@@ -165,6 +219,22 @@
                             <a class= "link item" href="/posts/{{ post.id }}">
                             <div class="ui middle aligned small image">
                                 <img src="{{MEDIA_URL}}{{ post.image }}">
+=======
+                </div>
+
+                {% for post in posts %} 
+                
+                <div class="ui middle aligned items" style="min-width: 100%;">
+                    <div class="ui link items" style="margin-bottom: 15px;">
+                        <a class= "link item" href="/posts/{{ post.id }}">
+                        <div class="ui middle aligned small image">
+                            <img src="{{MEDIA_URL}}{{ post.image }}">
+                        </div>
+                        <div class="ui content" style="margin-left: 15px;">
+                                <h3>{{ post.title }} </h3>
+                                <p>{{ post.content }}</p>
+                                <h5>Posted: {{ post.posted_date | timesince}} ago</h5>
+>>>>>>> dev
                             </div>
                             <div class="ui content" style="margin-left: 15px;">
                                     <h3>{{ post.title }} </h3>
@@ -175,6 +245,11 @@
                     </div>
                     {% endfor %}
                 </div>
+<<<<<<< HEAD
+=======
+                {% endfor %}
+
+>>>>>>> dev
             </div>
         </div>
     </div>
