@@ -29,18 +29,16 @@
 <!----------------- MAP ------------------>
 
         <div class="ui item">
-            <div class="ui twelve wide column">
-                <div class="ui item" style="padding: 10px">
-                    <div class="ui segment" id='map'>
-                    </div>
-
+                <div class="ui items">
+                    <div class="ui item" id='map' style="margin: 14px;">
+                    
                     <script>
                         mapboxgl.accessToken = 'pk.eyJ1IjoiamRlbGlzbyIsImEiOiJja2c2cG9raW0wMjUzMzRsaHBkcjR6Z3R5In0.b7ytY30b9YXV5oQqsuuPeg';
 
                         var map = new mapboxgl.Map({
                         container: 'map',
                         style: 'mapbox://styles/mapbox/light-v10',
-                        center: [5,0],
+                        center: [45,25],
                         zoom: 1
                         });
 
@@ -75,9 +73,10 @@
                             .setHTML('<h3>' + marker.properties.title + `</h3><a href="/cities/${marker.properties.title}">` + marker.properties.description + '</a>'))
                             .addTo(map);
                         });
-                    </script>   
+                    </script>
+                    </div>   
                 </div>    
-            </div>
+           
         </div>
         
     <!----------------- MAP ------------------>
