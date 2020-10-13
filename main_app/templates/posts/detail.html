@@ -16,7 +16,7 @@
                 <div class="content">
                     <div class="header" style="text-transform:uppercase">{{ post.city.name }}</div>
                     <h2>{{ post.title }}</h2>
-                    <h5>Posted: {{ post.posted_date | timesince}}</h5>
+                    <h5>Posted: {{ post.posted_date | timesince}} ago</h5>
 
                     <!-- TODO link author name to their profile view!!!! -->
                     <h4 style="text-transform:uppercase">author: <a href="{% url 'profile' post.profile.user.username %}">{{ post.profile.user.username }}</a></h4>

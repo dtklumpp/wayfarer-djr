@@ -60,7 +60,8 @@ def edit_profile(request, user_name):
 def profile(request, user_name):
     user = User.objects.get(username=user_name)
     profile = user.profile
-    context = {'profile': profile}
+    cities = City.objects.all()
+    context = {'profile': profile, 'cities': cities}
     return render(request, 'registration/profile.html', context)
 
 

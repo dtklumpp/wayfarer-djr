@@ -35,19 +35,22 @@
     </div>
     <div class="six wide column">
         <div class="ui segment" style="background-color: var(--secondary); max-width: 300px;">
+
             <h3 class="ui header" style="color: white;">POSTS:</h3>
-            {% for post in profile.post_set.all %}
-            <a href="/posts/{{ post.id }}">
-                <div class="ui link card">
-                    <div class="content">
-                        <div class="header">{{ post.title }}</div>
-                        <div class="meta">
-                            <span class="category">{{ post.city.name }}</span>
+            
+                {% for post in profile.post_set.all %}
+                <a href="/posts/{{ post.id }}">
+                    <div class="ui link card">
+                        <div class="content">
+                            <div class="header">{{ post.title }}</div>
+                            <div class="meta">
+                                <span class="category">{{ post.city.name }}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-            {% endfor %}
+                </a>
+                {% endfor %}
+
         </div>
     </div>
 </div>
