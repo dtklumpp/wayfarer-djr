@@ -72,7 +72,11 @@
                 <label>Profile Picture</label>
                 <input id='id_image' type='file' name='image' accept='image/*'>
             </div>
+
+            {% if user.is_authenticated %}
             <button class="ui button" type="submit">Edit</button>
+            {% endif %}
+            
         </form>
     </div> 
 </div>

@@ -7,6 +7,9 @@
 
 
 body {
+    background-image: url('/static/map_background1.png');
+    background-repeat: no-repeat;
+    background-size: auto;
     background-color: #EEC89F;
 }
 
