@@ -78,9 +78,32 @@
                     </div>
                 </div>
             </div>
+            <hr>
+
+            <h3>Comments</h3>
+
+            <div class="ui list">
+
+                {% for comment in post.comment_set.all %}
+
+                    <div class="item">
+                        <img class="ui avatar image" src="{{ MEDIA_URL }}static/default.jpg">
+                        <div class="content">
+                            <a class="header">{{post.profile.name}}</a>
+                            <div class="description">{{comment.body}}</div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+
+
         </div> 
     </div>
 </div>
+
 
 
 {% endblock %}
