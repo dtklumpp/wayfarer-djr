@@ -7,12 +7,16 @@
 
 
 body {
-    background-image: url('/static/map_background1.png');
+    background-image: url('/media/static/map_background.png');
     background-repeat: no-repeat;
     background-size: auto;
     background-color: #EEC89F;
 }
 
+#splash-info {
+    background-color: white;
+    background: rgba(250, 250, 250, 0.6);
+}
 
 /* SEMANTIC UI EXPERIMENTAL SECTION */
 /* .dtk {
@@ -55,7 +59,14 @@ body {
     height: 50px;
     border-radius: 50%;
     cursor: pointer;
-  }
+    background-color: var(--quaternary);
+}   
 
-
+#map {
+    position: absolute; 
+    top: 0; 
+    bottom: 0; 
+    width: 100%;
+    border-radius: 5px;
+}
 
