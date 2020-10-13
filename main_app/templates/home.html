@@ -7,105 +7,105 @@
 
 
 {% block content %}
-<!------------ SIDE NAV ------------>
 <div class="ui grid" style="margin: 10px;">
-    <div class="ui inverted vertical menu" style="background-color: var(--primary); margin-top: 14px; padding: 10px;">
-        <h3 class="ui header" style="color: white;">CITIES</h3>
-        {% for city in cities %} 
-        <a href="{% url 'city' city.name %}">
-        <div class="ui link items" style="border-radius: 4px; background-color: var(--secondary);">
-            <div class= "link item" style="margin-bottom: 5px;">
-                <div class="ui tiny image">
-                    <img src="{{MEDIA_URL}}{{ city.photo }}">
-                </div>
-                <div class="ui content">
-                    <div style="text-transform:uppercase; color: white;">{{ city.name }}
-                    </div>
-                </div>
-            </div>
-        </div>       
-        </a>
-        {% endfor %}
-    </div>
-<!------------ MAIN POST AREA ------------>
-    <div class="ui thirteen wide column">
-        <div class="ui segment">
-            <div class="ui grid" style="padding: 10px;">
-            <!-- MAP -->
-                    <div class="ui two column row" style="min-height: 75vh;">
-                        <div class="fourteen wide column">
-
-                            
-                           <div id='map' style="position: absolute;
-                                                    top: 0;
-                                                    bottom: 0;
-                                                    width: 100%;">
+    <div class="row">
+        <!------------ SIDE NAV ------------>
+        <div class="container">
+            <div class="ui inverted vertical menu" style="background-color: var(--primary); border-radius: 5px; padding: 10px;">
+                <h3 class="ui header" style="color: white;">CITIES</h3>
+                {% for city in cities %} 
+                <a href="{% url 'city' city.name %}">
+                <div class="ui link items" style="border-radius: 4px; background-color: var(--secondary);">
+                    <div class= "ui link item" style="margin-bottom: 5px;">
+                        <div class="ui row">
+                            <div class="row">
+                            <img class="ui tiny image" src="{{MEDIA_URL}}{{ city.photo }}">
                             </div>
-
-                            <script>
-
-                                mapboxgl.accessToken = 'pk.eyJ1IjoiamRlbGlzbyIsImEiOiJja2c2cG9raW0wMjUzMzRsaHBkcjR6Z3R5In0.b7ytY30b9YXV5oQqsuuPeg';
-
-                                var map = new mapboxgl.Map({
-                                container: 'map',
-                                style: 'mapbox://styles/mapbox/light-v10',
-                                center: [-30,0],
-                                zoom: 1
-                                });
-
-                               var geojson = {
-                                    type: 'FeatureCollection',
-                                    features: [
-                                    {% for city in cities%}
-                                     {
-                                        type: 'Feature',
-                                        geometry: {
-                                        type: 'Point',
-                                        coordinates: [{{city.long}}, {{city.lat}}]
-                                        },
-                                        properties: {
-                                        title: '{{city.name}}',
-                                        description: "{{city.name}} posts page"
-                                        }
-                                    },
-                                    {% endfor %}
-                                    ]};
-
-                               geojson.features.forEach(function(marker) {
-
-                                // create a HTML element for each feature
-                                var el = document.createElement('div');
-                                el.className = 'marker';
-
-                                // make a marker for each feature and add to the map
-                                new mapboxgl.Marker(el)
-                                    .setLngLat(marker.geometry.coordinates)
-                                    .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-                                    .setHTML('<h3>' + marker.properties.title + `</h3><a href="/cities/${marker.properties.title}">` + marker.properties.description + '</a>'))
-                                    .addTo(map);
-                                });
-
-                            </script>
-
-                            <style>
-                                .marker {
-                                    background-image: url('/media/static/mapbox-icon.png');
-                                    background-size: cover;
-                                    width: 50px;
-                                    height: 50px;
-                                    border-radius: 50%;
-                                    cursor: pointer;
-                                }
-                            </style>
-
-                        </div>
+                            <div class="row">
+                            <div class="ui content" style="text-transform:uppercase; color: white;">{{ city.name }}</div>
+                            </div>
                     </div>
+                    </div>
+                </div>       
+                </a>
+                {% endfor %}
             </div>
+        </div>
+
+<!----------------- MAP ------------------>
+
+        <div class="ui thirteen wide column">
+        <div class="ui fluid container">
+                <div class="ui item" id='map' style="position: absolute;
+                                        top: 0;
+                                        bottom: 0;
+                                        width: 100%;
+                                        border-radius: 5px;">
+                </div>
+
+                <script>
+
+                    mapboxgl.accessToken = 'pk.eyJ1IjoiamRlbGlzbyIsImEiOiJja2c2cG9raW0wMjUzMzRsaHBkcjR6Z3R5In0.b7ytY30b9YXV5oQqsuuPeg';
+
+                    var map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/light-v10',
+                    center: [-30,0],
+                    zoom: 1
+                    });
+
+                    var geojson = {
+                        type: 'FeatureCollection',
+                        features: [
+                        {% for city in cities%}
+                            {
+                            type: 'Feature',
+                            geometry: {
+                            type: 'Point',
+                            coordinates: [{{city.long}}, {{city.lat}}]
+                            },
+                            properties: {
+                            title: '{{city.name}}',
+                            description: "{{city.name}} posts page"
+                            }
+                        },
+                        {% endfor %}
+                        ]};
+
+                    geojson.features.forEach(function(marker) {
+
+                    // create a HTML element for each feature
+                    var el = document.createElement('div');
+                    el.className = 'marker';
+
+                    // make a marker for each feature and add to the map
+                    new mapboxgl.Marker(el)
+                        .setLngLat(marker.geometry.coordinates)
+                        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                        .setHTML('<h3>' + marker.properties.title + `</h3><a href="/cities/${marker.properties.title}">` + marker.properties.description + '</a>'))
+                        .addTo(map);
+                    });
+
+                </script>
+
+                <style>
+                    .marker {
+                        background-image: url('/media/static/mapbox-icon.png');
+                        background-size: cover;
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        cursor: pointer;
+                    }
+                </style>
+
+<!----------------- MAP ------------------>
+                    
+        </div>
         </div>
     </div>
 </div>
 
-            <!-- MAP -->
 
 
 
