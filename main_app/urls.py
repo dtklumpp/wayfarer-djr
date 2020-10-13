@@ -19,4 +19,10 @@ urlpatterns = [
     path('posts/edit/<int:post_id>', views.edit_post, name='edit_post'),
     path('posts/delete/<int:post_id>/<str:city_name>', views.delete_post, name='delete_post'),
     
+    # no view comments page, only edit
+    # path('comments/<int:comment_id>', views.comment, name='comment'),
+    path('comments/create/<int:post_id>', views.create_comment, name='create_comment'),
+    path('comments/edit/<int:comment_id>', views.edit_comment, name='edit_comment'),
+    path('comments/delete/<int:comment_id>', views.delete_comment, name='delete_comment'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

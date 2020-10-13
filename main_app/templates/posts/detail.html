@@ -28,6 +28,7 @@
                             <a class="ui inverted tiny button" href="/posts/delete/{{ post.id }}/{{ post.city.name }}" style="background-color: grey;" id="delete">DELETE</a>
                             {% endif %}
 
+<!------------ ADD EDIT POST MODAL  ------------>
                             <script>
                                 $(function(){
                                     $("#edit-post").click(function(){
@@ -38,7 +39,6 @@
                                     });
                                 });
                             </script>
-<!------------ ADD EDIT POST MODAL  ------------>
                             <div class="ui modal edit-post-class" style="padding: 10px;">
                                 <h2 class="ui modal-header">EDIT POST</h2>
                                 <div class="ui modal-body">
@@ -78,9 +78,113 @@
                     </div>
                 </div>
             </div>
+
+
+
+
+<!------------------------ COMMENTS CODE BELOW HERE ----------------------->
+
+            <hr>
+
+            <h3>Comments ({{post.comment_set.count}}):</h3>
+
+<!------------ ADD COMMENT BUTTON/MODAL  ------------>
+            {% if user.is_authenticated %}
+                <button class="ui circular icon button" style="background-color: var(--tertiary); margin-right: 10px;" id="create-comment">
+                <i class="large fas fa-plus-circle"></i></button>
+            {% endif %}
+            <script>
+                $(function(){
+                    $("#create-comment").click(function(){
+                        $(".create-comment-class").modal('show');
+                    });
+                    $(".create-comment-class").modal({
+                        closable: true
+                    });
+                });
+            </script>
+
+            <div class="ui modal create-comment-class" style="padding: 10px;">
+                <h2 class="ui modal-header">Add a comment!</h2>
+                <div class="ui modal-body">
+                    <form class="ui small form" action="/comments/create/{{post.id}}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="content">
+                            <div class="field">
+                                <label></label>
+                                <textarea id="body" name="body" rows="8" column="2000" style="resize: none"></textarea>
+                            </div>
+                        </div>
+                            <input class='ui small inverted button' type="submit" value="Comment" style="background-color: var(--tertiary); margin-top: 10px;">
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="ui list">
+
+                {% for comment in comments %}
+
+                    <div class="item">
+                        <img class="ui avatar image" src="{{ MEDIA_URL }}static/default.jpg">
+                        <div class="content" id="edit-comment-{{comment.id}}">
+                            <a class="header">{{comment.profile.name}}</a>
+                            <div class="description">{{comment.body}}</div>
+                        </div>
+                    </div>
+                    <br>
+
+                    {% if user.id == comment.profile.user_id %}
+                        <script>
+                            $(function(){
+                                $("#edit-comment-{{comment.id}}").click(function(){
+                                    $(".edit-comment-class-{{comment.id}}").modal('show');
+                                });
+                                $(".edit-comment-class-{{comment.id}}").modal({
+                                    closable: true
+                                });
+                            });
+                        </script>
+                    {% endif %}
+
+
+                    <div class="ui modal edit-comment-class-{{comment.id}}" style="padding: 10px;">
+                        <h2 class="ui modal-header">EDIT POST</h2>
+                        <div class="ui modal-body">
+                            <a class="header" href="/users/{{comment.profile.user.username}}">{{comment.profile.name}}</a>
+                            <br>
+                            <form class="ui small form" action="/comments/edit/{{comment.id}}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="content">
+                                    <div class="field">
+                                        <label>{{comment.posted_date}}</label>
+                                        <textarea id="body" name="body" rows="8" column="2000" style="resize: none" value="{{ comment.body }}">{{ comment.body }}</textarea>
+                                    </div>
+                                </div>
+                                    <input class='ui small inverted button' type="submit" value="RETCON" style="background-color: var(--tertiary); margin-top: 10px;">
+                            </form>
+                            <a class="ui inverted tiny button" href="/comments/delete/{{ comment.id }}" style="background-color: grey;" id="delete">DELETE</a>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                {% endfor %}
+
+            </div>
+
+
+
         </div> 
     </div>
 </div>
+
 
 
 {% endblock %}
