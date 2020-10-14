@@ -148,13 +148,13 @@
                 <div class="ui two column row">
                     <div class="two wide column">
                         <div class="ui middle aligned content">
-                            <img class="ui tiny fluid circular image" src="{{ MEDIA_URL }}{{ comment.profile.image }}" style="max-width: 60px; max-height:60px;">
+                            <img class="ui tiny fluid circular image" src="{{ MEDIA_URL }}{{ comment.profile.image }}" style="max-width: 80px; max-height:80px;">
                         </div>
                     </div>
                     <div class="fourteen wide column">
-                        <div class="content">
-                            <a class="header" href="/users/{{comment.profile.user.username}}">{{comment.profile.name}}</a>
-                            <div class="description" id="edit-comment-{{comment.id}}">{{comment.body}}</div>
+                        <div class="content" id="edit-comment-{{comment.id}}">
+                            <a class="header">{{comment.profile.name}}</a>
+                            <div class="description">{{comment.body}}</div>
                         </div>
                     </div>
                 </div>   
@@ -179,7 +179,7 @@
                     <div class="ui modal-body">
 
             <!-------------TODO the link to comment author's profile doesn't work! -------------->
-                        <a class="ui content" href="/users/{{comment.profile.user.username}}">{{comment.profile.name}}</a>
+                        <a class="ui content" href="/users/{{ comment.profile.user.username }}">{{comment.profile.name}}</a>
                         <p>{{comment.posted_date}}</p>
                         
                         <form class="ui small form" action="/comments/edit/{{comment.id}}" method="POST" enctype="multipart/form-data">
