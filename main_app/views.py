@@ -131,11 +131,17 @@ def about(request):
 @login_required
 def edit_post(request, post_id):
     post = Post.objects.get(id=post_id)
+
     if request.method == "POST":
-        post_form = Post_Form(request.POST, instance=post)
+        post_form = Post_Form(request.POST, request.FILES, instance=post)
+
         if post_form.is_valid():
             if request.user.id == post.profile.user_id:
+                if 'image' in request.FILES:
+                    post_form.image = request.FILES['image']
+
                 post_form.save()
+
         return redirect('post', post_id)
     post_form = Post_Form(instance=post)
     context = {"post_form": post_form, "post_id": post_id}
