@@ -70,10 +70,11 @@ body {
     width: 100%;
 }
 
-a {
-    text-decoration: none;
+a:link {
+    color: black;
 }
 
-:hover {
+a:hover {
     color: #ea5f2d;
 }
+

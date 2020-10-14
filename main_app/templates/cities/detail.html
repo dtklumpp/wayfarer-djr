@@ -119,8 +119,8 @@
                         </div>
                         <div class="ui column" style="text-align: right;">
                             {% if user.is_authenticated %}
-                            <button class="ui circular icon button" style="background-color: var(--tertiary); margin-right: 10px;" id="create-post">
-                                <i class="large fas fa-plus-circle"></i></button>
+                            <button class="ui tiny inverted circular orange button" style=" margin-right: 10px;" id="create-post">
+                                ADD POST!</button>
                             {% endif %}
                             <script>
                                 $(function(){
@@ -170,8 +170,8 @@
                             <img src="{{MEDIA_URL}}{{ post.image }}">
                         </div>
                         <div class="ui content" style="margin-left: 15px;">
-                            <h3>{{ post.title }} </h3>
-                            <p>{{ post.content }}</p>
+                            <h3 class="text">{{ post.title }} </h3>
+                            <p class="text">{{ post.content }}</p>
                             <h5>Posted: {{ post.posted_date | timesince}} ago</h5>
                         </div>
                         </a>
