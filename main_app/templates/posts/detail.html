@@ -108,16 +108,16 @@
 
             <div class="ui divider"></div>
             <div class="ui grid">
-            <div class="ui two column row">
-                <div class="six wide column">
-                    <h3>Comments ({{post.comment_set.count}}):</h3>
+                <div class="ui two column row">
+                    <div class="six wide column">
+                        <h3>Comments ({{post.comment_set.count}}):</h3>
+                    </div>
+    <!------------ ADD COMMENT BUTTON/MODAL  ------------>
+                {% if user.is_authenticated %}
+                    <div class="ten wide column" style="text-align: right;">
+                        <button class="ui mini inverted circular orange button" style="margin-right: 10px;" id="create-comment">ADD COMMENT!</button>
+                    </div>
                 </div>
-<!------------ ADD COMMENT BUTTON/MODAL  ------------>
-            {% if user.is_authenticated %}
-                <div class="ten wide column" style="text-align: right;">
-                    <button class="ui mini inverted circular orange button" style="margin-right: 10px;" id="create-comment">ADD COMMENT!</button>
-                </div>
-            </div>
             </div>
             {% endif %}
             <script>
