@@ -13,24 +13,17 @@
 <!------------ CAROUSEL ------------>
     <div class="row">
         <div class="ui card splash-carousel">
-<!-- TODO can we make the carousel pull from database city images? -->
-            <!-- {% for city in cities %} 
+
             <div class="ui slide masked reveal image">
-                <img src="{{ city.photo }}" class="ui image visible content">
-                <img src="{{ city.photo }}" class="ui image hidden content">
-            </div>
-            {% endfor %} -->
-<!-- TODO we also need a control for scrolling left/right-->
-            <div class="ui slide masked reveal image">
-                {for city in cities}
+
                 <img src="https://www.viaggidiarchitettura.it/wp-content/uploads/2016/06/london-1200x600.jpg" class="visible content">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Sydney_Opera_House_and_Harbour_Bridge_Dusk_%282%29_2019-06-21.jpg/1200px-Sydney_Opera_House_and_Harbour_Bridge_Dusk_%282%29_2019-06-21.jpg" class="hidden content">
             </div>
         </div>   
     </div>     
 <!------------ BOTTOM INFO ------------>  
-    <div class="row">
-        <div class="ui three column centered grid" style="padding: 5px;">
+    <div class="row" id="splash-info" style="display: flex;">
+        <div class="ui three column centered stackable grid" style="padding: 5px;">
             <div class="ui header">
                     <h1>Wayfarer Is...</h1>
             </div>

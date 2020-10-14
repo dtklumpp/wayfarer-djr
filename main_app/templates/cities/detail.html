@@ -12,156 +12,156 @@
 <!------------ SIDE NAV ------------>
 
 <div class="ui grid" style="margin: 10px;">
-    <div class="ui inverted vertical menu" style="background-color: var(--primary); margin-top: 14px; padding: 10px;">
-        <h3 class="ui header" style="color: white;">CITIES</h3>
-        {% for city in cities %} 
-        <a href="{% url 'city' city.name %}">
-        <div class="ui link items" style="border-radius: 4px; background-color: var(--secondary);">
-            <div class= "link item" style="margin-bottom: 5px;">
-                <div class="ui tiny image">
-                    <img src="{{MEDIA_URL}}{{ city.photo }}">
-                </div>
-                <div class="ui content">
-                    <div style="text-transform:uppercase; color: white;">{{ city.name }}
+    <div class="row">
+        <div class="container">
+            <div class="ui inverted vertical menu" style="background-color: var(--primary); border-radius: 5px; padding: 10px;">
+                <h3 class="ui header" style="color: white;">CITIES</h3>
+                {% for city in cities %} 
+                <a href="{% url 'city' city.name %}">
+                <div class="ui link items" style="border-radius: 4px; background-color: var(--secondary);">
+                    <div class= "ui link unstackable item" style="margin-bottom: 5px; display: flex">
+                        <img class="ui tiny image" src="{{MEDIA_URL}}{{ city.photo }}">
+                        <div class="ui middle aligned content" style="padding: 10px;">
+                            <p style="text-transform:uppercase; color: white; display: flex;">{{ city.name }}</p>
+                        </div>
                     </div>
-                </div>
+                </div>       
+                </a>
+                {% endfor %}
             </div>
-        </div>       
-        </a>
-        {% endfor %}
-    </div>
+        </div>
+        <!------------ MAIN CONTENT AREA ------------>
+        <div class="twelve wide column">
+            <div class="ui segment" style="width: 100%;">
+                <div class="ui grid" style="padding: 10px;">
+                        <div class="ui row" style="margin-left: 15px;">
+                            <h3 class="" style="text-transform:uppercase">{{ city.name }} - {{ city.country }}</h3>
+                        </div>
 
-<!------------ MAIN CONTENT AREA ------------>
+                        <div class="ui two column row">
 
-    <div class="ui thirteen wide column">
-        <div class="ui segment">
-            <div class="ui grid" style="padding: 10px;">
-                    <div class="ui row" style="margin-left: 15px;">
-                        <h3 class="" style="text-transform:uppercase">{{ city.name }} - {{ city.country }}</h3>
-                    </div>
+    <!-------------------- MAP --------------------->
 
-                    <div class="ui two column row">
+                            <div class="ui eight wide column">
+                                <div class="ui container">
+                                <div id='map' style="position: absolute;
+                                                        top: 0;
+                                                        bottom: 0;
+                                                        width: 100%;">
+                                </div>
+                                <script>
 
-<!-------------------- MAP --------------------->
+                                    mapboxgl.accessToken = 'pk.eyJ1IjoiamRlbGlzbyIsImEiOiJja2c2cG9raW0wMjUzMzRsaHBkcjR6Z3R5In0.b7ytY30b9YXV5oQqsuuPeg';
 
-                        <div class="ui eight wide column">
-                            <div class="ui container">
-                            <div id='map' style="position: absolute;
-                                                    top: 0;
-                                                    bottom: 0;
-                                                    width: 100%;">
-                            </div>
-                            <script>
+                                    var map = new mapboxgl.Map({
+                                    container: 'map',
+                                    style: 'mapbox://styles/mapbox/light-v10',
+                                    center: [{{city.long}}, {{city.lat}}],
+                                    zoom: 10
+                                    });
 
-                                mapboxgl.accessToken = 'pk.eyJ1IjoiamRlbGlzbyIsImEiOiJja2c2cG9raW0wMjUzMzRsaHBkcjR6Z3R5In0.b7ytY30b9YXV5oQqsuuPeg';
-
-                                var map = new mapboxgl.Map({
-                                container: 'map',
-                                style: 'mapbox://styles/jdeliso/ckg72lpin19qt19o2a8gy1kou',
-                                center: [{{city.long}}, {{city.lat}}],
-                                zoom: 10
-                                });
-
-                               var geojson = {
-                                    type: 'FeatureCollection',
-                                    features: [{
-                                        type: 'Feature',
-                                        geometry: {
-                                        type: 'Point',
-                                        coordinates: [{{city.long}}, {{city.lat}}]
+                                var geojson = {
+                                        type: 'FeatureCollection',
+                                        features: [{
+                                            type: 'Feature',
+                                            geometry: {
+                                            type: 'Point',
+                                            coordinates: [{{city.long}}, {{city.lat}}]
+                                            },
+                                            properties: {
+                                            title: '{{city.name}}',
+                                            description: ""
+                                            }
                                         },
-                                        properties: {
-                                        title: '{{city.name}}',
-                                        description: ""
-                                        }
-                                    },
-                                    ]};
+                                        ]};
 
-                               geojson.features.forEach(function(marker) {
+                                geojson.features.forEach(function(marker) {
 
-                                // create a HTML element for each feature
-                                var el = document.createElement('div');
-                                el.className = 'marker';
+                                    // create a HTML element for each feature
+                                    var el = document.createElement('div');
+                                    el.className = 'marker';
 
-                                // make a marker for each feature and add to the map
-                                new mapboxgl.Marker(el)
-                                    .setLngLat(marker.geometry.coordinates)
-                                    .addTo(map);
+                                    // make a marker for each feature and add to the map
+                                    new mapboxgl.Marker(el)
+                                        .setLngLat(marker.geometry.coordinates)
+                                        .addTo(map);
+                                    });
+
+                                </script>
+
+                                <style>
+                                    .marker {
+                                        background-image: url('/media/static/mapbox-icon.png');
+                                        background-size: cover;
+                                        width: 50px;
+                                        height: 50px;
+                                        border-radius: 50%;
+                                        cursor: pointer;
+                                    }
+                                </style>
+                                </div>
+                            </div>
+
+    <!-------------------- MAP --------------------->
+
+                            <div class="ui eight wide column">
+                                <div class="container">
+                                <img class="ui fluid image" src="{{MEDIA_URL}}{{ city.photo }}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    
+    <!-------------------- POSTS --------------------->
+                    <div class="ui divider"></div>
+                    <div class="ui two column row">
+                        <div class="ui column">
+                            <h3>POSTS</h3>
+                        </div>
+                        <div class="ui column" style="text-align: right;">
+                            {% if user.is_authenticated %}
+                            <button class="ui tiny inverted circular orange button" style=" margin-right: 10px;" id="create-post">
+                                ADD POST!</button>
+                            {% endif %}
+                            <script>
+                                $(function(){
+                                    $("#create-post").click(function(){
+                                        $(".create-post-class").modal('show');
+                                    });
+                                    $(".create-post-class").modal({
+                                        closable: true
+                                    });
                                 });
-
                             </script>
-
-                            <style>
-                                .marker {
-                                    background-image: url('/media/static/mapbox-icon.png');
-                                    background-size: cover;
-                                    width: 50px;
-                                    height: 50px;
-                                    border-radius: 50%;
-                                    cursor: pointer;
-                                }
-                            </style>
-                            </div>
-                        </div>
-
-<!-------------------- MAP --------------------->
-
-                        <div class="ui eight wide column">
-                            <div class="container">
-                            <img class="ui fluid image" src="{{MEDIA_URL}}{{ city.photo }}" alt="">
-                            </div>
-                        </div>
-                    </div>
-                  
-<!-------------------- POSTS --------------------->
-                <div class="ui divider"></div>
-                <div class="ui two column row">
-                    <div class="ui column">
-                        <h3>POSTS</h3>
-                    </div>
-                    <div class="ui column" style="text-align: right;">
-                        {% if user.is_authenticated %}
-                        <button class="ui circular icon button" style="background-color: var(--tertiary); margin-right: 10px;" id="create-post">
-                            <i class="large fas fa-plus-circle"></i></button>
-                        {% endif %}
-                        <script>
-                            $(function(){
-                                $("#create-post").click(function(){
-                                    $(".create-post-class").modal('show');
-                                });
-                                $(".create-post-class").modal({
-                                    closable: true
-                                });
-                            });
-                        </script>
-<!------------ ADD POST BUTTON/MODAL  ------------>
-                        <div class="ui modal create-post-class" style="padding: 10px;">
-                            <h2 class="ui modal-header">Create a New Post!</h2>
-                            <div class="ui modal-body">
-                                <form class="ui small form" action="/posts/create/{{city.name}}" method="POST" enctype="multipart/form-data">
-                                    {% csrf_token %}
-                                    <div class="content">
-                                        <div class="field">
-                                            <label>Title</label>
-                                            <input type="text" name="title">
+    <!------------ ADD POST BUTTON/MODAL  ------------>
+                            <div class="ui modal create-post-class" style="padding: 10px;">
+                                <h2 class="ui modal-header">Create a New Post!</h2>
+                                <div class="ui modal-body">
+                                    <form class="ui small form" action="/posts/create/{{city.name}}" method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="content">
+                                            <div class="field">
+                                                <label>Title</label>
+                                                <input type="text" name="title">
+                                            </div>
+                                            <div class="field">
+                                                <label>Content</label>
+                                                <textarea id="content" name="content" rows="8" column="2000" style="resize: none"></textarea>
+                                            </div>
+                                            <div class="field">
+                                                <label>Image</label>
+                                                <input id='id_image' type='file' name='image' accept='image/*'>          
+                                            </div>
                                         </div>
-                                        <div class="field">
-                                            <label>Content</label>
-                                            <textarea id="content" name="content" rows="8" column="2000" style="resize: none"></textarea>
-                                        </div>
-                                        <div class="field">
-                                            <label>Image</label>
-                                            <input id='id_image' type='file' name='image' accept='image/*'>          
-                                        </div>
-                                    </div>
-                                        <input class='ui small inverted button' type="submit" value="Post It" style="background-color: var(--tertiary); margin-top: 10px;">
-                                </form>
+                                            <input class='ui small inverted button' type="submit" value="Post It" style="background-color: var(--tertiary); margin-top: 10px;">
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 {% for post in posts %} 
+                
                 
                 <div class="ui middle aligned items" style="min-width: 100%;">
                     <div class="ui link items" style="margin-bottom: 15px;">
@@ -170,17 +170,17 @@
                             <img src="{{MEDIA_URL}}{{ post.image }}">
                         </div>
                         <div class="ui content" style="margin-left: 15px;">
-                                <h3>{{ post.title }} </h3>
-                                <p>{{ post.content }}</p>
-                                <h5>Posted: {{ post.posted_date | timesince}} ago</h5>
-                            </div>
+                            <h3 class="text">{{ post.title }} </h3>
+                            <p class="text">{{ post.content }}</p>
+                            <h5>Posted: {{ post.posted_date | timesince}} ago</h5>
+                        </div>
                         </a>
                     </div>
                 </div>
                 {% endfor %}
-
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}

@@ -60,9 +60,21 @@ def edit_profile(request, user_name):
 def profile(request, user_name):
     user = User.objects.get(username=user_name)
     profile = user.profile
+    cities = City.objects.all()
 
+    # find which cities user has posted to
+    posted_cities = []
+    city_string = ""
+    for post in profile.post_set.all():
+        if post.city.name in posted_cities:
+            pass
+        else:
+            city_string += post.city.name + ", "
+            posted_cities.append(post.city.name)
+    else:
+        city_string = city_string[0:len(city_string)-2]
 
-    context = {'profile': profile}
+    context = {'profile': profile, 'cities': cities, 'city_string': city_string}
     return render(request, 'registration/profile.html', context)
 
 
@@ -99,11 +111,13 @@ def create_post(request, city_name):
     context = {"post_form": post_form, "city_id": city.id}
     return render(request, 'posts/create.html', context)
     
+    
 def post(request, post_id):
     post = Post.objects.get(id=post_id)
+    comments = post.comment_set.order_by('-posted_date')
     print('POST CITY IS')
     print(post.city)
-    context = {'post': post}
+    context = {'post': post, 'comments': comments}
     return render(request, 'posts/detail.html', context)
 
 
@@ -112,13 +126,6 @@ def about(request):
     user_form = User_Form()
     context = {'form': user_form}
     return render(request, 'about.html', context)
-
-
-# DAVID'S Semantic Practice
-def semantic(request):
-    return render(request, 'semantic-ui/semantic.html')
-def carousel_test(request):
-    return render(request, 'semantic-ui/carousel.html')
 
 
 @login_required
@@ -196,4 +203,53 @@ def signup(request):
         # if not post send message, try again 
         context = {'error':'Your account was not created. Please try again.'}
         return redirect(request, '/')
+
+# COMMENTS controllers
+
+@login_required
+def create_comment(request, post_id):
+    post = Post.objects.get(id=post_id)
+
+    if request.method == "POST":
+
+        comment_form = Comment_Form(request.POST)
+        print(comment_form.errors)
+
+        if comment_form.is_valid():
+
+            new_comment = comment_form.save(commit=False)
+            new_comment.profile_id = request.user.id
+            new_comment.post_id = post.id
+            
+            new_comment.save()
+        return redirect('/posts/'+str(post.id))
+    comment_form = Comment_Form()
+    context = {"comment_form": comment_form, "post_id": post.id}
+    return render(request, 'comments/create.html', context)
+
+
+@login_required
+def edit_comment(request, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+    post = Post.objects.get(id=comment.post_id)
+    if request.method == "POST":
+        comment_form = Comment_Form(request.POST, instance=comment)
+        if comment_form.is_valid():
+            if request.user.id == comment.profile.user_id:
+                comment_form.save()
+        return redirect('post', post.id)
+    comment_form = Comment_Form(instance=comment)
+    context = {"comment_form": comment_form, "comment_id": comment_id}
+    return render(request,'comments/edit.html', context)
+
+
+@login_required
+def delete_comment(request, comment_id):
+    doomed_comment = Comment.objects.get(id=comment_id)
+    post = Post.objects.get(id=doomed_comment.post_id)
+    if request.user.id == doomed_comment.profile.user_id:
+        doomed_comment.delete()
+    else:
+        return redirect('post', post.id)
+    return redirect('/posts/'+str(post.id))
 
