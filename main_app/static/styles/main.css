@@ -68,9 +68,12 @@ body {
     bottom: 0; 
     border-radius: 5px;
     width: 100%;
-    margin: 14px;
 }
 
 a {
+    text-decoration: none;
+}
+
+:hover {
     color: #ea5f2d;
 }

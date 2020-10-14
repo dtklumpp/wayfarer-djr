@@ -98,6 +98,7 @@ def create_post(request, city_name):
     context = {"post_form": post_form, "city_id": city.id}
     return render(request, 'posts/create.html', context)
     
+    
 def post(request, post_id):
     post = Post.objects.get(id=post_id)
     comments = post.comment_set.order_by('-posted_date')
