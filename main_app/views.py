@@ -61,6 +61,8 @@ def profile(request, user_name):
     user = User.objects.get(username=user_name)
     profile = user.profile
     cities = City.objects.all()
+
+    # find which cities user has posted to
     posted_cities = []
     city_string = ""
     for post in profile.post_set.all():
@@ -71,9 +73,10 @@ def profile(request, user_name):
             posted_cities.append(post.city.name)
     else:
         city_string = city_string[0:len(city_string)-2]
-    print('CITY STRING:')
-    print(city_string)
-    print(posted_cities)
+    # print('CITY STRING:')
+    # print(city_string)
+    # print(posted_cities)
+
     context = {'profile': profile, 'cities': cities, 'city_string': city_string}
     return render(request, 'registration/profile.html', context)
 
