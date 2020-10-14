@@ -67,7 +67,7 @@
                             <div class="ui modal edit-post-class" style="padding: 10px;">
                                 <h2 class="ui modal-header">EDIT POST</h2>
                                 <div class="ui modal-body">
-                                    <form class="ui small form" action="/posts/edit/{{city.name}}" method="POST" enctype="multipart/form-data">
+                                    <form class="ui small form" action="/posts/edit/{{post.id}}" method="POST" enctype="multipart/form-data">
                                         {% csrf_token %}
                                         <div class="content">
                                             <div class="field">
