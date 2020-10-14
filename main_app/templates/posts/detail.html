@@ -61,7 +61,7 @@
                                     });
                                 });
                             </script>
-                            <div class="ui modal edit-post-class" style="padding: 10px;">
+                            <div class="ui tiny modal edit-post-class" style="padding: 10px;">
                                 <h2 class="ui modal-header">EDIT POST</h2>
                                 <div class="ui modal-body">
                                     <form class="ui small form" action="/posts/edit/{{post.id}}" method="POST" enctype="multipart/form-data">
@@ -178,8 +178,8 @@
                 {% endif %}
 
 
-                <div class="ui modal edit-comment-class-{{comment.id}}" style="padding: 10px;">
-                    <h2 class="ui modal-header">EDIT POST</h2>
+                <div class="ui tiny modal edit-comment-class-{{comment.id}}" style="padding: 10px;">
+                    <h2 class="ui modal-header">EDIT COMMENT</h2>
                     <div class="ui modal-body">
                         <a class="header" href="/users/{{comment.profile.user.username}}">{{comment.profile.name}}</a>
                         <br>
