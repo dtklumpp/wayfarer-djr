@@ -81,7 +81,19 @@ def profile(request, user_name):
 def myprofile(request):
     user = request.user
     profile = user.profile
-    context = {'profile': profile}
+    cities = City.objects.all()
+    posted_cities = []
+    city_string = ""
+    for post in profile.post_set.all():
+        if post.city.name in posted_cities:
+            pass
+        else:
+            city_string += post.city.name + ", "
+            posted_cities.append(post.city.name)
+    else:
+        city_string = city_string[0:len(city_string)-2]
+
+    context = {'profile': profile, 'cities': cities, 'city_string': city_string}
     return render(request, 'registration/profile.html', context)
 
 

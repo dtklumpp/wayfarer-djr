@@ -23,7 +23,7 @@
 
                     <div class="ten wide column">
                         
-                        {% if user.is_authenticated %}
+                        {% if user.id == post.profile.user.id %}
                         <a class="ui inverted tiny circular button" style="background-color: var(--tertiary);" id="edit-post">EDIT</a>
                         <a class="ui inverted tiny circular button" style="background-color: grey;" id="delete">DELETE</a>
                         {% endif %}
@@ -177,7 +177,9 @@
                 <div class="ui tiny modal edit-comment-class-{{comment.id}}" style="padding: 10px;">
                     <h3 class="ui modal-header">EDIT COMMENT</h3>
                     <div class="ui modal-body">
-                        <a class="ui content" href="/users/{{comment.profile.user.username}}">{{comment.profile.name}}</a>
+
+            <!-------------TODO the link to comment author's profile doesn't work! -------------->
+                        <a class="ui content" href="/users/{{ comment.profile.user.username }}">{{comment.profile.name}}</a>
                         <p>{{comment.posted_date}}</p>
                         
                         <form class="ui small form" action="/comments/edit/{{comment.id}}" method="POST" enctype="multipart/form-data">
@@ -203,31 +205,19 @@
                                 });
                             });
                         </script>
+                        
                         <div class="ui mini modal delete-comment-class-{{comment.id}}" style="padding: 10px; width=20%;">
                             <h2 class="ui modal-header">Delete Comment?!</h2>
                             <div class="ui modal-body">
                                 <a class="ui mini circular inverted button" href="/comments/delete/{{ comment.id }}" id="delete" style="background-color: red;">DELETE</a>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
-
-
-
-
-
-
-
-
 
                 {% endfor %}
 
             </div>
-
-
-
         </div> 
     </div>
 </div>
