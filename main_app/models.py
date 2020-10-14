@@ -46,7 +46,6 @@ class Post(models.Model):
 
 
 # COMMENT MODEL
-# TODO Create comment model
 
 class Comment(models.Model):
     body = models.TextField(max_length=500)

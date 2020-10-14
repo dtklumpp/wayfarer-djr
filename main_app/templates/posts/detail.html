@@ -26,7 +26,6 @@
                         {% if user.is_authenticated %}
                         <a class="ui inverted tiny circular button" style="background-color: var(--tertiary);" id="edit-post">EDIT</a>
                         <a class="ui inverted tiny circular button" style="background-color: grey;" id="delete">DELETE</a>
-        <!-- TODO POST EDIT doesn't change POST IMAGE! -->
                         {% endif %}
 <!------------ ADD DELETE POST MODAL  ------------>
 
@@ -61,7 +60,7 @@
                             <div class="ui tiny modal edit-post-class" style="padding: 10px;">
                                 <h2 class="ui modal-header">EDIT POST</h2>
                                 <div class="ui modal-body">
-                                    <form class="ui small form" action="/posts/edit/{{post.id}}" method="POST" enctype="multipart/form-data">
+                                    <form class="ui small form" action="{% url 'edit_post' post.id%}" method="POST" enctype="multipart/form-data">
                                         {% csrf_token %}
                                         <div class="content">
                                             <div class="field">
@@ -109,6 +108,7 @@
                     <div class="six wide column">
                         <h3>Comments ({{post.comment_set.count}}):</h3>
                     </div>
+
     <!------------ ADD COMMENT BUTTON/MODAL  ------------>
                 {% if user.is_authenticated %}
                     <div class="ten wide column" style="text-align: left;">

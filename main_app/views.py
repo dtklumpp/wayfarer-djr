@@ -73,9 +73,6 @@ def profile(request, user_name):
             posted_cities.append(post.city.name)
     else:
         city_string = city_string[0:len(city_string)-2]
-    # print('CITY STRING:')
-    # print(city_string)
-    # print(posted_cities)
 
     context = {'profile': profile, 'cities': cities, 'city_string': city_string}
     return render(request, 'registration/profile.html', context)
@@ -129,13 +126,6 @@ def about(request):
     user_form = User_Form()
     context = {'form': user_form}
     return render(request, 'about.html', context)
-
-
-# DAVID'S Semantic Practice
-def semantic(request):
-    return render(request, 'semantic-ui/semantic.html')
-def carousel_test(request):
-    return render(request, 'semantic-ui/carousel.html')
 
 
 @login_required
@@ -215,18 +205,6 @@ def signup(request):
         return redirect(request, '/')
 
 # COMMENTS controllers
-
-
-
-
-# NO VIEW COMMENTS PAGE, ONLY EDIT
-# def comment(request, comment_id):
-#     comment = Comment.objects.get(id=comment_id)
-#     print('COMMENT POST IS')
-#     print(comment.post)
-#     context = {'comment': comment}
-#     return render(request, 'comments/detail.html', context)
-
 
 @login_required
 def create_comment(request, post_id):
