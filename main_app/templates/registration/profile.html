@@ -25,7 +25,7 @@
                     <span class="date" style="text-transform:uppercase">Joined {{ profile.join_date}}</span>
                     </div>
                     <div class="description" style="text-transform:uppercase">
-                    {{ profile.user.username }} is a wayfarer from {{ profile.current_city}}.
+                    {{ profile.name }} is a wayfarer from {{ profile.current_city}}.
                     </div>
                     <br>
                     <div class="comments" style="text-transform:uppercase">
@@ -86,7 +86,7 @@
             </div>
 
             {% if user.is_authenticated %}
-            <button class="ui button" type="submit">Edit</button>
+            <button class="ui tiny circular inverted button" type="submit" style="background-color: var(--tertiary)">Edit</button>
             {% endif %}
             
         </form>
