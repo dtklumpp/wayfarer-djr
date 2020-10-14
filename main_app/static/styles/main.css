@@ -8,7 +8,6 @@
 
 body {
     background-image: url('/media/static/map_background.png');
-    background-repeat: no-repeat;
     background-size: auto;
     background-color: #EEC89F;
 }

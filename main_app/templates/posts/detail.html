@@ -19,17 +19,15 @@
                     </a>
                     <h2>{{ post.title }}</h2>
                     <h5>Posted: {{ post.posted_date | timesince}} ago</h5>
+                    <h4 style="text-transform:uppercase">author: <a href="{% url 'profile' post.profile.user.username %}">{{ post.profile.name }}</a></h4>
 
-                    <!-- TODO link author name to their profile view!!!! -->
-                    <h4 style="text-transform:uppercase">author: <a href="{% url 'profile' post.profile.user.username %}">{{ post.profile.user.username }}</a></h4>
-
-                        <div class="ten wide column">
-
-                            {% if user.is_authenticated %}
-                            <a class="ui inverted tiny circular button" style="background-color: var(--tertiary);" id="edit-post">EDIT</a>
-
-                            <a class="ui inverted tiny circular button" style="background-color: grey;" id="delete">DELETE</a>
-
+                    <div class="ten wide column">
+                        
+                        {% if user.is_authenticated %}
+                        <a class="ui inverted tiny circular button" style="background-color: var(--tertiary);" id="edit-post">EDIT</a>
+                        <a class="ui inverted tiny circular button" style="background-color: grey;" id="delete">DELETE</a>
+        <!-- TODO POST EDIT doesn't change POST IMAGE! -->
+                        {% endif %}
 <!------------ ADD DELETE POST MODAL  ------------>
 
                             <script>
@@ -45,12 +43,11 @@
                             <div class="ui mini modal delete-post-class" style="padding: 10px; width=20%;">
                                 <h2 class="ui modal-header">Delete?!</h2>
                                 <div class="ui modal-body">
-                                    <a class="ui inverted tiny button" href="/posts/delete/{{ post.id }}/{{ post.city.id }}" style="background-color: grey;" id="delete">YES, DELETE</a>
+                                    <a class="ui mini circular inverted button" href="/posts/delete/{{ post.id }}/{{ post.city.id }}" style="background-color: red;" id="delete">YES, DELETE</a>
                                 </div>
                             </div>
-                            {% endif %}
-
-<!------------ ADD EDIT POST MODAL  ------------>
+                            
+                            <!------------ ADD EDIT POST MODAL  ------------>
                             <script>
                                 $(function(){
                                     $("#edit-post").click(function(){
@@ -80,7 +77,7 @@
                                                 <input id='id_image' type='file' name='image' accept='image/*'>          
                                             </div>
                                         </div>
-                                            <input class='ui small inverted button' type="submit" value="UPDATE" style="background-color: var(--tertiary); margin-top: 10px;">
+                                        <input class='ui small inverted circular button' type="submit" value="UPDATE" style="background-color: var(--tertiary); margin-top: 10px;">
                                     </form>
                                 </div>
                             </div>
@@ -90,7 +87,7 @@
                         </div>
                 </div>
                 <div class="ui medium image">
-                    <img src="{{MEDIA_URL}}{{ post.image }}">
+                    <img src="{{MEDIA_URL}}{{ post.profile.image }}">
                 </div>
             </div>
             <div class="row">
@@ -138,11 +135,10 @@
                         {% csrf_token %}
                         <div class="content">
                             <div class="field">
-                                <label></label>
                                 <textarea id="body" name="body" rows="8" column="2000" style="resize: none" placeholder="500 character max"></textarea>
                             </div>
                         </div>
-                            <input class='ui small inverted button' type="submit" value="Comment" style="background-color: var(--tertiary); margin-top: 10px;">
+                            <input class='ui small circular inverted button' type="submit" value="Comment" style="background-color: var(--tertiary); margin-top: 10px;">
                     </form>
                 </div>
             </div>
@@ -150,9 +146,9 @@
             {% for comment in comments %}
             <div class="ui grid">
                 <div class="ui two column row">
-                    <div class="one wide column">
-                        <div class="item">
-                            <img class="ui small avatar image" src="{{ MEDIA_URL }}static/default.jpg">
+                    <div class="two wide column">
+                        <div class="ui middle aligned content">
+                            <img class="ui tiny fluid circular image" src="{{ MEDIA_URL }}{{ comment.profile.image }}" style="max-width: 80px; max-height:80px;">
                         </div>
                     </div>
                     <div class="fourteen wide column">
@@ -179,21 +175,23 @@
 
 
                 <div class="ui tiny modal edit-comment-class-{{comment.id}}" style="padding: 10px;">
-                    <h2 class="ui modal-header">EDIT COMMENT</h2>
+                    <h3 class="ui modal-header">EDIT COMMENT</h3>
                     <div class="ui modal-body">
-                        <a class="header" href="/users/{{comment.profile.user.username}}">{{comment.profile.name}}</a>
-                        <br>
+                        <a class="ui content" href="/users/{{comment.profile.user.username}}">{{comment.profile.name}}</a>
+                        <p>{{comment.posted_date}}</p>
+                        
                         <form class="ui small form" action="/comments/edit/{{comment.id}}" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="content">
                                 <div class="field">
-                                    <label>{{comment.posted_date}}</label>
                                     <textarea id="body" name="body" rows="8" column="2000" style="resize: none" value="{{ comment.body }}">{{ comment.body }}</textarea>
                                 </div>
                             </div>
-                                <input class='ui small inverted button' type="submit" value="RETCON" style="background-color: var(--tertiary); margin-top: 10px;">
+                            <div class="row">
+                            <input class='ui mini inverted circular button' type="submit" value="EDIT" style="background-color: var(--tertiary); margin-top: 10px;">
                         </form>
-                        <a class="ui inverted tiny button" style="background-color: grey;" id="delete-{{comment.id}}">DELETE</a>
+                            <a class="ui mini inverted circular button" id="delete-{{comment.id}}" style="background-color: grey;">DELETE</a>
+                            </div>
 
                         <script>
                             $(function(){
@@ -208,7 +206,7 @@
                         <div class="ui mini modal delete-comment-class-{{comment.id}}" style="padding: 10px; width=20%;">
                             <h2 class="ui modal-header">Delete Comment?!</h2>
                             <div class="ui modal-body">
-                                <a class="ui inverted tiny button" href="/comments/delete/{{ comment.id }}" style="background-color: grey;" id="delete">DELETE</a>
+                                <a class="ui mini circular inverted button" href="/comments/delete/{{ comment.id }}" id="delete" style="background-color: red;">DELETE</a>
                             </div>
                         </div>
 
