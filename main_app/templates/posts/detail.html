@@ -114,12 +114,12 @@
                     </div>
     <!------------ ADD COMMENT BUTTON/MODAL  ------------>
                 {% if user.is_authenticated %}
-                    <div class="ten wide column" style="text-align: right;">
+                    <div class="ten wide column" style="text-align: left;">
                         <button class="ui mini inverted circular orange button" style="margin-right: 10px;" id="create-comment">ADD COMMENT!</button>
                     </div>
+                {% endif %}
                 </div>
             </div>
-            {% endif %}
             <script>
                 $(function(){
                     $("#create-comment").click(function(){
