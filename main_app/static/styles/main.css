@@ -1,0 +1,79 @@
+:root {
+    --primary:#860F44;
+    --secondary:#BB3939;
+    --tertiary:#EA5F2D;
+    --quaternary:#EEC89F;
+}
+
+
+body {
+    background-image: url('/media/static/map_background.png');
+    background-size: auto;
+    background-color: #EEC89F;
+}
+
+#splash-info {
+    background-color: white;
+    background: rgba(250, 250, 250, 0.6);
+}
+
+/* SEMANTIC UI EXPERIMENTAL SECTION */
+/* .dtk {
+    width: 20%;
+}
+#rainbow {
+    width: 40%;
+} */
+/* #red {
+    background-color: red;
+} */
+
+#blue {
+    background-color: blue;
+}
+#green {
+    background-color: green;
+}
+.bordery {
+    border: solid 1px black;
+}
+
+.jeff {
+    background-color: chartreuse;
+}
+
+.ui.splash-carousel {
+    width: 100%;
+    /* background-color: chartreuse; */
+}
+
+.edge-margin {
+    margin: 10px 10px;
+}
+
+.marker {
+    background-image: url('/media/static/mapbox-icon.png');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: var(--quaternary);
+}   
+
+#map {
+    position: absolute; 
+    top: 0; 
+    bottom: 0; 
+    border-radius: 5px;
+    width: 100%;
+}
+
+a:link {
+    color: black;
+}
+
+a:hover {
+    color: #ea5f2d;
+}
+

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>City Detail -- Wayfarer</title>
+{% endblock %}
+
+
+{% block content %}
+<div class="ui grid" style="margin: 10px;">
+    <div class="row">
+        <!------------ SIDE NAV ------------>
+        <div class="container">
+            <div class="ui inverted vertical menu" style="background-color: var(--primary); border-radius: 5px; padding: 10px;">
+                <h3 class="ui header" style="color: white;">CITIES</h3>
+                {% for city in cities %} 
+                <a href="{% url 'city' city.name %}">
+                <div class="ui link items" style="border-radius: 4px; background-color: var(--secondary);">
+                    <div class= "ui link item" style="margin-bottom: 5px; display: flex">
+                        <img class="ui tiny image" src="{{MEDIA_URL}}{{ city.photo }}">
+                        <div class="ui middle aligned content"  style="padding: 10px;"> 
+                            <p style="text-transform:uppercase; color: white; display: flex;">{{ city.name }}</p>
+                        </div>
+                    </div>
+                </div>       
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        
+<!----------------- MAP ------------------>
+
+        <div class="ui item">
+                <div class="ui items">
+                    <div class="ui item" id='map' style="margin: 14px;">
+                    
+                    <script>
+                        mapboxgl.accessToken = 'pk.eyJ1IjoiamRlbGlzbyIsImEiOiJja2c2cG9raW0wMjUzMzRsaHBkcjR6Z3R5In0.b7ytY30b9YXV5oQqsuuPeg';
+
+                        var map = new mapboxgl.Map({
+                        container: 'map',
+                        style: 'mapbox://styles/jdeliso/ckg72lpin19qt19o2a8gy1kou',
+                        center: [45,25],
+                        zoom: 1
+                        });
+
+                        var geojson = {
+                            type: 'FeatureCollection',
+                            features: [
+                            {% for city in cities%}
+                                {
+                                type: 'Feature',
+                                geometry: {
+                                type: 'Point',
+                                coordinates: [{{city.long}}, {{city.lat}}]
+                                },
+                                properties: {
+                                title: '{{city.name}}',
+                                description: "{{city.name}} posts page"
+                                }
+                            },
+                            {% endfor %}
+                            ]};
+
+                        geojson.features.forEach(function(marker) {
+
+                        // create a HTML element for each feature
+                        var el = document.createElement('div');
+                        el.className = 'marker';
+
+                        // make a marker for each feature and add to the map
+                        new mapboxgl.Marker(el)
+                            .setLngLat(marker.geometry.coordinates)
+                            .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                            .setHTML('<h3>' + marker.properties.title + `</h3><a href="/cities/${marker.properties.title}">` + marker.properties.description + '</a>'))
+                            .addTo(map);
+                        });
+                    </script>
+                    </div>   
+                </div>    
+           
+        </div>
+        
+    <!----------------- MAP ------------------>
+                        
+    </div>
+</div>
+
+
+{% endblock %}

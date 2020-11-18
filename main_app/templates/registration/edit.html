@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Edit Profile -- Wayfarer</title>
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="ui grid centered" style="margin-top: 40px">
+    <div class="four wide column">
+        <div class="ui card">
+            <form class="ui large form" action="{% url 'edit_profile' profile.user.username %}" method="POST" enctype="multipart/form-data">
+                <div class="ui segment">
+                    <h3>Profile Edit</h3>
+                    {% csrf_token %}
+                    <div class="field">
+                        <label>Username</label>
+                        <input type="text" name="name" value="{{ profile.name }}">
+                    </div>
+                    <br>
+
+                    <div class="field">
+                        <label>Current City</label>
+                        <input type="text" name="current_city" value="{{profile.current_city}}">
+                    </div>
+
+
+
+                    <br>
+
+                    <div class='field'>
+                        <label>Profile Picture</label>
+                        <input id='id_image' type='file' name='image' accept='image/*'>
+                    </div>
+
+                    <button class="ui button" type="submit">Edit</button>
+                </div>
+            </form>
+        </div>
+    </div>    
+</div> 
+
+
+
+
+{% endblock %}
+

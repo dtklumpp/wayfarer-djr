@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Login -- Wayfarer</title>
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="ui centered grid" style="padding: 50px;">
+
+    <div class="six wide column">
+        <form class="ui large form" action="{% url 'login' %}" method="POST">
+            <div class="ui segment">
+                <h2 class="ui header">Log-in</h2>
+
+                <h4 class="ui negative message">The information you entered was not correct. Please try again!</h4>
+            {% csrf_token %}
+                <div class="field">
+                    <label>Username</label>
+                    <input type="text" name="username">
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" name="password">
+                </div>
+                <button class="ui inverted button" type="submit" style="background-color: var(--tertiary);">Submit</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}
