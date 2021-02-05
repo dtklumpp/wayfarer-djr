@@ -49,6 +49,19 @@ To clone and run this app, you'll need [Git](https://git-scm.com) installed on y
 
 https://docs.brew.sh/Installation
 
+To seed the database, run these commands:
+
+```
+$ createdb wayfarerdb-v3
+$ python3 manage.py makemigrations
+$ python3 manage.py migrate
+$ python3 manage.py createsuperuser
+```
+
+...with your superuser credentials you may then log in to the Django admin panel
+
+
+
 
 ## Features
 
