@@ -108,6 +108,8 @@ MIT ©
 ## Notes
 The initial code for this project was contributed via collaboration between JDeliso, dtklumpp and ricksubel
 
+---
+---
 
 ## Examples-of-Use
 
