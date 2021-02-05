@@ -39,10 +39,13 @@ To clone and run this app, you'll need [Git](https://git-scm.com) installed on y
 *Note: if Postgres is not yet installed, you will need to run:
 
 `$ brew install postgres`
+
 `$ brew tap homebrew/services`*
+
 `$ brew services start postgresql`
 
 *If homebrew is not installed, you may download it here:
+
 https://docs.brew.sh/Installation
 
 
@@ -58,18 +61,6 @@ https://docs.brew.sh/Installation
 1. Select a city from the interactive map
 1. Basic data validation and error handling
 1. Send a welcome email after acccount creation
-
-
-1. Create a color using the HTS sliders
-1. Click "convert" to convert into hex values
-1. OR, click "Save Color" to start a palette
-1. Keep adding more colors!
-1. Re-order colors in your palette with the "+" & "-" knobs
-1. Delete a color with the "X"
-1. Press "Hex" to convert everything and start a new palette
-1. Confirmation before delete
-1. Slug URLs
-1. Relative published dates for posts
     
 ## Examples-of-Use
 
@@ -103,4 +94,4 @@ MIT ©
 
 
 ## Notes
-The initial code for this project was contributed via collaboration between JDeliso, dtklumpp and ricksubel, as part of a project for General Assembly.   
+The initial code for this project was contributed via collaboration between JDeliso, dtklumpp and ricksubel
