@@ -124,3 +124,7 @@ Map View
 City View
 
 ![Screen Shot 2021-02-05 at 12 16 03 AM](https://user-images.githubusercontent.com/65556316/107082244-e39d0680-67c1-11eb-865a-25d638d55244.png)
+
+Modals
+
+<img width="1440" alt="Screen Shot 2021-02-05 at 5 11 57 PM" src="https://user-images.githubusercontent.com/65556316/107094683-72ffe500-67d5-11eb-85c4-e874052310dd.png">
