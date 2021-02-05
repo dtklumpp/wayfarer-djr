@@ -32,6 +32,7 @@ To clone and run this app, you'll need [Git](https://git-scm.com) installed on y
 1. Enter the repository `$ cd wayfarer-djr`
 1. Enter the virtual environment `$ source .env/bin/activate`
 1. Exit .env at any time with `$ deactivate`
+1. Install dependencies with `$ pip3 install -r requirements.txt`
 1. Run the application `$ python3 manage.py runserver`
 1. View the app in your browser at `http://localhost:8000/`
 1. Make an account to access features*
