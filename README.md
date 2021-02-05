@@ -1,7 +1,5 @@
 # Wayfarer
 
-## About
-
 This application is designed to host a travel community, where users can share tips, tricks, and pictures about destinations across the globe.  Users can make their own profiles, add friends, and comment on one another's posts (and comments).
 
 ## Contents
