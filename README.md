@@ -6,14 +6,13 @@ This application is designed to host a travel community, where users can share t
 
 ## Contents
 
-  1. [Setup](#Setup)
+  1. [Requirements](#Requirements)
   1. [Usage](#Usage)
-  1. [Example of Use](#Example-of-Use)
+  1. [Features](#Features)
+  1. [Examples of Use](#Examples-of-Use)
   1. [Roadmap](#Roadmap)
   1. [Development](#Development)
-  1. [Math](#Math)
   1. [License](#License)
-  1. [Notes](#Notes)
 
 ## Requirements
 
