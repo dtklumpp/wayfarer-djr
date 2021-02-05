@@ -74,19 +74,6 @@ $ python3 manage.py createsuperuser
 1. Basic data validation and error handling
 1. Send a welcome email after acccount creation
     
-## Examples-of-Use
-
-Splash Page
-
-![Screen Shot 2021-02-05 at 12 15 43 AM](https://user-images.githubusercontent.com/65556316/107082185-cff1a000-67c1-11eb-88a4-030450d7bbc6.png)
-
-Map View
-
-![Screen Shot 2021-02-05 at 12 16 23 AM](https://user-images.githubusercontent.com/65556316/107082223-dbdd6200-67c1-11eb-9618-07fb5b4f6444.png)
-
-City View
-
-![Screen Shot 2021-02-05 at 12 16 03 AM](https://user-images.githubusercontent.com/65556316/107082244-e39d0680-67c1-11eb-865a-25d638d55244.png)
 
 
 ## Roadmap -- pending features
@@ -118,3 +105,18 @@ MIT ©
 
 ## Notes
 The initial code for this project was contributed via collaboration between JDeliso, dtklumpp and ricksubel
+
+
+## Examples-of-Use
+
+Splash Page
+
+![Screen Shot 2021-02-05 at 12 15 43 AM](https://user-images.githubusercontent.com/65556316/107082185-cff1a000-67c1-11eb-88a4-030450d7bbc6.png)
+
+Map View
+
+![Screen Shot 2021-02-05 at 12 16 23 AM](https://user-images.githubusercontent.com/65556316/107082223-dbdd6200-67c1-11eb-9618-07fb5b4f6444.png)
+
+City View
+
+![Screen Shot 2021-02-05 at 12 16 03 AM](https://user-images.githubusercontent.com/65556316/107082244-e39d0680-67c1-11eb-865a-25d638d55244.png)
