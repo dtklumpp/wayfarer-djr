@@ -76,7 +76,18 @@ $ python3 manage.py createsuperuser
     
 ## Examples-of-Use
 
-- [screenshots]
+Splash Page
+
+![Screen Shot 2021-02-05 at 12 15 43 AM](https://user-images.githubusercontent.com/65556316/107082185-cff1a000-67c1-11eb-88a4-030450d7bbc6.png)
+
+Map View
+
+![Screen Shot 2021-02-05 at 12 16 23 AM](https://user-images.githubusercontent.com/65556316/107082223-dbdd6200-67c1-11eb-9618-07fb5b4f6444.png)
+
+City View
+
+![Screen Shot 2021-02-05 at 12 16 03 AM](https://user-images.githubusercontent.com/65556316/107082244-e39d0680-67c1-11eb-865a-25d638d55244.png)
+
 
 ## Roadmap -- pending features
 
@@ -89,7 +100,7 @@ $ python3 manage.py createsuperuser
 
 ## Development
 
-To help with a bug or add functionality, do this:
+To contribute to this project, follow these steps:
 
 - Fork this repo
 - Make a branch (`git checkout -b new-feature`)
