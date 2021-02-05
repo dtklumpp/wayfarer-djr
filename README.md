@@ -39,11 +39,11 @@ To clone and run this app, you'll need [Git](https://git-scm.com) installed on y
 
 *Note: if Postgres is not yet installed, you will need to run:
 
-`$ brew install postgres`
-
-`$ brew tap homebrew/services`*
-
-`$ brew services start postgresql`
+```
+$ brew install postgres
+$ brew tap homebrew/services*
+$ brew services start postgresql
+```
 
 *If homebrew is not installed, you may download it here:
 
