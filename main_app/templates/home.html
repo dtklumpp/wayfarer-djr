@@ -7,11 +7,12 @@
 
 
 {% block content %}
+<div class="ui middle aligned content" style="display: flexbox;">
 <div class="ui grid" style="margin: 10px;">
     <div class="row">
         <!------------ SIDE NAV ------------>
         <div class="container">
-            <div class="ui inverted vertical menu" style="background-color: var(--primary); border-radius: 5px; padding: 10px;">
+            <div class="ui inverted vertical menu" style="background-color: var(--primary); border-radius: 5px; padding: 10px; overflow-y:scroll;">
                 <h3 class="ui header" style="color: white;">CITIES</h3>
                 {% for city in cities %} 
                 <a href="{% url 'city' city.name %}">
@@ -78,12 +79,41 @@
                     </script>
                     </div>   
                 </div>    
-           
+        
         </div>
         
     <!----------------- MAP ------------------>
                         
     </div>
+    <div class="row" id="splash-info" style="display: flex; border-radius: 5px;">
+        <div class="ui column centered stackable grid" style="padding: 5px; margin: 14px;">
+            <div class="ui header">
+                    <h1 style="font-style: italic;">See the world...Share the world.</h1>
+            </div>
+            <div class="ui row">
+                <div class="ui column">
+                    <div class="ui item">
+                        <p>Accumsan tortor posuere ac ut consequat. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Convallis aenean et tortor at risus viverra adipiscing at in. Aliquet bibendum enim facilisis gravida neque convallis a. Libero id faucibus nisl tincidunt eget nullam. Justo donec enim diam vulputate ut pharetra. Placerat vestibulum lectus mauris ultrices eros in cursus. Cras sed felis eget velit aliquet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="splash-info" style="display: flex; border-radius: 5px;">
+        <div class="ui column centered stackable grid" style="padding: 5px; margin: 14px;">
+            <div class="ui header">
+                    <h1 style="font-style: italic;">See the world...Share the world.</h1>
+            </div>
+            <div class="ui row">
+                <div class="ui column">
+                    <div class="ui item">
+                        <p>Accumsan tortor posuere ac ut consequat. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Convallis aenean et tortor at risus viverra adipiscing at in. Aliquet bibendum enim facilisis gravida neque convallis a. Libero id faucibus nisl tincidunt eget nullam. Justo donec enim diam vulputate ut pharetra. Placerat vestibulum lectus mauris ultrices eros in cursus. Cras sed felis eget velit aliquet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 
 

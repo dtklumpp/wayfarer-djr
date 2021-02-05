@@ -187,7 +187,7 @@ def signup(request):
         # check if username exists in db
             if User.objects.filter(username=username_form).exists():
                 context = {'error': 'Username is already taken.'}
-                return render(request, 'about.html', context)
+                return render(request, 'splash.html', context)
             else:
                 if User.objects.filter(email=email_form).exists():
                     context = {'error':'That email already exists.'}
@@ -213,14 +213,14 @@ def signup(request):
                     recipient_list = [email_form]
                     send_mail(subject, message, email_from, recipient_list)
 
-                    return redirect('/')
+                    return redirect('/myprofile/')
         else:
             context = {'error':'Passwords do not match'}
             return render(request, 'splash.html', context)
     else:
         # if not post send message, try again 
         context = {'error':'Your account was not created. Please try again.'}
-        return redirect(request, '/')
+        return redirect(request, '/myprofile/')
 
 # COMMENTS controllers
 

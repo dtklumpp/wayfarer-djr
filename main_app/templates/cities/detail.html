@@ -13,8 +13,9 @@
 
 <div class="ui grid" style="margin: 10px;">
     <div class="row">
-        <div class="container">
-            <div class="ui inverted vertical menu" style="background-color: var(--primary); border-radius: 5px; padding: 10px;">
+
+        
+            <div class="ui inverted vertical menu" style="background-color: var(--primary); border-radius: 5px; padding: 10px; overflow-y:scroll;">
                 <h3 class="ui header" style="color: white;">CITIES</h3>
                 {% for city in cities %} 
                 <a href="{% url 'city' city.name %}">
@@ -29,10 +30,12 @@
                 </a>
                 {% endfor %}
             </div>
-        </div>
+       
+    
         <!------------ MAIN CONTENT AREA ------------>
+        
         <div class="twelve wide column">
-            <div class="ui segment" style="width: 100%;">
+            <div class="ui segment">
                 <div class="ui grid" style="padding: 10px;">
                         <div class="ui row" style="margin-left: 15px;">
                             <h3 class="" style="text-transform:uppercase">{{ city.name }} - {{ city.country }}</h3>
@@ -161,7 +164,6 @@
                 </div>
 
                 {% for post in posts %} 
-                
                 
                 <div class="ui middle aligned items" style="min-width: 100%;">
                     <div class="ui link items" style="margin-bottom: 15px;">
