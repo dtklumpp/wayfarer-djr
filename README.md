@@ -2,6 +2,8 @@
 
 This application is designed to host a travel community, where users can share tips, tricks, and pictures about destinations across the globe.  Users can make their own profiles, add friends, and comment on one another's posts (and comments).
 
+Travel applications as they stand (at the time of writing) are either heavily commerce-focused, or have a top-down model of content creation.  We attempt to democratize this with a bare-bones build designed to run quickly with no extraneous features or ads.
+
 ## Contents
 
   1. [Requirements](#Requirements)
