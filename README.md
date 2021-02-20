@@ -4,6 +4,11 @@ This application is designed to host a travel community, where users can share t
 
 Travel applications as they stand (at the time of writing) are either heavily commerce-focused, or have a top-down model of content creation.  We attempt to democratize this with a bare-bones build designed to run quickly with no extraneous features or ads.
 
+## example-of-use
+
+![Screen Shot 2021-02-05 at 12 15 43 AM](https://user-images.githubusercontent.com/65556316/107082185-cff1a000-67c1-11eb-88a4-030450d7bbc6.png)
+
+
 ## Contents
 
   1. [Requirements](#Requirements)
@@ -13,7 +18,7 @@ Travel applications as they stand (at the time of writing) are either heavily co
   1. [Development](#Development)
   1. [License](#License)
   1. [Notes](#Notes)
-  1. [Examples of Use](#Examples-of-Use)
+  1. [Screenshots](#Screenshots)
 
 
 ## Requirements
@@ -113,7 +118,7 @@ The initial code for this project was contributed via collaboration between JDel
 ---
 ---
 
-## Examples-of-Use
+## Screenshots
 
 Splash Page
 
